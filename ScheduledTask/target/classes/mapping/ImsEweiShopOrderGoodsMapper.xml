@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.microsilver.mrcard.scheduledtask.dao.IShopOrderGoodsMapper">
+	<resultMap id="BaseResultMap"
+		type="com.microsilver.mrcard.scheduledtask.model.ImsEweiShopOrderGoods">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="uniacid" property="uniacid" jdbcType="INTEGER" />
+		<result column="orderid" property="orderid" jdbcType="INTEGER" />
+		<result column="goodsid" property="goodsid" jdbcType="INTEGER" />
+		<result column="price" property="price" jdbcType="DECIMAL" />
+		<result column="total" property="total" jdbcType="INTEGER" />
+		<result column="optionid" property="optionid" jdbcType="INTEGER" />
+		<result column="createtime" property="createtime" jdbcType="INTEGER" />
+		<result column="applytime1" property="applytime1" jdbcType="INTEGER" />
+		<result column="checktime1" property="checktime1" jdbcType="INTEGER" />
+		<result column="paytime1" property="paytime1" jdbcType="INTEGER" />
+		<result column="invalidtime1" property="invalidtime1" jdbcType="INTEGER" />
+		<result column="deletetime1" property="deletetime1" jdbcType="INTEGER" />
+		<result column="status1" property="status1" jdbcType="TINYINT" />
+		<result column="applytime2" property="applytime2" jdbcType="INTEGER" />
+		<result column="checktime2" property="checktime2" jdbcType="INTEGER" />
+		<result column="paytime2" property="paytime2" jdbcType="INTEGER" />
+		<result column="invalidtime2" property="invalidtime2" jdbcType="INTEGER" />
+		<result column="deletetime2" property="deletetime2" jdbcType="INTEGER" />
+		<result column="status2" property="status2" jdbcType="TINYINT" />
+		<result column="applytime3" property="applytime3" jdbcType="INTEGER" />
+		<result column="checktime3" property="checktime3" jdbcType="INTEGER" />
+		<result column="paytime3" property="paytime3" jdbcType="INTEGER" />
+		<result column="invalidtime3" property="invalidtime3" jdbcType="INTEGER" />
+		<result column="deletetime3" property="deletetime3" jdbcType="INTEGER" />
+		<result column="status3" property="status3" jdbcType="TINYINT" />
+		<result column="realprice" property="realprice" jdbcType="DECIMAL" />
+		<result column="goodssn" property="goodssn" jdbcType="VARCHAR" />
+		<result column="productsn" property="productsn" jdbcType="VARCHAR" />
+		<result column="nocommission" property="nocommission" jdbcType="TINYINT" />
+		<result column="changeprice" property="changeprice" jdbcType="DECIMAL" />
+		<result column="oldprice" property="oldprice" jdbcType="DECIMAL" />
+		<result column="diyformdataid" property="diyformdataid"
+			jdbcType="INTEGER" />
+		<result column="openid" property="openid" jdbcType="VARCHAR" />
+		<result column="diyformid" property="diyformid" jdbcType="INTEGER" />
+		<result column="rstate" property="rstate" jdbcType="TINYINT" />
+		<result column="refundtime" property="refundtime" jdbcType="INTEGER" />
+		<result column="printstate" property="printstate" jdbcType="INTEGER" />
+		<result column="printstate2" property="printstate2" jdbcType="INTEGER" />
+		<result column="merchid" property="merchid" jdbcType="INTEGER" />
+		<result column="parentorderid" property="parentorderid"
+			jdbcType="INTEGER" />
+		<result column="merchsale" property="merchsale" jdbcType="TINYINT" />
+		<result column="isdiscountprice" property="isdiscountprice"
+			jdbcType="DECIMAL" />
+		<result column="canbuyagain" property="canbuyagain" jdbcType="BIT" />
+		<result column="seckill" property="seckill" jdbcType="TINYINT" />
+		<result column="seckill_taskid" property="seckillTaskid"
+			jdbcType="INTEGER" />
+		<result column="seckill_roomid" property="seckillRoomid"
+			jdbcType="INTEGER" />
+		<result column="seckill_timeid" property="seckillTimeid"
+			jdbcType="INTEGER" />
+		<result column="sendtype" property="sendtype" jdbcType="TINYINT" />
+		<result column="expresscom" property="expresscom" jdbcType="VARCHAR" />
+		<result column="expresssn" property="expresssn" jdbcType="VARCHAR" />
+		<result column="express" property="express" jdbcType="VARCHAR" />
+		<result column="sendtime" property="sendtime" jdbcType="INTEGER" />
+		<result column="finishtime" property="finishtime" jdbcType="INTEGER" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, uniacid, orderid, goodsid, price, total, optionid, createtime,
+		applytime1, checktime1,
+		paytime1, invalidtime1, deletetime1, status1, applytime2, checktime2, paytime2,
+		invalidtime2,
+		deletetime2, status2, applytime3, checktime3, paytime3, invalidtime3, deletetime3,
+		status3, realprice, goodssn, productsn, nocommission, changeprice,
+		oldprice, diyformdataid,
+		openid, diyformid, rstate, refundtime, printstate, printstate2, merchid,
+		parentorderid,
+		merchsale, isdiscountprice, canbuyagain, seckill, seckill_taskid,
+		seckill_roomid,
+		seckill_timeid, sendtype, expresscom, expresssn, express, sendtime, finishtime
+	</sql>
+
+	
+	<select id="selectOrderGoodsByOrderId" resultType="com.microsilver.mrcard.scheduledtask.model.ImsEweiShopOrderGoods" parameterType="INTEGER">
+		select og.goodsid,g.title,g.thumb, og.realprice as marketprice,og.total from
+		ims_ewei_shop_order_goods as og INNER JOIN ims_ewei_shop_goods as g on
+		g.id=og.goodsid
+		where og.orderid=#{orderId}
+	</select>
+</mapper>

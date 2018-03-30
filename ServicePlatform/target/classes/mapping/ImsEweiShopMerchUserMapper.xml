@@ -1,0 +1,980 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.microsilver.mrcard.serviceplatform.dao.ImsEweiShopMerchUserMapper" >
+  <resultMap id="BaseResultMap" type="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMerchUser" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="uniacid" property="uniacid" jdbcType="INTEGER" />
+    <result column="regid" property="regid" jdbcType="INTEGER" />
+    <result column="openid" property="openid" jdbcType="VARCHAR" />
+    <result column="groupid" property="groupid" jdbcType="INTEGER" />
+    <result column="merchno" property="merchno" jdbcType="VARCHAR" />
+    <result column="merchname" property="merchname" jdbcType="VARCHAR" />
+    <result column="salecate" property="salecate" jdbcType="VARCHAR" />
+    <result column="desc" property="desc" jdbcType="VARCHAR" />
+    <result column="realname" property="realname" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="accounttime" property="accounttime" jdbcType="INTEGER" />
+    <result column="applytime" property="applytime" jdbcType="INTEGER" />
+    <result column="accounttotal" property="accounttotal" jdbcType="INTEGER" />
+    <result column="jointime" property="jointime" jdbcType="INTEGER" />
+    <result column="accountid" property="accountid" jdbcType="INTEGER" />
+    <result column="logo" property="logo" jdbcType="VARCHAR" />
+    <result column="payopenid" property="payopenid" jdbcType="VARCHAR" />
+    <result column="payrate" property="payrate" jdbcType="DECIMAL" />
+    <result column="isrecommand" property="isrecommand" jdbcType="BIT" />
+    <result column="servicestag" property="servicestag" jdbcType="VARCHAR" />
+    <result column="cateid" property="cateid" jdbcType="INTEGER" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="lat" property="lat" jdbcType="VARCHAR" />
+    <result column="lng" property="lng" jdbcType="VARCHAR" />
+    <result column="is_pay" property="isPay" jdbcType="REAL" />
+    <result column="is_shop" property="isShop" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="REAL" />
+    <result column="is_mill" property="isMill" jdbcType="BIT" />
+    <result column="lv2" property="lv2" jdbcType="INTEGER" />
+    <result column="province" property="province" jdbcType="BIGINT" />
+    <result column="city" property="city" jdbcType="BIGINT" />
+    <result column="county" property="county" jdbcType="BIGINT" />
+    <result column="send_sms" property="sendSms" jdbcType="BIGINT" />
+    <result column="pic1" property="pic1" jdbcType="VARCHAR" />
+    <result column="pic2" property="pic2" jdbcType="VARCHAR" />
+    <result column="publicitypic" property="publicitypic" jdbcType="VARCHAR" />
+    <result column="id_no" property="idNo" jdbcType="VARCHAR" />
+    <result column="referee" property="referee" jdbcType="BIGINT" />
+    <result column="shop_type" property="shopType" jdbcType="INTEGER" />
+    <result column="pantnr_type" property="pantnrType" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="score" property="score" jdbcType="REAL" />
+    <result column="counts" property="counts" jdbcType="BIGINT" />
+    <result column="star_level" property="starLevel" jdbcType="INTEGER" />
+    <result column="comment" property="comment" jdbcType="INTEGER" />
+    <result column="support_pick_up" property="supportPickUp" />
+    <result column="support_biaoshi" property="supportBiaoshi"  />
+    <result column="sort_weight" property="sortWeight"  />
+    <result column="eng_merchname" property="engMerchname"  />
+    <result column="trading_area" property="tradingArea"  />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  
+ <resultMap  id="WithActivity"  type="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMerchUser" extends="BaseResultMap">
+ 	<result column="begin_time" property="beginTime" jdbcType="INTEGER" />
+    <result column="end_time" property="endTime" jdbcType="INTEGER" />
+    <result column="lowest_price" property="lowestPrice" jdbcType="DECIMAL" />
+    <result column="cashback_max" property="cashbackMax" jdbcType="DECIMAL" />
+    <result column="activity" property="activity" jdbcType="VARCHAR" />
+    <result column="distance" property="distance" jdbcType="BIGINT" />
+ </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, uniacid, regid, openid, groupid, merchno, merchname, salecate, 'desc', realname, 
+    mobile, status, accounttime, applytime, accounttotal, jointime, accountid, logo, 
+    payopenid, payrate, isrecommand, servicestag, cateid, address, tel, lat, lng, is_pay, 
+    is_shop, code, is_mill, lv2, province, city, county, send_sms, pic1, pic2, publicitypic,
+    id_no, referee, shop_type, pantnr_type, user_id,score,counts,star_Level
+  </sql>
+
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMerchUserExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ims_ewei_shop_merch_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+   
+   <select id="selectByPrimaryKeyWithComment1" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select u.merchname,u.id,u.lat,u.lng,u.status,u.isrecommand,
+    u.is_mill,u.remark,
+    u.address,u.publicitypic,u.score,(SELECT COUNT(1) from ims_ewei_shop_order_comment c where c.merchid = u.id) 'comment' 
+    from ims_ewei_shop_merch_user u
+    where u.id = #{id,jdbcType=INTEGER}
+  </select>
+  
+     <select id="selectByPrimaryKeyWithComment" resultMap="WithActivity" parameterType="java.lang.Integer" >
+    select u.merchname,u.eng_merchname,u.logo,u.shop_type,u.trading_area,u.id,u.lat,u.lng,u.status,u.isrecommand,
+    u.is_mill,u.remark,u.servicestag,
+    max(cashback_max) cashback_max,GROUP_CONCAT(activity_id order by activity_id asc) activity,max(execute_begin) begin_time,MAX(execute_end) end_time,
+    u.address,u.score,(SELECT COUNT(1) from ims_ewei_shop_order_comment c where c.merchid = u.id) 'comment' ,u.star_level
+    from ims_ewei_shop_merch_user u INNER JOIN ims_ewei_shop_activity_config as con on u.id=con.merch_id 
+    where u.id = #{id,jdbcType=INTEGER}  and lowest_price >0 group by merch_id
+  </select>
+   
+    <select id="selectByExampleWithActivity" resultMap="WithActivity" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMerchUserExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>   
+    mer.id,mer.merchname,mer.logo,mer.servicestag,mer.is_pay,mer.score,mer.isrecommand,
+    mer.is_mill,max(cashback_max) cashback_max,GROUP_CONCAT(activity_id order by activity_id desc) activity,max(execute_begin) begin_time,MAX(execute_end) end_time,min(lowest_price) lowest_price
+    ,shop_type,eng_merchname,trading_area,(SELECT COUNT(1) from ims_ewei_shop_order_comment c where c.merchid = mer.id) 'comment' 
+	from ims_ewei_shop_merch_user as mer
+	INNER JOIN ims_ewei_shop_activity_config as con on mer.id=con.merch_id
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    	group by merch_id
+    	having 1=1
+    <if test="startPrice != null">
+    	and lowest_price <![CDATA[   >=  ]]> #{startPrice}
+    </if>
+    <if test="endPrice != null">
+    	and lowest_price <![CDATA[   <=  ]]> #{endPrice}
+    </if>
+    <if test="activity != null">
+    	and FIND_IN_SET(#{activity},activity)
+    </if>
+       <if test="cashbackMax != null">
+    	and cashback_max <![CDATA[   >  ]]> #{cashbackMax}
+    </if>        		
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  
+   <select id="selectByExampleWithActivityAndLocation" resultMap="WithActivity" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMerchUserExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    mer.id,mer.merchname,mer.logo,mer.servicestag,mer.is_pay,mer.score,mer.isrecommand,
+    mer.is_mill,max(cashback_max) cashback_max,
+    GROUP_CONCAT(activity_id order by activity_id desc) activity,max(execute_begin) begin_time,MAX(execute_end) end_time,min(lowest_price) lowest_price
+    ,shop_type,eng_merchname,trading_area,(SELECT COUNT(1) from ims_ewei_shop_order_comment c where c.merchid = mer.id) 'comment' ,
+    round(6378.138*2*asin(sqrt(pow(sin( (#{lat:VARCHAR}*pi()/180-mer.lat*pi()/180)/2),2)+cos(#{lat:VARCHAR}*pi()/180)*cos(mer.lat*pi()/180)* pow(sin( (#{lng:VARCHAR}*pi()/180-mer.lng*pi()/180)/2),2)))*1000) AS distance              
+	FROM ims_ewei_shop_merch_user as mer INNER JOIN ims_ewei_shop_activity_config con on mer.id = con.merch_id	
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+       	group by merch_id
+     	having 1=1
+    <if test="startPrice != null">
+    	and lowest_price <![CDATA[   >=  ]]> #{startPrice}
+    </if>
+    <if test="endPrice != null">
+    	and lowest_price <![CDATA[   <=  ]]> #{endPrice}
+    </if>
+    <if test="activity != null">
+    	and FIND_IN_SET(#{activity},activity)
+    </if>        	
+    <if test="cashbackMax != null">
+    	and cashback_max <![CDATA[   >  ]]> #{cashbackMax}
+    </if>  	
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  
+
+  <select id="selectByPrimaryKey" resultType="com.microsilver.mrcard.serviceplatform.dto.MerchInfoDto" parameterType="java.lang.Long" >
+    select 
+	    id, uniacid, regid, openid, groupid, merchno, merchname, salecate, 'desc', realname, 
+    mobile, status, accounttime, applytime, accounttotal, jointime, accountid, logo, 
+    payopenid, payrate, isrecommand, servicestag, cateid, address, tel, lat, lng, is_pay isPay, 
+    is_shop isShop, code, is_mill isMill, lv2, province, city, county, send_sms sendSms, pic1, pic2, publicitypic,
+    id_no idNo, referee, shop_type shopType, pantnr_type pantnrType, user_id userId,score,counts,star_Level starLevel,support_pick_up supportPickUp,support_biaoshi supportBiaoshi
+    from ims_ewei_shop_merch_user
+    where id = #{id}
+  </select>
+  
+    <select id="selectByPrimaryKeyWithPrice" resultMap="WithActivity" parameterType="java.lang.Long" >
+    select 
+	    mu.id, uniacid, regid, openid, groupid, merchno, merchname,eng_merchname,trading_area,shop_type,(SELECT COUNT(1) from ims_ewei_shop_order_comment c where c.merchid = mu.id) 'comment', salecate, 'desc', realname, min(lowest_price) lowest_price,
+    mobile, status, accounttime, applytime, accounttotal, jointime, accountid, logo, 
+    payopenid, payrate, isrecommand, servicestag, cateid, address, tel, lat, lng, is_pay isPay, 
+    is_shop isShop, code, is_mill isMill, lv2, province, city, county, send_sms sendSms, pic1, pic2, publicitypic,
+    id_no idNo, referee, shop_type shopType, pantnr_type pantnrType, user_id userId,score,counts,star_Level starLevel,support_pick_up supportPickUp,support_biaoshi supportBiaoshi
+    from ims_ewei_shop_merch_user mu inner join ims_ewei_shop_activity_config ac on mu.id = ac.merch_id 
+    where mu.id = #{id}
+  </select>
+  
+    <select id="selectByPrimaryKey1" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+	    id,support_pick_up,support_biaoshi
+    from ims_ewei_shop_merch_user
+    where id = #{id}
+  </select>
+  
+   <select id="selectByPrimaryKeyForComment" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+	    id,merchname,logo
+    from ims_ewei_shop_merch_user
+    where id = #{id}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from ims_ewei_shop_merch_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMerchUserExample" >
+    delete from ims_ewei_shop_merch_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMerchUser" >
+    insert into ims_ewei_shop_merch_user (id, uniacid, regid, 
+      openid, groupid, merchno, 
+      merchname, salecate, desc, 
+      realname, mobile, status, 
+      accounttime, applytime, accounttotal, 
+      jointime, accountid, logo, 
+      payopenid, payrate, isrecommand, 
+      servicestag, cateid, address, 
+      tel, lat, lng, is_pay, 
+      is_shop, code, is_mill, lv2, province, 
+      city, county, send_sms, 
+      pic1, pic2, id_no, referee, 
+      shop_type, pantnr_type, 
+      user_id,score,counts,star_level
+      )
+    values (#{id,jdbcType=INTEGER}, #{uniacid,jdbcType=INTEGER}, #{regid,jdbcType=INTEGER}, 
+      #{openid,jdbcType=VARCHAR}, #{groupid,jdbcType=INTEGER}, #{merchno,jdbcType=VARCHAR}, 
+      #{merchname,jdbcType=VARCHAR}, #{salecate,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR}, 
+      #{realname,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, 
+      #{accounttime,jdbcType=INTEGER}, #{applytime,jdbcType=INTEGER}, #{accounttotal,jdbcType=INTEGER}, 
+      #{jointime,jdbcType=INTEGER}, #{accountid,jdbcType=INTEGER}, #{logo,jdbcType=VARCHAR}, 
+      #{payopenid,jdbcType=VARCHAR}, #{payrate,jdbcType=DECIMAL}, #{isrecommand,jdbcType=BIT}, 
+      #{servicestag,jdbcType=VARCHAR}, #{cateid,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, 
+      #{tel,jdbcType=VARCHAR}, #{lat,jdbcType=VARCHAR}, #{lng,jdbcType=VARCHAR}, #{isPay,jdbcType=REAL}, 
+      #{isShop,jdbcType=INTEGER}, #{code,jdbcType=REAL}, #{isMill,jdbcType=INTEGER}, 
+      #{lv2,jdbcType=INTEGER}, #{province,jdbcType=BIGINT}, 
+      #{city,jdbcType=BIGINT}, #{county,jdbcType=BIGINT}, #{sendSms,jdbcType=BIGINT}, 
+      #{pic1,jdbcType=VARCHAR}, #{pic2,jdbcType=VARCHAR}, #{idNo,jdbcType=VARCHAR}, #{referee,jdbcType=BIGINT}, 
+      #{shopType,jdbcType=INTEGER}, #{pantnrType,jdbcType=INTEGER}, 
+      #{userId,jdbcType=BIGINT},#{score},#{counts},#{star_level}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMerchUser" >
+    insert into ims_ewei_shop_merch_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="uniacid != null" >
+        uniacid,
+      </if>
+      <if test="regid != null" >
+        regid,
+      </if>
+      <if test="openid != null" >
+        openid,
+      </if>
+      <if test="groupid != null" >
+        groupid,
+      </if>
+      <if test="merchno != null" >
+        merchno,
+      </if>
+      <if test="merchname != null" >
+        merchname,
+      </if>
+      <if test="salecate != null" >
+        salecate,
+      </if>
+      <if test="desc != null" >
+        desc,
+      </if>
+      <if test="realname != null" >
+        realname,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="accounttime != null" >
+        accounttime,
+      </if>
+      <if test="applytime != null" >
+        applytime,
+      </if>
+      <if test="accounttotal != null" >
+        accounttotal,
+      </if>
+      <if test="jointime != null" >
+        jointime,
+      </if>
+      <if test="accountid != null" >
+        accountid,
+      </if>
+      <if test="logo != null" >
+        logo,
+      </if>
+      <if test="payopenid != null" >
+        payopenid,
+      </if>
+      <if test="payrate != null" >
+        payrate,
+      </if>
+      <if test="isrecommand != null" >
+        isrecommand,
+      </if>
+      <if test="servicestag != null" >
+        servicestag,
+      </if>
+      <if test="cateid != null" >
+        cateid,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="lat != null" >
+        lat,
+      </if>
+      <if test="lng != null" >
+        lng,
+      </if>
+      <if test="isPay != null" >
+        is_pay,
+      </if>
+      <if test="isShop != null" >
+        is_shop,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="isMill != null" >
+        is_mill,
+      </if>
+      <if test="lv2 != null" >
+        lv2,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="county != null" >
+        county,
+      </if>
+      <if test="sendSms != null" >
+        send_sms,
+      </if>
+      <if test="pic1 != null" >
+        pic1,
+      </if>
+      <if test="pic2 != null" >
+        pic2,
+      </if>
+      <if test="idNo != null" >
+        id_no,
+      </if>
+      <if test="referee != null" >
+        referee,
+      </if>
+      <if test="shopType != null" >
+        shop_type,
+      </if>
+      <if test="pantnrType != null" >
+        pantnr_type,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+       <if test="counts != null" >
+        counts,
+      </if>
+      <if test="star_level != null" >
+        star_level
+      </if>                 
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uniacid != null" >
+        #{uniacid,jdbcType=INTEGER},
+      </if>
+      <if test="regid != null" >
+        #{regid,jdbcType=INTEGER},
+      </if>
+      <if test="openid != null" >
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="groupid != null" >
+        #{groupid,jdbcType=INTEGER},
+      </if>
+      <if test="merchno != null" >
+        #{merchno,jdbcType=VARCHAR},
+      </if>
+      <if test="merchname != null" >
+        #{merchname,jdbcType=VARCHAR},
+      </if>
+      <if test="salecate != null" >
+        #{salecate,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null" >
+        #{desc,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null" >
+        #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="accounttime != null" >
+        #{accounttime,jdbcType=INTEGER},
+      </if>
+      <if test="applytime != null" >
+        #{applytime,jdbcType=INTEGER},
+      </if>
+      <if test="accounttotal != null" >
+        #{accounttotal,jdbcType=INTEGER},
+      </if>
+      <if test="jointime != null" >
+        #{jointime,jdbcType=INTEGER},
+      </if>
+      <if test="accountid != null" >
+        #{accountid,jdbcType=INTEGER},
+      </if>
+      <if test="logo != null" >
+        #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="payopenid != null" >
+        #{payopenid,jdbcType=VARCHAR},
+      </if>
+      <if test="payrate != null" >
+        #{payrate,jdbcType=DECIMAL},
+      </if>
+      <if test="isrecommand != null" >
+        #{isrecommand,jdbcType=BIT},
+      </if>
+      <if test="servicestag != null" >
+        #{servicestag,jdbcType=VARCHAR},
+      </if>
+      <if test="cateid != null" >
+        #{cateid,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="lat != null" >
+        #{lat,jdbcType=VARCHAR},
+      </if>
+      <if test="lng != null" >
+        #{lng,jdbcType=VARCHAR},
+      </if>
+      <if test="isPay != null" >
+        #{isPay,jdbcType=REAL},
+      </if>
+      <if test="isShop != null" >
+        #{isShop,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=REAL},
+      </if>
+      <if test="isMill != null" >
+        #{isMill,jdbcType=INTEGER},
+      </if>
+      <if test="lv2 != null" >
+        #{lv2,jdbcType=INTEGER},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=BIGINT},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=BIGINT},
+      </if>
+      <if test="county != null" >
+        #{county,jdbcType=BIGINT},
+      </if>
+      <if test="sendSms != null" >
+        #{sendSms,jdbcType=BIGINT},
+      </if>
+      <if test="pic1 != null" >
+        #{pic1,jdbcType=VARCHAR},
+      </if>
+      <if test="pic2 != null" >
+        #{pic2,jdbcType=VARCHAR},
+      </if>
+      <if test="idNo != null" >
+        #{idNo,jdbcType=VARCHAR},
+      </if>
+      <if test="referee != null" >
+        #{referee,jdbcType=BIGINT},
+      </if>
+      <if test="shopType != null" >
+        #{shopType,jdbcType=INTEGER},
+      </if>
+      <if test="pantnrType != null" >
+        #{pantnrType,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+       <if test="score != null" >
+       #{score},
+      </if>
+       <if test="counts != null" >
+        #{counts},
+      </if>
+      <if test="star_level != null" >
+        #{star_level}
+        </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMerchUserExample" resultType="java.lang.Integer" >
+    select count(*) from ims_ewei_shop_merch_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ims_ewei_shop_merch_user
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.uniacid != null" >
+        uniacid = #{record.uniacid,jdbcType=INTEGER},
+      </if>
+      <if test="record.regid != null" >
+        regid = #{record.regid,jdbcType=INTEGER},
+      </if>
+      <if test="record.openid != null" >
+        openid = #{record.openid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.groupid != null" >
+        groupid = #{record.groupid,jdbcType=INTEGER},
+      </if>
+      <if test="record.merchno != null" >
+        merchno = #{record.merchno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.merchname != null" >
+        merchname = #{record.merchname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.salecate != null" >
+        salecate = #{record.salecate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.desc != null" >
+        desc = #{record.desc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.realname != null" >
+        realname = #{record.realname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile != null" >
+        mobile = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.accounttime != null" >
+        accounttime = #{record.accounttime,jdbcType=INTEGER},
+      </if>
+      <if test="record.applytime != null" >
+        applytime = #{record.applytime,jdbcType=INTEGER},
+      </if>
+      <if test="record.accounttotal != null" >
+        accounttotal = #{record.accounttotal,jdbcType=INTEGER},
+      </if>
+      <if test="record.jointime != null" >
+        jointime = #{record.jointime,jdbcType=INTEGER},
+      </if>
+      <if test="record.accountid != null" >
+        accountid = #{record.accountid,jdbcType=INTEGER},
+      </if>
+      <if test="record.logo != null" >
+        logo = #{record.logo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payopenid != null" >
+        payopenid = #{record.payopenid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payrate != null" >
+        payrate = #{record.payrate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.isrecommand != null" >
+        isrecommand = #{record.isrecommand,jdbcType=BIT},
+      </if>
+      <if test="record.servicestag != null" >
+        servicestag = #{record.servicestag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cateid != null" >
+        cateid = #{record.cateid,jdbcType=INTEGER},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tel != null" >
+        tel = #{record.tel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lat != null" >
+        lat = #{record.lat,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lng != null" >
+        lng = #{record.lng,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isPay != null" >
+        is_pay = #{record.isPay,jdbcType=REAL},
+      </if>
+      <if test="record.isShop != null" >
+        is_shop = #{record.isShop,jdbcType=INTEGER},
+      </if>
+      <if test="record.code != null" >
+        code = #{record.code,jdbcType=REAL},
+      </if>
+      <if test="record.isMill != null" >
+        is_mill = #{record.isMill,jdbcType=INTEGER},
+      </if>
+      <if test="record.lv2 != null" >
+        lv2 = #{record.lv2,jdbcType=INTEGER},
+      </if>
+      <if test="record.province != null" >
+        province = #{record.province,jdbcType=BIGINT},
+      </if>
+      <if test="record.city != null" >
+        city = #{record.city,jdbcType=BIGINT},
+      </if>
+      <if test="record.county != null" >
+        county = #{record.county,jdbcType=BIGINT},
+      </if>
+      <if test="record.sendSms != null" >
+        send_sms = #{record.sendSms,jdbcType=BIGINT},
+      </if>
+      <if test="record.pic1 != null" >
+        pic1 = #{record.pic1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pic2 != null" >
+        pic2 = #{record.pic2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idNo != null" >
+        id_no = #{record.idNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.referee != null" >
+        referee = #{record.referee,jdbcType=BIGINT},
+      </if>
+      <if test="record.shopType != null" >
+        shop_type = #{record.shopType,jdbcType=INTEGER},
+      </if>
+      <if test="record.pantnrType != null" >
+        pantnr_type = #{record.pantnrType,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ims_ewei_shop_merch_user
+    set id = #{record.id,jdbcType=INTEGER},
+      uniacid = #{record.uniacid,jdbcType=INTEGER},
+      regid = #{record.regid,jdbcType=INTEGER},
+      openid = #{record.openid,jdbcType=VARCHAR},
+      groupid = #{record.groupid,jdbcType=INTEGER},
+      merchno = #{record.merchno,jdbcType=VARCHAR},
+      merchname = #{record.merchname,jdbcType=VARCHAR},
+      salecate = #{record.salecate,jdbcType=VARCHAR},
+      desc = #{record.desc,jdbcType=VARCHAR},
+      realname = #{record.realname,jdbcType=VARCHAR},
+      mobile = #{record.mobile,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=TINYINT},
+      accounttime = #{record.accounttime,jdbcType=INTEGER},
+      applytime = #{record.applytime,jdbcType=INTEGER},
+      accounttotal = #{record.accounttotal,jdbcType=INTEGER},
+      jointime = #{record.jointime,jdbcType=INTEGER},
+      accountid = #{record.accountid,jdbcType=INTEGER},
+      logo = #{record.logo,jdbcType=VARCHAR},
+      payopenid = #{record.payopenid,jdbcType=VARCHAR},
+      payrate = #{record.payrate,jdbcType=DECIMAL},
+      isrecommand = #{record.isrecommand,jdbcType=BIT},
+      servicestag = #{record.servicestag,jdbcType=VARCHAR},
+      cateid = #{record.cateid,jdbcType=INTEGER},
+      address = #{record.address,jdbcType=VARCHAR},
+      tel = #{record.tel,jdbcType=VARCHAR},
+      lat = #{record.lat,jdbcType=VARCHAR},
+      lng = #{record.lng,jdbcType=VARCHAR},
+      is_pay = #{record.isPay,jdbcType=REAL},
+      is_shop = #{record.isShop,jdbcType=INTEGER},
+      code = #{record.code,jdbcType=REAL},
+      is_mill = #{record.isMill,jdbcType=INTEGER},
+      lv2 = #{record.lv2,jdbcType=INTEGER},
+      province = #{record.province,jdbcType=BIGINT},
+      city = #{record.city,jdbcType=BIGINT},
+      county = #{record.county,jdbcType=BIGINT},
+      send_sms = #{record.sendSms,jdbcType=BIGINT},
+      pic1 = #{record.pic1,jdbcType=VARCHAR},
+      pic2 = #{record.pic2,jdbcType=VARCHAR},
+      id_no = #{record.idNo,jdbcType=VARCHAR},
+      referee = #{record.referee,jdbcType=BIGINT},
+      shop_type = #{record.shopType,jdbcType=INTEGER},
+      pantnr_type = #{record.pantnrType,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMerchUser" >
+    update ims_ewei_shop_merch_user
+    <set >
+      <if test="uniacid != null" >
+        uniacid = #{uniacid,jdbcType=INTEGER},
+      </if>
+      <if test="regid != null" >
+        regid = #{regid,jdbcType=INTEGER},
+      </if>
+      <if test="openid != null" >
+        openid = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="groupid != null" >
+        groupid = #{groupid,jdbcType=INTEGER},
+      </if>
+      <if test="merchno != null" >
+        merchno = #{merchno,jdbcType=VARCHAR},
+      </if>
+      <if test="merchname != null" >
+        merchname = #{merchname,jdbcType=VARCHAR},
+      </if>
+      <if test="engMerchname != null" >
+        eng_merchname = #{engMerchname,jdbcType=VARCHAR},
+      </if>
+      <if test="tradingArea != null" >
+        trading_area = #{tradingArea,jdbcType=VARCHAR},
+      </if>
+      <if test="salecate != null" >
+        salecate = #{salecate,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null" >
+        desc = #{desc,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null" >
+        realname = #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="accounttime != null" >
+        accounttime = #{accounttime,jdbcType=INTEGER},
+      </if>
+      <if test="applytime != null" >
+        applytime = #{applytime,jdbcType=INTEGER},
+      </if>
+      <if test="accounttotal != null" >
+        accounttotal = #{accounttotal,jdbcType=INTEGER},
+      </if>
+      <if test="jointime != null" >
+        jointime = #{jointime,jdbcType=INTEGER},
+      </if>
+      <if test="accountid != null" >
+        accountid = #{accountid,jdbcType=INTEGER},
+      </if>
+      <if test="logo != null" >
+        logo = #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="payopenid != null" >
+        payopenid = #{payopenid,jdbcType=VARCHAR},
+      </if>
+      <if test="payrate != null" >
+        payrate = #{payrate,jdbcType=DECIMAL},
+      </if>
+      <if test="isrecommand != null" >
+        isrecommand = #{isrecommand,jdbcType=BIT},
+      </if>
+      <if test="servicestag != null" >
+        servicestag = #{servicestag,jdbcType=VARCHAR},
+      </if>
+      <if test="cateid != null" >
+        cateid = #{cateid,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="lat != null" >
+        lat = #{lat,jdbcType=VARCHAR},
+      </if>
+      <if test="lng != null" >
+        lng = #{lng,jdbcType=VARCHAR},
+      </if>
+      <if test="isPay != null" >
+        is_pay = #{isPay,jdbcType=REAL},
+      </if>
+      <if test="isShop != null" >
+        is_shop = #{isShop,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=REAL},
+      </if>
+      <if test="isMill != null" >
+        is_mill = #{isMill,jdbcType=INTEGER},
+      </if>
+      <if test="lv2 != null" >
+        lv2 = #{lv2,jdbcType=INTEGER},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=BIGINT},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=BIGINT},
+      </if>
+      <if test="county != null" >
+        county = #{county,jdbcType=BIGINT},
+      </if>
+      <if test="sendSms != null" >
+        send_sms = #{sendSms,jdbcType=BIGINT},
+      </if>
+      <if test="pic1 != null" >
+        pic1 = #{pic1,jdbcType=VARCHAR},
+      </if>
+      <if test="pic2 != null" >
+        pic2 = #{pic2,jdbcType=VARCHAR},
+      </if>
+      <if test="idNo != null" >
+        id_no = #{idNo,jdbcType=VARCHAR},
+      </if>
+      <if test="referee != null" >
+        referee = #{referee,jdbcType=BIGINT},
+      </if>
+      <if test="shopType != null" >
+        shop_type = #{shopType,jdbcType=INTEGER},
+      </if>
+      <if test="pantnrType != null" >
+        pantnr_type = #{pantnrType,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+       <if test="supportPickUp != null" >
+        support_pick_up = #{supportPickUp},
+      </if>
+      <if test="supportBiaoshi != null" >
+        support_biaoshi = #{supportBiaoshi},
+      </if>      
+       <if test="sortWeight != null" >
+        sort_weight = #{sortWeight},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMerchUser" >
+    update ims_ewei_shop_merch_user
+    set uniacid = #{uniacid,jdbcType=INTEGER},
+      regid = #{regid,jdbcType=INTEGER},
+      openid = #{openid,jdbcType=VARCHAR},
+      groupid = #{groupid,jdbcType=INTEGER},
+      merchno = #{merchno,jdbcType=VARCHAR},
+      merchname = #{merchname,jdbcType=VARCHAR},
+      salecate = #{salecate,jdbcType=VARCHAR},
+      desc = #{desc,jdbcType=VARCHAR},
+      realname = #{realname,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      accounttime = #{accounttime,jdbcType=INTEGER},
+      applytime = #{applytime,jdbcType=INTEGER},
+      accounttotal = #{accounttotal,jdbcType=INTEGER},
+      jointime = #{jointime,jdbcType=INTEGER},
+      accountid = #{accountid,jdbcType=INTEGER},
+      logo = #{logo,jdbcType=VARCHAR},
+      payopenid = #{payopenid,jdbcType=VARCHAR},
+      payrate = #{payrate,jdbcType=DECIMAL},
+      isrecommand = #{isrecommand,jdbcType=BIT},
+      servicestag = #{servicestag,jdbcType=VARCHAR},
+      cateid = #{cateid,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      lat = #{lat,jdbcType=VARCHAR},
+      lng = #{lng,jdbcType=VARCHAR},
+      is_pay = #{isPay,jdbcType=REAL},
+      is_shop = #{isShop,jdbcType=INTEGER},
+      code = #{code,jdbcType=REAL},
+      is_mill = #{isMill,jdbcType=INTEGER},
+      lv2 = #{lv2,jdbcType=INTEGER},
+      province = #{province,jdbcType=BIGINT},
+      city = #{city,jdbcType=BIGINT},
+      county = #{county,jdbcType=BIGINT},
+      send_sms = #{sendSms,jdbcType=BIGINT},
+      pic1 = #{pic1,jdbcType=VARCHAR},
+      pic2 = #{pic2,jdbcType=VARCHAR},
+      id_no = #{idNo,jdbcType=VARCHAR},
+      referee = #{referee,jdbcType=BIGINT},
+      shop_type = #{shopType,jdbcType=INTEGER},
+      pantnr_type = #{pantnrType,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

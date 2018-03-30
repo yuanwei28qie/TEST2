@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>microsilver.im.com</groupId>
+    <artifactId>microsilver.im.parent</artifactId>
+    <packaging>pom</packaging>
+    <name>microsilver-im</name>
+    <version>1.0-SNAPSHOT</version>
+
+    <modules>
+        <module>microsilverimserver</module>
+        <module>microsilverimclient</module>
+    </modules>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.4.0.RELEASE</version>
+    </parent>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <repositories>
+        <repository>
+            <id>nexus-microsilver</id>
+            <name>nexus microsilver repository</name>
+            <url>http://192.168.4.234/nexus/content/groups/public/</url>
+        </repository>
+    </repositories>
+    <distributionManagement>
+        <repository>
+            <id>microsilver-release</id>
+            <name>microsilver release repository group</name>
+            <url>http://192.168.4.234/nexus/content/repositories/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>microsilver-snapshot</id>
+            <name>microsilver snapshot repository group</name>
+            <url>http://192.168.4.234/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+</project>

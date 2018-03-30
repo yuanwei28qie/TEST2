@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.microsilver.mrcard.serviceplatform.dao.ImsEweiShopMemberIdentityAdditionalMapper">
+  <resultMap id="BaseResultMap" type="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMemberIdentityAdditional">
+    <id column="idtt_id" jdbcType="BIGINT" property="idttId" />
+    <result column="member_id" jdbcType="BIGINT" property="memberId" />
+    <result column="identity" jdbcType="TINYINT" property="identity" />
+    <result column="lat" jdbcType="VARCHAR" property="lat" />
+    <result column="lng" jdbcType="VARCHAR" property="lng" />
+    <result column="score" jdbcType="DECIMAL" property="score" />
+    <result column="is_work" jdbcType="BIT" property="isWork" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    idtt_id, member_id, identity, lat, lng, score, is_work
+  </sql>
+  <select id="selectByExample" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMemberIdentityAdditionalExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ims_ewei_shop_member_identity_additional
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+
+  <resultMap id="knightResultMap" type="com.microsilver.mrcard.serviceplatform.dto.IndexKnightResult">
+
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="member_id" property="memberId" jdbcType="BIGINT" />
+    <result column="identity" property="identity" jdbcType="INTEGER" />
+    <result column="merchId" property="merchId" jdbcType="BIGINT" />
+    <result column="realname" jdbcType="VARCHAR" property="realname" />
+    <result column="avatar" jdbcType="VARCHAR" property="avatar" />
+    <result column="lat" jdbcType="VARCHAR" property="lat" />
+    <result column="lng" jdbcType="VARCHAR" property="lng" />
+    <result column="distance" jdbcType="BIGINT" property="distance" />
+    <result column="score" jdbcType="DECIMAL" property="score" />
+  </resultMap>
+
+
+  <select id="selectByConditionExample" parameterType="com.microsilver.mrcard.serviceplatform.dto.EffectiveDistanceDto" resultMap="knightResultMap">
+    select * from (
+      select DISTINCT mi.member_id,mi.realname,mi.check_status,mi.avatar,mi.city,ma.is_work,ma.lat,ma.lng,ma.score,
+      round(6378.138*2*asin(sqrt(pow(sin( (#{lat:VARCHAR} *pi()/180-lat*pi()/180)/2),2)+cos(#{lat:VARCHAR} *pi()/180)*cos(lat*pi()/180)* pow(sin( (#{lng:VARCHAR}*pi()/180-lng*pi()/180)/2),2)))*1000) AS distance
+      from ims_ewei_shop_member_additional mi left join ims_ewei_shop_member_identity_additional ma on mi.member_id = ma.member_id
+      where  is_work = 1 and mi.check_status = 2  AND  ma.identity=13
+      <if test="city != null">
+        and mi.city = ${city}
+      </if>
+    ) as tmp
+    where distance <![CDATA[   <=  ]]> #{effectiveDistance:VARCHAR}
+  </select>
+
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ims_ewei_shop_member_identity_additional
+    where idtt_id = #{idttId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from ims_ewei_shop_member_identity_additional
+    where idtt_id = #{idttId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMemberIdentityAdditionalExample">
+    delete from ims_ewei_shop_member_identity_additional
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMemberIdentityAdditional">
+    insert into ims_ewei_shop_member_identity_additional (idtt_id, member_id, identity, 
+      lat, lng, score, is_work
+      )
+    values (#{idttId,jdbcType=BIGINT}, #{memberId,jdbcType=BIGINT}, #{identity,jdbcType=TINYINT}, 
+      #{lat,jdbcType=VARCHAR}, #{lng,jdbcType=VARCHAR}, #{score,jdbcType=DECIMAL}, #{isWork,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMemberIdentityAdditional">
+    insert into ims_ewei_shop_member_identity_additional
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="idttId != null">
+        idtt_id,
+      </if>
+      <if test="memberId != null">
+        member_id,
+      </if>
+      <if test="identity != null">
+        identity,
+      </if>
+      <if test="lat != null">
+        lat,
+      </if>
+      <if test="lng != null">
+        lng,
+      </if>
+      <if test="score != null">
+        score,
+      </if>
+      <if test="isWork != null">
+        is_work,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="idttId != null">
+        #{idttId,jdbcType=BIGINT},
+      </if>
+      <if test="memberId != null">
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="identity != null">
+        #{identity,jdbcType=TINYINT},
+      </if>
+      <if test="lat != null">
+        #{lat,jdbcType=VARCHAR},
+      </if>
+      <if test="lng != null">
+        #{lng,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null">
+        #{score,jdbcType=DECIMAL},
+      </if>
+      <if test="isWork != null">
+        #{isWork,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMemberIdentityAdditionalExample" resultType="java.lang.Integer">
+    select count(*) from ims_ewei_shop_member_identity_additional
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ims_ewei_shop_member_identity_additional
+    <set>
+      <if test="record.idttId != null">
+        idtt_id = #{record.idttId,jdbcType=BIGINT},
+      </if>
+      <if test="record.memberId != null">
+        member_id = #{record.memberId,jdbcType=BIGINT},
+      </if>
+      <if test="record.identity != null">
+        identity = #{record.identity,jdbcType=TINYINT},
+      </if>
+      <if test="record.lat != null">
+        lat = #{record.lat,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lng != null">
+        lng = #{record.lng,jdbcType=VARCHAR},
+      </if>
+      <if test="record.score != null">
+        score = #{record.score,jdbcType=DECIMAL},
+      </if>
+      <if test="record.isWork != null">
+        is_work = #{record.isWork,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ims_ewei_shop_member_identity_additional
+    set idtt_id = #{record.idttId,jdbcType=BIGINT},
+      member_id = #{record.memberId,jdbcType=BIGINT},
+      identity = #{record.identity,jdbcType=TINYINT},
+      lat = #{record.lat,jdbcType=VARCHAR},
+      lng = #{record.lng,jdbcType=VARCHAR},
+      score = #{record.score,jdbcType=DECIMAL},
+      is_work = #{record.isWork,jdbcType=BIT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMemberIdentityAdditional">
+    update ims_ewei_shop_member_identity_additional
+    <set>
+      <if test="memberId != null">
+        member_id = #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="identity != null">
+        identity = #{identity,jdbcType=TINYINT},
+      </if>
+      <if test="lat != null">
+        lat = #{lat,jdbcType=VARCHAR},
+      </if>
+      <if test="lng != null">
+        lng = #{lng,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null">
+        score = #{score,jdbcType=DECIMAL},
+      </if>
+      <if test="isWork != null">
+        is_work = #{isWork,jdbcType=BIT},
+      </if>
+    </set>
+    where idtt_id = #{idttId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMemberIdentityAdditional">
+    update ims_ewei_shop_member_identity_additional
+    set member_id = #{memberId,jdbcType=BIGINT},
+      identity = #{identity,jdbcType=TINYINT},
+      lat = #{lat,jdbcType=VARCHAR},
+      lng = #{lng,jdbcType=VARCHAR},
+      score = #{score,jdbcType=DECIMAL},
+      is_work = #{isWork,jdbcType=BIT}
+    where idtt_id = #{idttId,jdbcType=BIGINT}
+  </update>
+</mapper>

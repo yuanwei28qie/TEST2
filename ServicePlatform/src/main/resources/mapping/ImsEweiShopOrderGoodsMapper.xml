@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.microsilver.mrcard.serviceplatform.dao.IShopOrderGoodsDao">
+	<resultMap id="BaseResultMap"
+		type="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopOrderGoods">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="uniacid" property="uniacid" jdbcType="INTEGER" />
+		<result column="orderid" property="orderid" jdbcType="INTEGER" />
+		<result column="goodsid" property="goodsid" jdbcType="INTEGER" />
+		<result column="price" property="price" jdbcType="DECIMAL" />
+		<result column="total" property="total" jdbcType="INTEGER" />
+		<result column="optionid" property="optionid" jdbcType="INTEGER" />
+		<result column="createtime" property="createtime" jdbcType="INTEGER" />
+		<result column="applytime1" property="applytime1" jdbcType="INTEGER" />
+		<result column="checktime1" property="checktime1" jdbcType="INTEGER" />
+		<result column="paytime1" property="paytime1" jdbcType="INTEGER" />
+		<result column="invalidtime1" property="invalidtime1" jdbcType="INTEGER" />
+		<result column="deletetime1" property="deletetime1" jdbcType="INTEGER" />
+		<result column="status1" property="status1" jdbcType="TINYINT" />
+		<result column="applytime2" property="applytime2" jdbcType="INTEGER" />
+		<result column="checktime2" property="checktime2" jdbcType="INTEGER" />
+		<result column="paytime2" property="paytime2" jdbcType="INTEGER" />
+		<result column="invalidtime2" property="invalidtime2" jdbcType="INTEGER" />
+		<result column="deletetime2" property="deletetime2" jdbcType="INTEGER" />
+		<result column="status2" property="status2" jdbcType="TINYINT" />
+		<result column="applytime3" property="applytime3" jdbcType="INTEGER" />
+		<result column="checktime3" property="checktime3" jdbcType="INTEGER" />
+		<result column="paytime3" property="paytime3" jdbcType="INTEGER" />
+		<result column="invalidtime3" property="invalidtime3" jdbcType="INTEGER" />
+		<result column="deletetime3" property="deletetime3" jdbcType="INTEGER" />
+		<result column="status3" property="status3" jdbcType="TINYINT" />
+		<result column="realprice" property="realprice" jdbcType="DECIMAL" />
+		<result column="goodssn" property="goodssn" jdbcType="VARCHAR" />
+		<result column="productsn" property="productsn" jdbcType="VARCHAR" />
+		<result column="nocommission" property="nocommission" jdbcType="TINYINT" />
+		<result column="changeprice" property="changeprice" jdbcType="DECIMAL" />
+		<result column="oldprice" property="oldprice" jdbcType="DECIMAL" />
+		<result column="diyformdataid" property="diyformdataid"
+			jdbcType="INTEGER" />
+		<result column="openid" property="openid" jdbcType="VARCHAR" />
+		<result column="diyformid" property="diyformid" jdbcType="INTEGER" />
+		<result column="rstate" property="rstate" jdbcType="TINYINT" />
+		<result column="refundtime" property="refundtime" jdbcType="INTEGER" />
+		<result column="printstate" property="printstate" jdbcType="INTEGER" />
+		<result column="printstate2" property="printstate2" jdbcType="INTEGER" />
+		<result column="merchid" property="merchid" jdbcType="INTEGER" />
+		<result column="parentorderid" property="parentorderid"
+			jdbcType="INTEGER" />
+		<result column="merchsale" property="merchsale" jdbcType="TINYINT" />
+		<result column="isdiscountprice" property="isdiscountprice"
+			jdbcType="DECIMAL" />
+		<result column="canbuyagain" property="canbuyagain" jdbcType="BIT" />
+		<result column="seckill" property="seckill" jdbcType="TINYINT" />
+		<result column="seckill_taskid" property="seckillTaskid"
+			jdbcType="INTEGER" />
+		<result column="seckill_roomid" property="seckillRoomid"
+			jdbcType="INTEGER" />
+		<result column="seckill_timeid" property="seckillTimeid"
+			jdbcType="INTEGER" />
+		<result column="sendtype" property="sendtype" jdbcType="TINYINT" />
+		<result column="expresscom" property="expresscom" jdbcType="VARCHAR" />
+		<result column="expresssn" property="expresssn" jdbcType="VARCHAR" />
+		<result column="express" property="express" jdbcType="VARCHAR" />
+		<result column="sendtime" property="sendtime" jdbcType="INTEGER" />
+		<result column="finishtime" property="finishtime" jdbcType="INTEGER" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, uniacid, orderid, goodsid, price, total, optionid, createtime,
+		applytime1, checktime1,
+		paytime1, invalidtime1, deletetime1, status1, applytime2, checktime2, paytime2,
+		invalidtime2,
+		deletetime2, status2, applytime3, checktime3, paytime3, invalidtime3, deletetime3,
+		status3, realprice, goodssn, productsn, nocommission, changeprice,
+		oldprice, diyformdataid,
+		openid, diyformid, rstate, refundtime, printstate, printstate2, merchid,
+		parentorderid,
+		merchsale, isdiscountprice, canbuyagain, seckill, seckill_taskid,
+		seckill_roomid,
+		seckill_timeid, sendtype, expresscom, expresssn, express, sendtime, finishtime
+	</sql>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+
+		from ims_ewei_shop_order_goods
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="selectDtoByOrderId"
+		resultType="com.microsilver.mrcard.serviceplatform.dto.ShopOrderGoodsDto"
+		parameterType="Long">
+
+		select og.goodsid,g.title,g.thumb, og.realprice as marketprice,og.total from
+		ims_ewei_shop_order_goods as og INNER JOIN ims_ewei_shop_goods as g on
+		g.id=og.goodsid
+		where og.orderid=#{orderId}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from ims_ewei_shop_order_goods
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert"
+		parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopOrderGoods">
+		insert into ims_ewei_shop_order_goods (orderid,uniacid,merchid,
+		goodsid,title,thumb, price, total,costprice,presellprice,subsidyprice,optionname,createtime)
+		values (#{orderid,jdbcType=INTEGER},#{uniacid},#{merchid},
+		#{goodsid,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{thumb,jdbcType=VARCHAR}, 
+		#{price,jdbcType=DECIMAL}, #{total,jdbcType=INTEGER},#{costprice,jdbcType=DECIMAL},#{presellprice,jdbcType=DECIMAL},#{subsidyprice,jdbcType=DECIMAL},
+		#{optionname}, #{createtime,jdbcType=INTEGER})
+	</insert>
+
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopOrderGoods">
+		update ims_ewei_shop_order_goods
+		<set>
+			<if test="uniacid != null">
+				uniacid = #{uniacid,jdbcType=INTEGER},
+			</if>
+			<if test="orderid != null">
+				orderid = #{orderid,jdbcType=INTEGER},
+			</if>
+			<if test="goodsid != null">
+				goodsid = #{goodsid,jdbcType=INTEGER},
+			</if>
+			<if test="price != null">
+				price = #{price,jdbcType=DECIMAL},
+			</if>
+			<if test="total != null">
+				total = #{total,jdbcType=INTEGER},
+			</if>
+			<if test="optionid != null">
+				optionid = #{optionid,jdbcType=INTEGER},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=INTEGER},
+			</if>
+			<if test="applytime1 != null">
+				applytime1 = #{applytime1,jdbcType=INTEGER},
+			</if>
+			<if test="checktime1 != null">
+				checktime1 = #{checktime1,jdbcType=INTEGER},
+			</if>
+			<if test="paytime1 != null">
+				paytime1 = #{paytime1,jdbcType=INTEGER},
+			</if>
+			<if test="invalidtime1 != null">
+				invalidtime1 = #{invalidtime1,jdbcType=INTEGER},
+			</if>
+			<if test="deletetime1 != null">
+				deletetime1 = #{deletetime1,jdbcType=INTEGER},
+			</if>
+			<if test="status1 != null">
+				status1 = #{status1,jdbcType=TINYINT},
+			</if>
+			<if test="applytime2 != null">
+				applytime2 = #{applytime2,jdbcType=INTEGER},
+			</if>
+			<if test="checktime2 != null">
+				checktime2 = #{checktime2,jdbcType=INTEGER},
+			</if>
+			<if test="paytime2 != null">
+				paytime2 = #{paytime2,jdbcType=INTEGER},
+			</if>
+			<if test="invalidtime2 != null">
+				invalidtime2 = #{invalidtime2,jdbcType=INTEGER},
+			</if>
+			<if test="deletetime2 != null">
+				deletetime2 = #{deletetime2,jdbcType=INTEGER},
+			</if>
+			<if test="status2 != null">
+				status2 = #{status2,jdbcType=TINYINT},
+			</if>
+			<if test="applytime3 != null">
+				applytime3 = #{applytime3,jdbcType=INTEGER},
+			</if>
+			<if test="checktime3 != null">
+				checktime3 = #{checktime3,jdbcType=INTEGER},
+			</if>
+			<if test="paytime3 != null">
+				paytime3 = #{paytime3,jdbcType=INTEGER},
+			</if>
+			<if test="invalidtime3 != null">
+				invalidtime3 = #{invalidtime3,jdbcType=INTEGER},
+			</if>
+			<if test="deletetime3 != null">
+				deletetime3 = #{deletetime3,jdbcType=INTEGER},
+			</if>
+			<if test="status3 != null">
+				status3 = #{status3,jdbcType=TINYINT},
+			</if>
+			<if test="realprice != null">
+				realprice = #{realprice,jdbcType=DECIMAL},
+			</if>
+			<if test="goodssn != null">
+				goodssn = #{goodssn,jdbcType=VARCHAR},
+			</if>
+			<if test="productsn != null">
+				productsn = #{productsn,jdbcType=VARCHAR},
+			</if>
+			<if test="nocommission != null">
+				nocommission = #{nocommission,jdbcType=TINYINT},
+			</if>
+			<if test="changeprice != null">
+				changeprice = #{changeprice,jdbcType=DECIMAL},
+			</if>
+			<if test="oldprice != null">
+				oldprice = #{oldprice,jdbcType=DECIMAL},
+			</if>
+			<if test="diyformdataid != null">
+				diyformdataid = #{diyformdataid,jdbcType=INTEGER},
+			</if>
+			<if test="openid != null">
+				openid = #{openid,jdbcType=VARCHAR},
+			</if>
+			<if test="diyformid != null">
+				diyformid = #{diyformid,jdbcType=INTEGER},
+			</if>
+			<if test="rstate != null">
+				rstate = #{rstate,jdbcType=TINYINT},
+			</if>
+			<if test="refundtime != null">
+				refundtime = #{refundtime,jdbcType=INTEGER},
+			</if>
+			<if test="printstate != null">
+				printstate = #{printstate,jdbcType=INTEGER},
+			</if>
+			<if test="printstate2 != null">
+				printstate2 = #{printstate2,jdbcType=INTEGER},
+			</if>
+			<if test="merchid != null">
+				merchid = #{merchid,jdbcType=INTEGER},
+			</if>
+			<if test="parentorderid != null">
+				parentorderid = #{parentorderid,jdbcType=INTEGER},
+			</if>
+			<if test="merchsale != null">
+				merchsale = #{merchsale,jdbcType=TINYINT},
+			</if>
+			<if test="isdiscountprice != null">
+				isdiscountprice = #{isdiscountprice,jdbcType=DECIMAL},
+			</if>
+			<if test="canbuyagain != null">
+				canbuyagain = #{canbuyagain,jdbcType=BIT},
+			</if>
+			<if test="seckill != null">
+				seckill = #{seckill,jdbcType=TINYINT},
+			</if>
+			<if test="seckillTaskid != null">
+				seckill_taskid = #{seckillTaskid,jdbcType=INTEGER},
+			</if>
+			<if test="seckillRoomid != null">
+				seckill_roomid = #{seckillRoomid,jdbcType=INTEGER},
+			</if>
+			<if test="seckillTimeid != null">
+				seckill_timeid = #{seckillTimeid,jdbcType=INTEGER},
+			</if>
+			<if test="sendtype != null">
+				sendtype = #{sendtype,jdbcType=TINYINT},
+			</if>
+			<if test="expresscom != null">
+				expresscom = #{expresscom,jdbcType=VARCHAR},
+			</if>
+			<if test="expresssn != null">
+				expresssn = #{expresssn,jdbcType=VARCHAR},
+			</if>
+			<if test="express != null">
+				express = #{express,jdbcType=VARCHAR},
+			</if>
+			<if test="sendtime != null">
+				sendtime = #{sendtime,jdbcType=INTEGER},
+			</if>
+			<if test="finishtime != null">
+				finishtime = #{finishtime,jdbcType=INTEGER},
+			</if>
+			<if test="optionname != null">
+				optionname = #{optionname,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="commission1 != null">
+				commission1 = #{commission1,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="content1 != null">
+				content1 = #{content1,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="commission2 != null">
+				commission2 = #{commission2,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="content2 != null">
+				content2 = #{content2,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="commission3 != null">
+				commission3 = #{commission3,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="content3 != null">
+				content3 = #{content3,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="commissions != null">
+				commissions = #{commissions,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="diyformdata != null">
+				diyformdata = #{diyformdata,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="diyformfields != null">
+				diyformfields = #{diyformfields,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="remarksend != null">
+				remarksend = #{remarksend,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+</mapper>

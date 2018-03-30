@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.microsilver.mrcard.serviceplatform.dao.ImsCrowdsourcingDispatchMapper">
+  <resultMap id="BaseResultMap" type="com.microsilver.mrcard.serviceplatform.model.ImsCrowdsourcingDispatch">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="area_code" jdbcType="BIGINT" property="areaCode" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="begin_time" jdbcType="SMALLINT" property="beginTime" />
+    <result column="end_time" jdbcType="SMALLINT" property="endTime" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, area_code, type, begin_time, end_time, price
+  </sql>
+  <select id="selectByExample" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsCrowdsourcingDispatchExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ims_crowdsourcing_dispatch
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ims_crowdsourcing_dispatch
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from ims_crowdsourcing_dispatch
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsCrowdsourcingDispatchExample">
+    delete from ims_crowdsourcing_dispatch
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsCrowdsourcingDispatch">
+    insert into ims_crowdsourcing_dispatch (id, area_code, type, 
+      begin_time, end_time, price
+      )
+    values (#{id,jdbcType=BIGINT}, #{areaCode,jdbcType=BIGINT}, #{type,jdbcType=TINYINT}, 
+      #{beginTime,jdbcType=SMALLINT}, #{endTime,jdbcType=SMALLINT}, #{price,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsCrowdsourcingDispatch">
+    insert into ims_crowdsourcing_dispatch
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="areaCode != null">
+        area_code,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="beginTime != null">
+        begin_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="areaCode != null">
+        #{areaCode,jdbcType=BIGINT},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="beginTime != null">
+        #{beginTime,jdbcType=SMALLINT},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=SMALLINT},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsCrowdsourcingDispatchExample" resultType="java.lang.Integer">
+    select count(*) from ims_crowdsourcing_dispatch
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ims_crowdsourcing_dispatch
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.areaCode != null">
+        area_code = #{record.areaCode,jdbcType=BIGINT},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=TINYINT},
+      </if>
+      <if test="record.beginTime != null">
+        begin_time = #{record.beginTime,jdbcType=SMALLINT},
+      </if>
+      <if test="record.endTime != null">
+        end_time = #{record.endTime,jdbcType=SMALLINT},
+      </if>
+      <if test="record.price != null">
+        price = #{record.price,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ims_crowdsourcing_dispatch
+    set id = #{record.id,jdbcType=BIGINT},
+      area_code = #{record.areaCode,jdbcType=BIGINT},
+      type = #{record.type,jdbcType=TINYINT},
+      begin_time = #{record.beginTime,jdbcType=SMALLINT},
+      end_time = #{record.endTime,jdbcType=SMALLINT},
+      price = #{record.price,jdbcType=DECIMAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsCrowdsourcingDispatch">
+    update ims_crowdsourcing_dispatch
+    <set>
+      <if test="areaCode != null">
+        area_code = #{areaCode,jdbcType=BIGINT},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="beginTime != null">
+        begin_time = #{beginTime,jdbcType=SMALLINT},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=SMALLINT},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsCrowdsourcingDispatch">
+    update ims_crowdsourcing_dispatch
+    set area_code = #{areaCode,jdbcType=BIGINT},
+      type = #{type,jdbcType=TINYINT},
+      begin_time = #{beginTime,jdbcType=SMALLINT},
+      end_time = #{endTime,jdbcType=SMALLINT},
+      price = #{price,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

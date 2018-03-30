@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.microsilver.mrcard.serviceplatform.dao.ImsEweiShopMerchConfigMapper">
+  <resultMap id="BaseResultMap" type="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMerchConfig">
+    <id column="merch_id" jdbcType="BIGINT" property="merchId" />
+    <result column="cjtj_platform_proportion" jdbcType="DECIMAL" property="cjtjPlatformProportion" />
+    <result column="cjtj_cashback_proportion" jdbcType="DECIMAL" property="cjtjCashbackProportion" />
+    <result column="ldbj_platform_proportion" jdbcType="DECIMAL" property="ldbjPlatformProportion" />
+    <result column="ldbj_cashback_proportion" jdbcType="DECIMAL" property="ldbjCashbackProportion" />
+    <result column="xsd_platform_proportion" jdbcType="DECIMAL" property="xsdPlatformProportion" />
+    <result column="xsd_cashback_proportio" jdbcType="DECIMAL" property="xsdCashbackProportio" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    merch_id, cjtj_platform_proportion, cjtj_cashback_proportion, ldbj_platform_proportion, 
+    ldbj_cashback_proportion, xsd_platform_proportion, xsd_cashback_proportio
+  </sql>
+  <select id="selectByExample" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMerchConfigExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ims_ewei_shop_merch_config
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ims_ewei_shop_merch_config
+    where merch_id = #{merchId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from ims_ewei_shop_merch_config
+    where merch_id = #{merchId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMerchConfigExample">
+    delete from ims_ewei_shop_merch_config
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMerchConfig">
+    insert into ims_ewei_shop_merch_config (merch_id, cjtj_platform_proportion, cjtj_cashback_proportion, 
+      ldbj_platform_proportion, ldbj_cashback_proportion, 
+      xsd_platform_proportion, xsd_cashback_proportio
+      )
+    values (#{merchId,jdbcType=BIGINT}, #{cjtjPlatformProportion,jdbcType=DECIMAL}, #{cjtjCashbackProportion,jdbcType=DECIMAL}, 
+      #{ldbjPlatformProportion,jdbcType=DECIMAL}, #{ldbjCashbackProportion,jdbcType=DECIMAL}, 
+      #{xsdPlatformProportion,jdbcType=DECIMAL}, #{xsdCashbackProportio,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMerchConfig">
+    insert into ims_ewei_shop_merch_config
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="merchId != null">
+        merch_id,
+      </if>
+      <if test="cjtjPlatformProportion != null">
+        cjtj_platform_proportion,
+      </if>
+      <if test="cjtjCashbackProportion != null">
+        cjtj_cashback_proportion,
+      </if>
+      <if test="ldbjPlatformProportion != null">
+        ldbj_platform_proportion,
+      </if>
+      <if test="ldbjCashbackProportion != null">
+        ldbj_cashback_proportion,
+      </if>
+      <if test="xsdPlatformProportion != null">
+        xsd_platform_proportion,
+      </if>
+      <if test="xsdCashbackProportio != null">
+        xsd_cashback_proportio,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="merchId != null">
+        #{merchId,jdbcType=BIGINT},
+      </if>
+      <if test="cjtjPlatformProportion != null">
+        #{cjtjPlatformProportion,jdbcType=DECIMAL},
+      </if>
+      <if test="cjtjCashbackProportion != null">
+        #{cjtjCashbackProportion,jdbcType=DECIMAL},
+      </if>
+      <if test="ldbjPlatformProportion != null">
+        #{ldbjPlatformProportion,jdbcType=DECIMAL},
+      </if>
+      <if test="ldbjCashbackProportion != null">
+        #{ldbjCashbackProportion,jdbcType=DECIMAL},
+      </if>
+      <if test="xsdPlatformProportion != null">
+        #{xsdPlatformProportion,jdbcType=DECIMAL},
+      </if>
+      <if test="xsdCashbackProportio != null">
+        #{xsdCashbackProportio,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMerchConfigExample" resultType="java.lang.Integer">
+    select count(*) from ims_ewei_shop_merch_config
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ims_ewei_shop_merch_config
+    <set>
+      <if test="record.merchId != null">
+        merch_id = #{record.merchId,jdbcType=BIGINT},
+      </if>
+      <if test="record.cjtjPlatformProportion != null">
+        cjtj_platform_proportion = #{record.cjtjPlatformProportion,jdbcType=DECIMAL},
+      </if>
+      <if test="record.cjtjCashbackProportion != null">
+        cjtj_cashback_proportion = #{record.cjtjCashbackProportion,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ldbjPlatformProportion != null">
+        ldbj_platform_proportion = #{record.ldbjPlatformProportion,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ldbjCashbackProportion != null">
+        ldbj_cashback_proportion = #{record.ldbjCashbackProportion,jdbcType=DECIMAL},
+      </if>
+      <if test="record.xsdPlatformProportion != null">
+        xsd_platform_proportion = #{record.xsdPlatformProportion,jdbcType=DECIMAL},
+      </if>
+      <if test="record.xsdCashbackProportio != null">
+        xsd_cashback_proportio = #{record.xsdCashbackProportio,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ims_ewei_shop_merch_config
+    set merch_id = #{record.merchId,jdbcType=BIGINT},
+      cjtj_platform_proportion = #{record.cjtjPlatformProportion,jdbcType=DECIMAL},
+      cjtj_cashback_proportion = #{record.cjtjCashbackProportion,jdbcType=DECIMAL},
+      ldbj_platform_proportion = #{record.ldbjPlatformProportion,jdbcType=DECIMAL},
+      ldbj_cashback_proportion = #{record.ldbjCashbackProportion,jdbcType=DECIMAL},
+      xsd_platform_proportion = #{record.xsdPlatformProportion,jdbcType=DECIMAL},
+      xsd_cashback_proportio = #{record.xsdCashbackProportio,jdbcType=DECIMAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMerchConfig">
+    update ims_ewei_shop_merch_config
+    <set>
+      <if test="cjtjPlatformProportion != null">
+        cjtj_platform_proportion = #{cjtjPlatformProportion,jdbcType=DECIMAL},
+      </if>
+      <if test="cjtjCashbackProportion != null">
+        cjtj_cashback_proportion = #{cjtjCashbackProportion,jdbcType=DECIMAL},
+      </if>
+      <if test="ldbjPlatformProportion != null">
+        ldbj_platform_proportion = #{ldbjPlatformProportion,jdbcType=DECIMAL},
+      </if>
+      <if test="ldbjCashbackProportion != null">
+        ldbj_cashback_proportion = #{ldbjCashbackProportion,jdbcType=DECIMAL},
+      </if>
+      <if test="xsdPlatformProportion != null">
+        xsd_platform_proportion = #{xsdPlatformProportion,jdbcType=DECIMAL},
+      </if>
+      <if test="xsdCashbackProportio != null">
+        xsd_cashback_proportio = #{xsdCashbackProportio,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where merch_id = #{merchId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMerchConfig">
+    update ims_ewei_shop_merch_config
+    set cjtj_platform_proportion = #{cjtjPlatformProportion,jdbcType=DECIMAL},
+      cjtj_cashback_proportion = #{cjtjCashbackProportion,jdbcType=DECIMAL},
+      ldbj_platform_proportion = #{ldbjPlatformProportion,jdbcType=DECIMAL},
+      ldbj_cashback_proportion = #{ldbjCashbackProportion,jdbcType=DECIMAL},
+      xsd_platform_proportion = #{xsdPlatformProportion,jdbcType=DECIMAL},
+      xsd_cashback_proportio = #{xsdCashbackProportio,jdbcType=DECIMAL}
+    where merch_id = #{merchId,jdbcType=BIGINT}
+  </update>
+</mapper>

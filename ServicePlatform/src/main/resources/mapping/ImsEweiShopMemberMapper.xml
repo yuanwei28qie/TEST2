@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.microsilver.mrcard.serviceplatform.dao.IMemberDao">
+	<resultMap id="BaseResultMap"
+		type="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMember">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="uniacid" property="uniacid" jdbcType="INTEGER" />
+		<result column="openid" property="openid" jdbcType="VARCHAR" />
+		<result column="realname" property="realname" jdbcType="VARCHAR" />
+		<result column="nickname" property="nickname" jdbcType="VARCHAR" />
+		<result column="mobile" property="mobile" jdbcType="VARCHAR" />
+		<result column="pwd" property="pwd" jdbcType="VARCHAR" />
+		<result column="salt" property="salt" jdbcType="VARCHAR" />
+		<result column="createtime" property="createtime" jdbcType="INTEGER" />
+		<result column="status" property="status" jdbcType="BIT" />
+		<result column="credit1" property="credit1" jdbcType="DECIMAL" />
+		<result column="credit2" property="credit2" jdbcType="DECIMAL" />
+		<result column="birthyear" property="birthyear" jdbcType="VARCHAR" />
+		<result column="birthmonth" property="birthmonth" jdbcType="VARCHAR" />
+		<result column="birthday" property="birthday" jdbcType="VARCHAR" />
+		<result column="gender" property="gender" jdbcType="TINYINT" />
+		<result column="avatar" property="avatar" jdbcType="VARCHAR" />
+		<result column="province" property="province" jdbcType="VARCHAR" />
+		<result column="city" property="city" jdbcType="VARCHAR" />
+		<result column="area" property="area" jdbcType="VARCHAR" />
+		<result column="inviter" property="inviter" jdbcType="INTEGER" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="account_id" property="accountId" jdbcType="VARCHAR" />
+		<result column="money_total" property="moneyTotal" jdbcType="REAL" />
+		<result column="referee" property="referee" jdbcType="BIGINT" />
+		<result column="rongcloud_token" property="rongcloudToken"
+			jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, uniacid, openid, realname, mobile, pwd, salt,
+		createtime,status, nickname, credit1,
+		credit2, birthyear, birthmonth, birthday, gender, avatar, province, city,
+		area,
+		inviter, username, account_id, money_total, referee,rongcloud_token
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from ims_ewei_shop_member
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="selectByMerchId"
+		resultType="com.microsilver.mrcard.serviceplatform.dto.StaffInformation"
+		parameterType="java.lang.Long">
+		select sm.id as memberId,si.name as
+		realname,si.merchId,sm.mobile,gr.group_id as resoureGroupId,g.title as
+		resoureGroupName from ims_ewei_shop_member sm
+		INNER join ims_ewei_shop_member_identity si on sm.id = si.memberId
+		INNER JOIN ims_sys_group_resource as gr on gr.uid=sm.id
+		INNER JOIN ims_sys_group as g on g.id = gr.group_id and
+		g.identity=si.identity
+		where si.identity=14 and merchId = #{merchId} and si.status=1
+	</select>
+	<select id="selectByMobile" resultMap="BaseResultMap"
+		parameterType="String">
+		select
+		id, uniacid, openid, realname, mobile,pwd,salt,
+		createtime,status, nickname, avatar, province, city,
+		area,username,referee from ims_ewei_shop_member where mobile=#{mobile}
+	</select>
+	<select id="selectDtoByMobile"
+		resultType="com.microsilver.mrcard.serviceplatform.dto.MemberDto"
+		parameterType="String">
+		select mem.id ,mem.pwd,mem.salt,mem.isblack,IFNULL(ma.check_status,-1) as
+		checkStatus,mem.nickname,mem.realname,mem.avatar,mem.rongcloud_token
+		as rongcloudToken from ims_ewei_shop_member as mem
+		LEFT JOIN ims_ewei_shop_member_additional as ma on mem.id=ma.member_id
+		where mem.mobile=#{mobile}
+	</select>
+
+	<select id="selectShopMerchByMemberId"
+		resultType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMerchAccount"
+		parameterType="java.lang.Long">
+		select a.*
+		FROM ims_ewei_shop_member_identity i,ims_ewei_shop_merch_account a
+		where a.merchid = i.merchId and i.memberId= #{memberId} and i.identity = 1
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="Long">
+		delete from ims_ewei_shop_member
+		where id = #{id}
+	</delete>
+	<update id="updatePassword"
+		parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMember">
+		update ims_ewei_shop_member set pwd
+		=#{pwd,jdbcType=VARCHAR},salt=#{salt}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<update id="updateUserInfo"
+		parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMember">
+		update ims_ewei_shop_member
+		<set>
+			<if test="nickname!=null">
+				nickname=#{nickname},
+			</if>
+			<if test="avatar!=null">
+				avatar=#{avatar}
+			</if>
+			<if test="rongcloudToken!=null">
+				rongcloud_token = #{rongcloudToken}
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMember">
+		update ims_ewei_shop_member
+		<set>
+			<if test="mobile!=null">
+				mobile=#{mobile},
+			</if>
+			<if test="openid!=null and openid!=''">
+				openid=#{openid},
+			</if>
+			<if test="pwd!=null and pwd!=''">
+				pwd=#{pwd},
+			</if>
+			<if test="salt!=null and salt!=''">
+				salt=#{salt},
+			</if>
+			<if test="referee!=null">
+				referee=#{referee},
+			</if>
+			<if test="nickname!=null">
+				nickname=#{nickname},
+			</if>
+			<if test="province!=null and province!=''">
+				province=#{province},
+			</if>
+			<if test="city!=null and city!=''">
+				city=#{city},
+			</if>
+			<if test="area!=null and area!=''">
+				area=#{area},
+			</if>
+			<if test="rongcloudToken!=null and rongcloudToken!=''">
+				rongcloud_token = #{rongcloudToken},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+	<update id="updateMobile"
+		parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMember">
+		update ims_ewei_shop_member
+		<set>
+			<if test="mobile!=null">
+				mobile=#{mobile}
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+
+	<insert id="insert"
+		parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMember">
+		<selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+			select LAST_INSERT_ID()
+		</selectKey>
+		insert into ims_ewei_shop_member
+		(uniacid,mobile,pwd,createtime,openid,salt,province,city,area,referee,nickname,rongcloud_token,realname)
+		values (#{uniacid,jdbcType=INTEGER}, #{mobile,jdbcType=VARCHAR},
+		#{pwd,jdbcType=VARCHAR},#{createtime},#{openid},#{salt},#{province},#{city},#{area},#{referee},#{nickname},#{rongcloudToken},#{realname})
+	</insert>
+</mapper>

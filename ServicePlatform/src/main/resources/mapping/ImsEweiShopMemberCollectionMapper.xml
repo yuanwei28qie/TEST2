@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.microsilver.mrcard.serviceplatform.dao.ImsEweiShopMemberCollectionMapper">
+  <resultMap id="BaseResultMap" type="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMemberCollection">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="member_id" jdbcType="BIGINT" property="memberId" />
+    <result column="identity" jdbcType="TINYINT" property="identity" />
+    <result column="collec_type" jdbcType="TINYINT" property="collecType" />
+    <result column="collec_object_id" jdbcType="BIGINT" property="collecObjectId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, member_id, identity, collec_type, collec_object_id
+  </sql>
+  <select id="selectByExample" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMemberCollectionExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ims_ewei_shop_member_collection
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ims_ewei_shop_member_collection
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ims_ewei_shop_member_collection
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMemberCollectionExample">
+    delete from ims_ewei_shop_member_collection
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMemberCollection">
+    insert into ims_ewei_shop_member_collection (id, member_id, identity, 
+      collec_type, collec_object_id)
+    values (#{id,jdbcType=INTEGER}, #{memberId,jdbcType=BIGINT}, #{identity,jdbcType=TINYINT}, 
+      #{collecType,jdbcType=TINYINT}, #{collecObjectId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMemberCollection">
+    insert into ims_ewei_shop_member_collection
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="memberId != null">
+        member_id,
+      </if>
+      <if test="identity != null">
+        identity,
+      </if>
+      <if test="collecType != null">
+        collec_type,
+      </if>
+      <if test="collecObjectId != null">
+        collec_object_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="memberId != null">
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="identity != null">
+        #{identity,jdbcType=TINYINT},
+      </if>
+      <if test="collecType != null">
+        #{collecType,jdbcType=TINYINT},
+      </if>
+      <if test="collecObjectId != null">
+        #{collecObjectId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMemberCollectionExample" resultType="java.lang.Integer">
+    select count(*) from ims_ewei_shop_member_collection
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ims_ewei_shop_member_collection
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.memberId != null">
+        member_id = #{record.memberId,jdbcType=BIGINT},
+      </if>
+      <if test="record.identity != null">
+        identity = #{record.identity,jdbcType=TINYINT},
+      </if>
+      <if test="record.collecType != null">
+        collec_type = #{record.collecType,jdbcType=TINYINT},
+      </if>
+      <if test="record.collecObjectId != null">
+        collec_object_id = #{record.collecObjectId,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ims_ewei_shop_member_collection
+    set id = #{record.id,jdbcType=INTEGER},
+      member_id = #{record.memberId,jdbcType=BIGINT},
+      identity = #{record.identity,jdbcType=TINYINT},
+      collec_type = #{record.collecType,jdbcType=TINYINT},
+      collec_object_id = #{record.collecObjectId,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMemberCollection">
+    update ims_ewei_shop_member_collection
+    <set>
+      <if test="memberId != null">
+        member_id = #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="identity != null">
+        identity = #{identity,jdbcType=TINYINT},
+      </if>
+      <if test="collecType != null">
+        collec_type = #{collecType,jdbcType=TINYINT},
+      </if>
+      <if test="collecObjectId != null">
+        collec_object_id = #{collecObjectId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMemberCollection">
+    update ims_ewei_shop_member_collection
+    set member_id = #{memberId,jdbcType=BIGINT},
+      identity = #{identity,jdbcType=TINYINT},
+      collec_type = #{collecType,jdbcType=TINYINT},
+      collec_object_id = #{collecObjectId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

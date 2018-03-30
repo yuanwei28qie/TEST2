@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.microsilver.mrcard.scheduledtask.dao.ImsSysRemindMapper">
+  <resultMap id="BaseResultMap" type="com.microsilver.mrcard.scheduledtask.model.ImsSysRemind">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="member_id" jdbcType="BIGINT" property="memberId" />
+    <result column="merch_id" jdbcType="BIGINT" property="merchId" />
+    <result column="identity" jdbcType="INTEGER" property="identity" />
+    <result column="object_type" jdbcType="TINYINT" property="objectType" />
+    <result column="object_id" jdbcType="BIGINT" property="objectId" />
+    <result column="remind_way" jdbcType="TINYINT" property="remindWay" />
+    <result column="remind_time" jdbcType="INTEGER" property="remindTime" />
+    <result column="create_time" jdbcType="INTEGER" property="createTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, member_id, merch_id, identity, object_type, object_id, remind_way, remind_time, 
+    create_time
+  </sql>
+  <select id="selectByExample" parameterType="com.microsilver.mrcard.scheduledtask.model.ImsSysRemindExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ims_sys_remind
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ims_sys_remind
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from ims_sys_remind
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.microsilver.mrcard.scheduledtask.model.ImsSysRemindExample">
+    delete from ims_sys_remind
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.microsilver.mrcard.scheduledtask.model.ImsSysRemind">
+    insert into ims_sys_remind (id, member_id, merch_id, 
+      identity, object_type, object_id, 
+      remind_way, remind_time, create_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{memberId,jdbcType=BIGINT}, #{merchId,jdbcType=BIGINT}, 
+      #{identity,jdbcType=INTEGER}, #{objectType,jdbcType=TINYINT}, #{objectId,jdbcType=BIGINT}, 
+      #{remindWay,jdbcType=TINYINT}, #{remindTime,jdbcType=INTEGER}, #{createTime,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.microsilver.mrcard.scheduledtask.model.ImsSysRemind">
+    insert into ims_sys_remind
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="memberId != null">
+        member_id,
+      </if>
+      <if test="merchId != null">
+        merch_id,
+      </if>
+      <if test="identity != null">
+        identity,
+      </if>
+      <if test="objectType != null">
+        object_type,
+      </if>
+      <if test="objectId != null">
+        object_id,
+      </if>
+      <if test="remindWay != null">
+        remind_way,
+      </if>
+      <if test="remindTime != null">
+        remind_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="memberId != null">
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="merchId != null">
+        #{merchId,jdbcType=BIGINT},
+      </if>
+      <if test="identity != null">
+        #{identity,jdbcType=INTEGER},
+      </if>
+      <if test="objectType != null">
+        #{objectType,jdbcType=TINYINT},
+      </if>
+      <if test="objectId != null">
+        #{objectId,jdbcType=BIGINT},
+      </if>
+      <if test="remindWay != null">
+        #{remindWay,jdbcType=TINYINT},
+      </if>
+      <if test="remindTime != null">
+        #{remindTime,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.microsilver.mrcard.scheduledtask.model.ImsSysRemindExample" resultType="java.lang.Integer">
+    select count(*) from ims_sys_remind
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ims_sys_remind
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.memberId != null">
+        member_id = #{record.memberId,jdbcType=BIGINT},
+      </if>
+      <if test="record.merchId != null">
+        merch_id = #{record.merchId,jdbcType=BIGINT},
+      </if>
+      <if test="record.identity != null">
+        identity = #{record.identity,jdbcType=INTEGER},
+      </if>
+      <if test="record.objectType != null">
+        object_type = #{record.objectType,jdbcType=TINYINT},
+      </if>
+      <if test="record.objectId != null">
+        object_id = #{record.objectId,jdbcType=BIGINT},
+      </if>
+      <if test="record.remindWay != null">
+        remind_way = #{record.remindWay,jdbcType=TINYINT},
+      </if>
+      <if test="record.remindTime != null">
+        remind_time = #{record.remindTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ims_sys_remind
+    set id = #{record.id,jdbcType=BIGINT},
+      member_id = #{record.memberId,jdbcType=BIGINT},
+      merch_id = #{record.merchId,jdbcType=BIGINT},
+      identity = #{record.identity,jdbcType=INTEGER},
+      object_type = #{record.objectType,jdbcType=TINYINT},
+      object_id = #{record.objectId,jdbcType=BIGINT},
+      remind_way = #{record.remindWay,jdbcType=TINYINT},
+      remind_time = #{record.remindTime,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.microsilver.mrcard.scheduledtask.model.ImsSysRemind">
+    update ims_sys_remind
+    <set>
+      <if test="memberId != null">
+        member_id = #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="merchId != null">
+        merch_id = #{merchId,jdbcType=BIGINT},
+      </if>
+      <if test="identity != null">
+        identity = #{identity,jdbcType=INTEGER},
+      </if>
+      <if test="objectType != null">
+        object_type = #{objectType,jdbcType=TINYINT},
+      </if>
+      <if test="objectId != null">
+        object_id = #{objectId,jdbcType=BIGINT},
+      </if>
+      <if test="remindWay != null">
+        remind_way = #{remindWay,jdbcType=TINYINT},
+      </if>
+      <if test="remindTime != null">
+        remind_time = #{remindTime,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.microsilver.mrcard.scheduledtask.model.ImsSysRemind">
+    update ims_sys_remind
+    set member_id = #{memberId,jdbcType=BIGINT},
+      merch_id = #{merchId,jdbcType=BIGINT},
+      identity = #{identity,jdbcType=INTEGER},
+      object_type = #{objectType,jdbcType=TINYINT},
+      object_id = #{objectId,jdbcType=BIGINT},
+      remind_way = #{remindWay,jdbcType=TINYINT},
+      remind_time = #{remindTime,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

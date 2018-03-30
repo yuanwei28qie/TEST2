@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.microsilver.mrcard.scheduledtask.dao.ImsEweiShopMerchUserMapper" >
+<resultMap id="BaseResultMap" type="com.microsilver.mrcard.scheduledtask.model.ImsEweiShopMerchUser" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="uniacid" property="uniacid" jdbcType="INTEGER" />
+    <result column="regid" property="regid" jdbcType="INTEGER" />
+    <result column="openid" property="openid" jdbcType="VARCHAR" />
+    <result column="groupid" property="groupid" jdbcType="INTEGER" />
+    <result column="merchno" property="merchno" jdbcType="VARCHAR" />
+    <result column="merchname" property="merchname" jdbcType="VARCHAR" />
+    <result column="salecate" property="salecate" jdbcType="VARCHAR" />
+    <result column="desc" property="desc" jdbcType="VARCHAR" />
+    <result column="realname" property="realname" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="accounttime" property="accounttime" jdbcType="INTEGER" />
+    <result column="applytime" property="applytime" jdbcType="INTEGER" />
+    <result column="accounttotal" property="accounttotal" jdbcType="INTEGER" />
+    <result column="jointime" property="jointime" jdbcType="INTEGER" />
+    <result column="accountid" property="accountid" jdbcType="INTEGER" />
+    <result column="logo" property="logo" jdbcType="VARCHAR" />
+    <result column="payopenid" property="payopenid" jdbcType="VARCHAR" />
+    <result column="payrate" property="payrate" jdbcType="DECIMAL" />
+    <result column="isrecommand" property="isrecommand" jdbcType="BIT" />
+    <result column="servicestag" property="servicestag" jdbcType="VARCHAR" />
+    <result column="cateid" property="cateid" jdbcType="INTEGER" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="lat" property="lat" jdbcType="VARCHAR" />
+    <result column="lng" property="lng" jdbcType="VARCHAR" />
+    <result column="is_pay" property="isPay" jdbcType="REAL" />
+    <result column="is_shop" property="isShop" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="REAL" />
+    <result column="is_mill" property="isMill" jdbcType="INTEGER" />
+    <result column="lv2" property="lv2" jdbcType="INTEGER" />
+    <result column="province" property="province" jdbcType="BIGINT" />
+    <result column="city" property="city" jdbcType="BIGINT" />
+    <result column="county" property="county" jdbcType="BIGINT" />
+    <result column="send_sms" property="sendSms" jdbcType="BIGINT" />
+    <result column="pic1" property="pic1" jdbcType="VARCHAR" />
+    <result column="pic2" property="pic2" jdbcType="VARCHAR" />
+    <result column="publicitypic" property="publicitypic" jdbcType="VARCHAR" />
+    <result column="id_no" property="idNo" jdbcType="VARCHAR" />
+    <result column="referee" property="referee" jdbcType="BIGINT" />
+    <result column="shop_type" property="shopType" jdbcType="INTEGER" />
+    <result column="pantnr_type" property="pantnrType" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="score" property="score" jdbcType="REAL" />
+    <result column="counts" property="counts" jdbcType="BIGINT" />
+    <result column="star_level" property="starLevel" jdbcType="INTEGER" />
+    <result column="comment" property="comment" jdbcType="INTEGER" />
+    <result column="support_pick_up" property="supportPickUp" />
+    <result column="support_biaoshi" property="supportBiaoshi"  />
+    <result column="sort_weight" property="sortWeight"  />
+    <result column="alipay" property="alipay"  />
+  </resultMap>
+  
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, uniacid,   merchno, merchname, salecate, 'desc', realname, 
+    mobile, status, accounttime, applytime, accounttotal, jointime, accountid, logo, 
+    payopenid, payrate, isrecommand, servicestag, cateid, address, tel, lat, lng, is_pay, 
+    is_shop, code, is_mill, lv2, province, city, county, send_sms, pic1, pic2, publicitypic,
+    id_no, referee, shop_type, pantnr_type, user_id,score,counts,star_Level,alipay
+  </sql>
+
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.microsilver.mrcard.scheduledtask.model.ImsEweiShopMerchUserExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ims_ewei_shop_merch_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from ims_ewei_shop_merch_user
+    where id = #{id}
+  </select>
+ 
+   <update id="updateByPrimaryKeySelective" parameterType="com.microsilver.mrcard.scheduledtask.model.ImsEweiShopMerchUser" >
+    update ims_ewei_shop_merch_user
+    <set >
+      <if test="uniacid != null" >
+        uniacid = #{uniacid,jdbcType=INTEGER},
+      </if>
+      <if test="regid != null" >
+        regid = #{regid,jdbcType=INTEGER},
+      </if>
+      <if test="openid != null" >
+        openid = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="groupid != null" >
+        groupid = #{groupid,jdbcType=INTEGER},
+      </if>
+      <if test="merchno != null" >
+        merchno = #{merchno,jdbcType=VARCHAR},
+      </if>
+      <if test="merchname != null" >
+        merchname = #{merchname,jdbcType=VARCHAR},
+      </if>
+      <if test="salecate != null" >
+        salecate = #{salecate,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null" >
+        desc = #{desc,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null" >
+        realname = #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="accounttime != null" >
+        accounttime = #{accounttime,jdbcType=INTEGER},
+      </if>
+      <if test="applytime != null" >
+        applytime = #{applytime,jdbcType=INTEGER},
+      </if>
+      <if test="accounttotal != null" >
+        accounttotal = #{accounttotal,jdbcType=INTEGER},
+      </if>
+      <if test="jointime != null" >
+        jointime = #{jointime,jdbcType=INTEGER},
+      </if>
+      <if test="accountid != null" >
+        accountid = #{accountid,jdbcType=INTEGER},
+      </if>
+      <if test="logo != null" >
+        logo = #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="payopenid != null" >
+        payopenid = #{payopenid,jdbcType=VARCHAR},
+      </if>
+      <if test="payrate != null" >
+        payrate = #{payrate,jdbcType=DECIMAL},
+      </if>
+      <if test="isrecommand != null" >
+        isrecommand = #{isrecommand,jdbcType=BIT},
+      </if>
+      <if test="servicestag != null" >
+        servicestag = #{servicestag,jdbcType=VARCHAR},
+      </if>
+      <if test="cateid != null" >
+        cateid = #{cateid,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="lat != null" >
+        lat = #{lat,jdbcType=VARCHAR},
+      </if>
+      <if test="lng != null" >
+        lng = #{lng,jdbcType=VARCHAR},
+      </if>
+      <if test="isPay != null" >
+        is_pay = #{isPay,jdbcType=REAL},
+      </if>
+      <if test="isShop != null" >
+        is_shop = #{isShop,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=REAL},
+      </if>
+      <if test="isMill != null" >
+        is_mill = #{isMill,jdbcType=INTEGER},
+      </if>
+      <if test="lv2 != null" >
+        lv2 = #{lv2,jdbcType=INTEGER},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=BIGINT},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=BIGINT},
+      </if>
+      <if test="county != null" >
+        county = #{county,jdbcType=BIGINT},
+      </if>
+      <if test="sendSms != null" >
+        send_sms = #{sendSms,jdbcType=BIGINT},
+      </if>
+      <if test="pic1 != null" >
+        pic1 = #{pic1,jdbcType=VARCHAR},
+      </if>
+      <if test="pic2 != null" >
+        pic2 = #{pic2,jdbcType=VARCHAR},
+      </if>
+      <if test="idNo != null" >
+        id_no = #{idNo,jdbcType=VARCHAR},
+      </if>
+      <if test="referee != null" >
+        referee = #{referee,jdbcType=BIGINT},
+      </if>
+      <if test="shopType != null" >
+        shop_type = #{shopType,jdbcType=INTEGER},
+      </if>
+      <if test="pantnrType != null" >
+        pantnr_type = #{pantnrType,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+       <if test="supportPickUp != null" >
+        support_pick_up = #{supportPickUp},
+      </if>
+      <if test="supportBiaoshi != null" >
+        support_biaoshi = #{supportBiaoshi},
+      </if>      
+       <if test="sortWeight != null" >
+        sort_weight = #{sortWeight},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

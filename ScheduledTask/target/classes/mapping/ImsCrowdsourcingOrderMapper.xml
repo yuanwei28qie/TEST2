@@ -1,0 +1,594 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.microsilver.mrcard.scheduledtask.dao.ImsCrowdsourcingOrderMapper">
+  <resultMap id="BaseResultMap" type="com.microsilver.mrcard.scheduledtask.model.ImsCrowdsourcingOrder">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="ordersn" jdbcType="VARCHAR" property="ordersn" />
+    <result column="service_desc" jdbcType="VARCHAR" property="serviceDesc" />
+    <result column="goods_estimate_price" jdbcType="DECIMAL" property="goodsEstimatePrice" />
+    <result column="goods_consult_price" jdbcType="DECIMAL" property="goodsConsultPrice" />
+    <result column="dispatch_price" jdbcType="DECIMAL" property="dispatchPrice" />
+    <result column="tip_price" jdbcType="DECIMAL" property="tipPrice" />
+    <result column="total_amount" jdbcType="DECIMAL" property="totalAmount" />
+    <result column="member_id" jdbcType="BIGINT" property="memberId" />
+    <result column="courier" jdbcType="BIGINT" property="courier" />
+    <result column="create_time" jdbcType="INTEGER" property="createTime" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="address_id" jdbcType="BIGINT" property="addressId" />
+    <result column="receive_name" jdbcType="VARCHAR" property="receiveName" />
+    <result column="receive_phone" jdbcType="VARCHAR" property="receivePhone" />
+    <result column="receive_address" jdbcType="VARCHAR" property="receiveAddress" />
+    <result column="receive_lat" jdbcType="VARCHAR" property="receiveLat" />
+    <result column="receive_lng" jdbcType="VARCHAR" property="receiveLng" />
+    <result column="user_delete" jdbcType="BIT" property="userDelete" />
+    <result column="courier_delete" jdbcType="BIT" property="courierDelete" />
+    <result column="user_appraise" jdbcType="BIT" property="userAppraise" />
+    <result column="courier_appraise" jdbcType="BIT" property="courierAppraise" />
+    <result column="area_code" jdbcType="INTEGER" property="areaCode" />
+    <result column="pickup_number" jdbcType="VARCHAR" property="pickupNumber" />
+    <result column="source_type" jdbcType="TINYINT" property="sourceType" />
+    <result column="pay_type" jdbcType="TINYINT" property="payType" />
+    <result column="is_settlement" jdbcType="TINYINT" property="isSettlement" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, ordersn, service_desc, goods_estimate_price, goods_consult_price, dispatch_price,
+    tip_price, total_amount, member_id, courier, create_time, status, address_id, receive_name,
+    receive_phone, receive_address, receive_lat, receive_lng, user_delete, courier_delete,
+    user_appraise, courier_appraise, area_code, pickup_number, source_type, pay_type,
+    is_settlement
+  </sql>
+  <select id="selectByExample" parameterType="com.microsilver.mrcard.scheduledtask.model.ImsCrowdsourcingOrderExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ims_crowdsourcing_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+
+    <select id="selectByExampleWithOrderLog" parameterType="com.microsilver.mrcard.scheduledtask.model.ImsCrowdsourcingOrderExample" resultMap="BaseResultMap">
+  select o.id,o.member_id,o.courier
+  from ims_crowdsourcing_order o inner join ims_crowdsourcing_order_log ol
+  on o.id = ol.order_id
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ims_crowdsourcing_order
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from ims_crowdsourcing_order
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.microsilver.mrcard.scheduledtask.model.ImsCrowdsourcingOrderExample">
+    delete from ims_crowdsourcing_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.microsilver.mrcard.scheduledtask.model.ImsCrowdsourcingOrder">
+    insert into ims_crowdsourcing_order (id, ordersn, service_desc,
+      goods_estimate_price, goods_consult_price,
+      dispatch_price, tip_price, total_amount,
+      member_id, courier, create_time,
+      status, address_id, receive_name,
+      receive_phone, receive_address, receive_lat,
+      receive_lng, user_delete, courier_delete,
+      user_appraise, courier_appraise, area_code,
+      pickup_number, source_type, pay_type,
+      is_settlement)
+    values (#{id,jdbcType=BIGINT}, #{ordersn,jdbcType=VARCHAR}, #{serviceDesc,jdbcType=VARCHAR},
+      #{goodsEstimatePrice,jdbcType=DECIMAL}, #{goodsConsultPrice,jdbcType=DECIMAL},
+      #{dispatchPrice,jdbcType=DECIMAL}, #{tipPrice,jdbcType=DECIMAL}, #{totalAmount,jdbcType=DECIMAL},
+      #{memberId,jdbcType=BIGINT}, #{courier,jdbcType=BIGINT}, #{createTime,jdbcType=INTEGER},
+      #{status,jdbcType=TINYINT}, #{addressId,jdbcType=BIGINT}, #{receiveName,jdbcType=VARCHAR},
+      #{receivePhone,jdbcType=VARCHAR}, #{receiveAddress,jdbcType=VARCHAR}, #{receiveLat,jdbcType=VARCHAR},
+      #{receiveLng,jdbcType=VARCHAR}, #{userDelete,jdbcType=BIT}, #{courierDelete,jdbcType=BIT},
+      #{userAppraise,jdbcType=BIT}, #{courierAppraise,jdbcType=BIT}, #{areaCode,jdbcType=INTEGER},
+      #{pickupNumber,jdbcType=VARCHAR}, #{sourceType,jdbcType=TINYINT}, #{payType,jdbcType=TINYINT},
+      #{isSettlement,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.microsilver.mrcard.scheduledtask.model.ImsCrowdsourcingOrder">
+    insert into ims_crowdsourcing_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="ordersn != null">
+        ordersn,
+      </if>
+      <if test="serviceDesc != null">
+        service_desc,
+      </if>
+      <if test="goodsEstimatePrice != null">
+        goods_estimate_price,
+      </if>
+      <if test="goodsConsultPrice != null">
+        goods_consult_price,
+      </if>
+      <if test="dispatchPrice != null">
+        dispatch_price,
+      </if>
+      <if test="tipPrice != null">
+        tip_price,
+      </if>
+      <if test="totalAmount != null">
+        total_amount,
+      </if>
+      <if test="memberId != null">
+        member_id,
+      </if>
+      <if test="courier != null">
+        courier,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="addressId != null">
+        address_id,
+      </if>
+      <if test="receiveName != null">
+        receive_name,
+      </if>
+      <if test="receivePhone != null">
+        receive_phone,
+      </if>
+      <if test="receiveAddress != null">
+        receive_address,
+      </if>
+      <if test="receiveLat != null">
+        receive_lat,
+      </if>
+      <if test="receiveLng != null">
+        receive_lng,
+      </if>
+      <if test="userDelete != null">
+        user_delete,
+      </if>
+      <if test="courierDelete != null">
+        courier_delete,
+      </if>
+      <if test="userAppraise != null">
+        user_appraise,
+      </if>
+      <if test="courierAppraise != null">
+        courier_appraise,
+      </if>
+      <if test="areaCode != null">
+        area_code,
+      </if>
+      <if test="pickupNumber != null">
+        pickup_number,
+      </if>
+      <if test="sourceType != null">
+        source_type,
+      </if>
+      <if test="payType != null">
+        pay_type,
+      </if>
+      <if test="isSettlement != null">
+        is_settlement,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="ordersn != null">
+        #{ordersn,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceDesc != null">
+        #{serviceDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsEstimatePrice != null">
+        #{goodsEstimatePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsConsultPrice != null">
+        #{goodsConsultPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="dispatchPrice != null">
+        #{dispatchPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="tipPrice != null">
+        #{tipPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="totalAmount != null">
+        #{totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="memberId != null">
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="courier != null">
+        #{courier,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="addressId != null">
+        #{addressId,jdbcType=BIGINT},
+      </if>
+      <if test="receiveName != null">
+        #{receiveName,jdbcType=VARCHAR},
+      </if>
+      <if test="receivePhone != null">
+        #{receivePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveAddress != null">
+        #{receiveAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveLat != null">
+        #{receiveLat,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveLng != null">
+        #{receiveLng,jdbcType=VARCHAR},
+      </if>
+      <if test="userDelete != null">
+        #{userDelete,jdbcType=BIT},
+      </if>
+      <if test="courierDelete != null">
+        #{courierDelete,jdbcType=BIT},
+      </if>
+      <if test="userAppraise != null">
+        #{userAppraise,jdbcType=BIT},
+      </if>
+      <if test="courierAppraise != null">
+        #{courierAppraise,jdbcType=BIT},
+      </if>
+      <if test="areaCode != null">
+        #{areaCode,jdbcType=INTEGER},
+      </if>
+      <if test="pickupNumber != null">
+        #{pickupNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceType != null">
+        #{sourceType,jdbcType=TINYINT},
+      </if>
+      <if test="payType != null">
+        #{payType,jdbcType=TINYINT},
+      </if>
+      <if test="isSettlement != null">
+        #{isSettlement,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.microsilver.mrcard.scheduledtask.model.ImsCrowdsourcingOrderExample" resultType="java.lang.Integer">
+    select count(*) from ims_crowdsourcing_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ims_crowdsourcing_order
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.ordersn != null">
+        ordersn = #{record.ordersn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serviceDesc != null">
+        service_desc = #{record.serviceDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsEstimatePrice != null">
+        goods_estimate_price = #{record.goodsEstimatePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.goodsConsultPrice != null">
+        goods_consult_price = #{record.goodsConsultPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.dispatchPrice != null">
+        dispatch_price = #{record.dispatchPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.tipPrice != null">
+        tip_price = #{record.tipPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.totalAmount != null">
+        total_amount = #{record.totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.memberId != null">
+        member_id = #{record.memberId,jdbcType=BIGINT},
+      </if>
+      <if test="record.courier != null">
+        courier = #{record.courier,jdbcType=BIGINT},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.addressId != null">
+        address_id = #{record.addressId,jdbcType=BIGINT},
+      </if>
+      <if test="record.receiveName != null">
+        receive_name = #{record.receiveName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receivePhone != null">
+        receive_phone = #{record.receivePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiveAddress != null">
+        receive_address = #{record.receiveAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiveLat != null">
+        receive_lat = #{record.receiveLat,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiveLng != null">
+        receive_lng = #{record.receiveLng,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userDelete != null">
+        user_delete = #{record.userDelete,jdbcType=BIT},
+      </if>
+      <if test="record.courierDelete != null">
+        courier_delete = #{record.courierDelete,jdbcType=BIT},
+      </if>
+      <if test="record.userAppraise != null">
+        user_appraise = #{record.userAppraise,jdbcType=BIT},
+      </if>
+      <if test="record.courierAppraise != null">
+        courier_appraise = #{record.courierAppraise,jdbcType=BIT},
+      </if>
+      <if test="record.areaCode != null">
+        area_code = #{record.areaCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.pickupNumber != null">
+        pickup_number = #{record.pickupNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sourceType != null">
+        source_type = #{record.sourceType,jdbcType=TINYINT},
+      </if>
+      <if test="record.payType != null">
+        pay_type = #{record.payType,jdbcType=TINYINT},
+      </if>
+      <if test="record.isSettlement != null">
+        is_settlement = #{record.isSettlement,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ims_crowdsourcing_order
+    set id = #{record.id,jdbcType=BIGINT},
+      ordersn = #{record.ordersn,jdbcType=VARCHAR},
+      service_desc = #{record.serviceDesc,jdbcType=VARCHAR},
+      goods_estimate_price = #{record.goodsEstimatePrice,jdbcType=DECIMAL},
+      goods_consult_price = #{record.goodsConsultPrice,jdbcType=DECIMAL},
+      dispatch_price = #{record.dispatchPrice,jdbcType=DECIMAL},
+      tip_price = #{record.tipPrice,jdbcType=DECIMAL},
+      total_amount = #{record.totalAmount,jdbcType=DECIMAL},
+      member_id = #{record.memberId,jdbcType=BIGINT},
+      courier = #{record.courier,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=TINYINT},
+      address_id = #{record.addressId,jdbcType=BIGINT},
+      receive_name = #{record.receiveName,jdbcType=VARCHAR},
+      receive_phone = #{record.receivePhone,jdbcType=VARCHAR},
+      receive_address = #{record.receiveAddress,jdbcType=VARCHAR},
+      receive_lat = #{record.receiveLat,jdbcType=VARCHAR},
+      receive_lng = #{record.receiveLng,jdbcType=VARCHAR},
+      user_delete = #{record.userDelete,jdbcType=BIT},
+      courier_delete = #{record.courierDelete,jdbcType=BIT},
+      user_appraise = #{record.userAppraise,jdbcType=BIT},
+      courier_appraise = #{record.courierAppraise,jdbcType=BIT},
+      area_code = #{record.areaCode,jdbcType=INTEGER},
+      pickup_number = #{record.pickupNumber,jdbcType=VARCHAR},
+      source_type = #{record.sourceType,jdbcType=TINYINT},
+      pay_type = #{record.payType,jdbcType=TINYINT},
+      is_settlement = #{record.isSettlement,jdbcType=TINYINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.microsilver.mrcard.scheduledtask.model.ImsCrowdsourcingOrder">
+    update ims_crowdsourcing_order
+    <set>
+      <if test="ordersn != null">
+        ordersn = #{ordersn,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceDesc != null">
+        service_desc = #{serviceDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsEstimatePrice != null">
+        goods_estimate_price = #{goodsEstimatePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsConsultPrice != null">
+        goods_consult_price = #{goodsConsultPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="dispatchPrice != null">
+        dispatch_price = #{dispatchPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="tipPrice != null">
+        tip_price = #{tipPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="totalAmount != null">
+        total_amount = #{totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="memberId != null">
+        member_id = #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="courier != null">
+        courier = #{courier,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="addressId != null">
+        address_id = #{addressId,jdbcType=BIGINT},
+      </if>
+      <if test="receiveName != null">
+        receive_name = #{receiveName,jdbcType=VARCHAR},
+      </if>
+      <if test="receivePhone != null">
+        receive_phone = #{receivePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveAddress != null">
+        receive_address = #{receiveAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveLat != null">
+        receive_lat = #{receiveLat,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveLng != null">
+        receive_lng = #{receiveLng,jdbcType=VARCHAR},
+      </if>
+      <if test="userDelete != null">
+        user_delete = #{userDelete,jdbcType=BIT},
+      </if>
+      <if test="courierDelete != null">
+        courier_delete = #{courierDelete,jdbcType=BIT},
+      </if>
+      <if test="userAppraise != null">
+        user_appraise = #{userAppraise,jdbcType=BIT},
+      </if>
+      <if test="courierAppraise != null">
+        courier_appraise = #{courierAppraise,jdbcType=BIT},
+      </if>
+      <if test="areaCode != null">
+        area_code = #{areaCode,jdbcType=INTEGER},
+      </if>
+      <if test="pickupNumber != null">
+        pickup_number = #{pickupNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceType != null">
+        source_type = #{sourceType,jdbcType=TINYINT},
+      </if>
+      <if test="payType != null">
+        pay_type = #{payType,jdbcType=TINYINT},
+      </if>
+      <if test="isSettlement != null">
+        is_settlement = #{isSettlement,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.microsilver.mrcard.scheduledtask.model.ImsCrowdsourcingOrder">
+    update ims_crowdsourcing_order
+    set ordersn = #{ordersn,jdbcType=VARCHAR},
+      service_desc = #{serviceDesc,jdbcType=VARCHAR},
+      goods_estimate_price = #{goodsEstimatePrice,jdbcType=DECIMAL},
+      goods_consult_price = #{goodsConsultPrice,jdbcType=DECIMAL},
+      dispatch_price = #{dispatchPrice,jdbcType=DECIMAL},
+      tip_price = #{tipPrice,jdbcType=DECIMAL},
+      total_amount = #{totalAmount,jdbcType=DECIMAL},
+      member_id = #{memberId,jdbcType=BIGINT},
+      courier = #{courier,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=INTEGER},
+      status = #{status,jdbcType=TINYINT},
+      address_id = #{addressId,jdbcType=BIGINT},
+      receive_name = #{receiveName,jdbcType=VARCHAR},
+      receive_phone = #{receivePhone,jdbcType=VARCHAR},
+      receive_address = #{receiveAddress,jdbcType=VARCHAR},
+      receive_lat = #{receiveLat,jdbcType=VARCHAR},
+      receive_lng = #{receiveLng,jdbcType=VARCHAR},
+      user_delete = #{userDelete,jdbcType=BIT},
+      courier_delete = #{courierDelete,jdbcType=BIT},
+      user_appraise = #{userAppraise,jdbcType=BIT},
+      courier_appraise = #{courierAppraise,jdbcType=BIT},
+      area_code = #{areaCode,jdbcType=INTEGER},
+      pickup_number = #{pickupNumber,jdbcType=VARCHAR},
+      source_type = #{sourceType,jdbcType=TINYINT},
+      pay_type = #{payType,jdbcType=TINYINT},
+      is_settlement = #{isSettlement,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectByLOGStatus" parameterType="com.microsilver.mrcard.scheduledtask.model.ImsCrowdsourcingOrderExample" resultMap="BaseResultMap">
+    select DISTINCT o.* from ims_crowdsourcing_order o left join ims_crowdsourcing_order_log l on o.id = l.order_id
+    where <![CDATA[ l.operate_status <> 12 ]]>
+    <if test="courierAppraise != null">
+      and o.courier_appraise = #{courierAppraise}
+    </if>
+    <if test="isSettlement != null">
+      and o.is_settlement = #{isSettlement}
+    </if>
+    <if test="status != null">
+      and l.operate_status = ${status}
+    </if>
+    <if test="beginTime != null">
+      and l.operate_time between #{beginTime} and #{endTime}
+    </if>
+    order by operate_time desc
+  </select>
+
+</mapper>

@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.microsilver.mrcard.scheduledtask.dao.ImsEweiShopOrderMapper">
+	<resultMap id="BaseResultMap" type="com.microsilver.mrcard.scheduledtask.model.ImsEweiShopOrder">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="uniacid" property="uniacid" jdbcType="INTEGER" />
+		<result column="openid" property="openid" jdbcType="VARCHAR" />
+		<result column="member_id" property="memberId" jdbcType="BIGINT" />
+		<result column="agentid" property="agentid" jdbcType="INTEGER" />
+		<result column="ordersn" property="ordersn" jdbcType="VARCHAR" />
+		<result column="price" property="price" jdbcType="DECIMAL" />
+		<result column="goodsprice" property="goodsprice" jdbcType="DECIMAL" />
+		<result column="discountprice" property="discountprice"
+			jdbcType="DECIMAL" />
+		<result column="status" property="status" jdbcType="TINYINT" />
+		<result column="paytype" property="paytype" jdbcType="BIT" />
+		<result column="transid" property="transid" jdbcType="VARCHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="addressid" property="addressid" jdbcType="INTEGER" />
+		<result column="dispatchprice" property="dispatchprice"
+			jdbcType="DECIMAL" />
+		<result column="dispatchid" property="dispatchid" jdbcType="INTEGER" />
+		<result column="createtime" property="createtime" jdbcType="INTEGER" />
+		<result column="dispatchtype" property="dispatchtype" jdbcType="TINYINT" />
+		<result column="refundid" property="refundid" jdbcType="INTEGER" />
+		<result column="iscomment" property="iscomment" jdbcType="TINYINT" />
+		<result column="creditadd" property="creditadd" jdbcType="TINYINT" />
+		<result column="deleted" property="deleted" jdbcType="TINYINT" />
+		<result column="userdeleted" property="userdeleted" jdbcType="TINYINT" />
+		<result column="finishtime" property="finishtime" jdbcType="INTEGER" />
+		<result column="paytime" property="paytime" jdbcType="INTEGER" />
+		<result column="expresscom" property="expresscom" jdbcType="VARCHAR" />
+		<result column="expresssn" property="expresssn" jdbcType="VARCHAR" />
+		<result column="express" property="express" jdbcType="VARCHAR" />
+		<result column="sendtime" property="sendtime" jdbcType="INTEGER" />
+		<result column="sortingtime" property="sortingtime" jdbcType="INTEGER" />
+		<result column="fetchtime" property="fetchtime" jdbcType="INTEGER" />
+		<result column="cash" property="cash" jdbcType="TINYINT" />
+		<result column="canceltime" property="canceltime" jdbcType="INTEGER" />
+		<result column="cancelpaytime" property="cancelpaytime"
+			jdbcType="INTEGER" />
+		<result column="refundtime" property="refundtime" jdbcType="INTEGER" />
+		<result column="isverify" property="isverify" jdbcType="TINYINT" />
+		<result column="verified" property="verified" jdbcType="TINYINT" />
+		<result column="verifyopenid" property="verifyopenid" jdbcType="VARCHAR" />
+		<result column="verifytime" property="verifytime" jdbcType="INTEGER" />
+		<result column="verifycode" property="verifycode" jdbcType="VARCHAR" />
+		<result column="verifystoreid" property="verifystoreid"
+			jdbcType="INTEGER" />
+		<result column="deductprice" property="deductprice" jdbcType="DECIMAL" />
+		<result column="deductcredit" property="deductcredit" jdbcType="INTEGER" />
+		<result column="deductcredit2" property="deductcredit2"
+			jdbcType="DECIMAL" />
+		<result column="deductenough" property="deductenough" jdbcType="DECIMAL" />
+		<result column="virtual" property="virtual" jdbcType="INTEGER" />
+		<result column="sysdeleted" property="sysdeleted" jdbcType="TINYINT" />
+		<result column="ordersn2" property="ordersn2" jdbcType="INTEGER" />
+		<result column="changeprice" property="changeprice" jdbcType="DECIMAL" />
+		<result column="changedispatchprice" property="changedispatchprice"
+			jdbcType="DECIMAL" />
+		<result column="oldprice" property="oldprice" jdbcType="DECIMAL" />
+		<result column="olddispatchprice" property="olddispatchprice"
+			jdbcType="DECIMAL" />
+		<result column="isvirtual" property="isvirtual" jdbcType="TINYINT" />
+		<result column="couponid" property="couponid" jdbcType="INTEGER" />
+		<result column="couponprice" property="couponprice" jdbcType="DECIMAL" />
+		<result column="diyformid" property="diyformid" jdbcType="INTEGER" />
+		<result column="storeid" property="storeid" jdbcType="INTEGER" />
+		<result column="printstate" property="printstate" jdbcType="BIT" />
+		<result column="printstate2" property="printstate2" jdbcType="BIT" />
+		<result column="refundstate" property="refundstate" jdbcType="TINYINT" />
+		<result column="ismr" property="ismr" jdbcType="INTEGER" />
+		<result column="isdiscountprice" property="isdiscountprice"
+			jdbcType="DECIMAL" />
+		<result column="isvirtualsend" property="isvirtualsend"
+			jdbcType="BIT" />
+		<result column="verifytype" property="verifytype" jdbcType="BIT" />
+		<result column="merchid" property="merchid" jdbcType="INTEGER" />
+		<result column="invoicename" property="invoicename" jdbcType="VARCHAR" />
+		<result column="ismerch" property="ismerch" jdbcType="BIT" />
+		<result column="parentid" property="parentid" jdbcType="INTEGER" />
+		<result column="isparent" property="isparent" jdbcType="BIT" />
+		<result column="grprice" property="grprice" jdbcType="DECIMAL" />
+		<result column="merchshow" property="merchshow" jdbcType="BIT" />
+		<result column="merchdeductenough" property="merchdeductenough"
+			jdbcType="DECIMAL" />
+		<result column="couponmerchid" property="couponmerchid"
+			jdbcType="INTEGER" />
+		<result column="isglobonus" property="isglobonus" jdbcType="TINYINT" />
+		<result column="merchapply" property="merchapply" jdbcType="BIT" />
+		<result column="isabonus" property="isabonus" jdbcType="TINYINT" />
+		<result column="isborrow" property="isborrow" jdbcType="TINYINT" />
+		<result column="borrowopenid" property="borrowopenid" jdbcType="VARCHAR" />
+		<result column="merchisdiscountprice" property="merchisdiscountprice"
+			jdbcType="DECIMAL" />
+		<result column="apppay" property="apppay" jdbcType="TINYINT" />
+		<result column="coupongoodprice" property="coupongoodprice"
+			jdbcType="DECIMAL" />
+		<result column="buyagainprice" property="buyagainprice"
+			jdbcType="DECIMAL" />
+		<result column="ispackage" property="ispackage" jdbcType="TINYINT" />
+		<result column="packageid" property="packageid" jdbcType="INTEGER" />
+		<result column="taskdiscountprice" property="taskdiscountprice"
+			jdbcType="DECIMAL" />
+		<result column="seckilldiscountprice" property="seckilldiscountprice"
+			jdbcType="DECIMAL" />
+		<result column="verifyendtime" property="verifyendtime"
+			jdbcType="INTEGER" />
+		<result column="willcancelmessage" property="willcancelmessage"
+			jdbcType="BIT" />
+		<result column="sendtype" property="sendtype" jdbcType="TINYINT" />
+		<result column="code" property="code" jdbcType="REAL" />
+		<result column="courier" property="courier" jdbcType="BIGINT" />
+		<result column="order_type" property="orderType" jdbcType="TINYINT" />
+		<result column="is_settlement" property="issettlement" jdbcType="TINYINT" />
+
+        <result column="activity_id" property="activityId" jdbcType="TINYINT" />
+	</resultMap>
+
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  
+	<sql id="Base_Column_List" >
+	    id, uniacid, openid, member_id, agentid, ordersn, price, goodsprice, discountprice, 
+	    status, paytype, transid, remark, addressid, dispatchprice, dispatchid, createtime, 
+	    dispatchtype, refundid, iscomment, creditadd, deleted, userdeleted, finishtime, paytime, 
+	    expresscom, expresssn, express, sendtime, sortingtime, fetchtime, cash, canceltime, 
+	    cancelpaytime, refundtime, isverify, verified, verifyopenid, verifytime, verifycode, 
+	    verifystoreid, deductprice, deductcredit, deductcredit2, deductenough, virtual, sysdeleted, 
+	    ordersn2, changeprice, changedispatchprice, oldprice, olddispatchprice, isvirtual, 
+	    couponid, couponprice, diyformid, storeid, printstate, printstate2, refundstate, 
+	    ismr, isdiscountprice, isvirtualsend, verifytype, merchid, invoicename, ismerch, 
+	    parentid, isparent, grprice, merchshow, merchdeductenough, couponmerchid, isglobonus, 
+	    merchapply, isabonus, isborrow, borrowopenid, merchisdiscountprice, apppay, coupongoodprice, 
+	    buyagainprice, ispackage, packageid, taskdiscountprice, seckilldiscountprice, verifyendtime, 
+	    willcancelmessage, sendtype, code, courier, order_type, is_settlement,activity_id
+  	</sql>
+  
+	<select id="selectByExample" resultMap="BaseResultMap" parameterType="com.microsilver.mrcard.scheduledtask.model.ImsEweiShopOrderExample" >
+    	select
+	    <if test="distinct" >
+	      distinct
+	    </if>
+	    <include refid="Base_Column_List" />
+	    from ims_ewei_shop_order
+	    <if test="_parameter != null" >
+	      <include refid="Example_Where_Clause" />
+	    </if>
+	    <if test="orderByClause != null" >
+	      order by ${orderByClause}
+	    </if>
+  	</select>
+  	
+  	<select id="selectHotelByStatu" resultMap="BaseResultMap" parameterType="com.microsilver.mrcard.scheduledtask.model.ImsEweiShopOrderExample" >
+    	select id, createtime,activity_id
+	    from ims_ewei_shop_order
+	    <if test="_parameter != null" >
+	      <include refid="Example_Where_Clause" />
+	    </if>
+  	</select>
+  
+	<update id="updateByPrimaryKeySelective" parameterType="com.microsilver.mrcard.scheduledtask.model.ImsEweiShopOrder" >
+    update ims_ewei_shop_order
+    <set >
+      <if test="uniacid != null" >
+        uniacid = #{uniacid,jdbcType=INTEGER},
+      </if>
+      <if test="openid != null" >
+        openid = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="agentid != null" >
+        agentid = #{agentid,jdbcType=INTEGER},
+      </if>
+      <if test="ordersn != null" >
+        ordersn = #{ordersn,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsprice != null" >
+        goodsprice = #{goodsprice,jdbcType=DECIMAL},
+      </if>
+      <if test="discountprice != null" >
+        discountprice = #{discountprice,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="paytype != null" >
+        paytype = #{paytype,jdbcType=BIT},
+      </if>
+      <if test="transid != null" >
+        transid = #{transid,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="addressid != null" >
+        addressid = #{addressid,jdbcType=INTEGER},
+      </if>
+      <if test="dispatchprice != null" >
+        dispatchprice = #{dispatchprice,jdbcType=DECIMAL},
+      </if>
+      <if test="dispatchid != null" >
+        dispatchid = #{dispatchid,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=INTEGER},
+      </if>
+      <if test="dispatchtype != null" >
+        dispatchtype = #{dispatchtype,jdbcType=TINYINT},
+      </if>
+      <if test="refundid != null" >
+        refundid = #{refundid,jdbcType=INTEGER},
+      </if>
+      <if test="iscomment != null" >
+        iscomment = #{iscomment,jdbcType=TINYINT},
+      </if>
+      <if test="creditadd != null" >
+        creditadd = #{creditadd,jdbcType=TINYINT},
+      </if>
+      <if test="deleted != null" >
+        deleted = #{deleted,jdbcType=TINYINT},
+      </if>
+      <if test="userdeleted != null" >
+        userdeleted = #{userdeleted,jdbcType=TINYINT},
+      </if>
+      <if test="finishtime != null" >
+        finishtime = #{finishtime,jdbcType=INTEGER},
+      </if>
+      <if test="paytime != null" >
+        paytime = #{paytime,jdbcType=INTEGER},
+      </if>
+      <if test="expresscom != null" >
+        expresscom = #{expresscom,jdbcType=VARCHAR},
+      </if>
+      <if test="expresssn != null" >
+        expresssn = #{expresssn,jdbcType=VARCHAR},
+      </if>
+      <if test="express != null" >
+        express = #{express,jdbcType=VARCHAR},
+      </if>
+      <if test="sendtime != null" >
+        sendtime = #{sendtime,jdbcType=INTEGER},
+      </if>
+      <if test="sortingtime != null" >
+        sortingtime = #{sortingtime,jdbcType=INTEGER},
+      </if>
+      <if test="fetchtime != null" >
+        fetchtime = #{fetchtime,jdbcType=INTEGER},
+      </if>
+      <if test="cash != null" >
+        cash = #{cash,jdbcType=TINYINT},
+      </if>
+      <if test="canceltime != null" >
+        canceltime = #{canceltime,jdbcType=INTEGER},
+      </if>
+      <if test="cancelpaytime != null" >
+        cancelpaytime = #{cancelpaytime,jdbcType=INTEGER},
+      </if>
+      <if test="refundtime != null" >
+        refundtime = #{refundtime,jdbcType=INTEGER},
+      </if>
+      <if test="isverify != null" >
+        isverify = #{isverify,jdbcType=TINYINT},
+      </if>
+      <if test="verified != null" >
+        verified = #{verified,jdbcType=TINYINT},
+      </if>
+      <if test="verifyopenid != null" >
+        verifyopenid = #{verifyopenid,jdbcType=VARCHAR},
+      </if>
+      <if test="verifytime != null" >
+        verifytime = #{verifytime,jdbcType=INTEGER},
+      </if>
+      <if test="verifycode != null" >
+        verifycode = #{verifycode,jdbcType=VARCHAR},
+      </if>
+      <if test="verifystoreid != null" >
+        verifystoreid = #{verifystoreid,jdbcType=INTEGER},
+      </if>
+      <if test="deductprice != null" >
+        deductprice = #{deductprice,jdbcType=DECIMAL},
+      </if>
+      <if test="deductcredit != null" >
+        deductcredit = #{deductcredit,jdbcType=INTEGER},
+      </if>
+      <if test="deductcredit2 != null" >
+        deductcredit2 = #{deductcredit2,jdbcType=DECIMAL},
+      </if>
+      <if test="deductenough != null" >
+        deductenough = #{deductenough,jdbcType=DECIMAL},
+      </if>
+      <if test="virtual != null" >
+        virtual = #{virtual,jdbcType=INTEGER},
+      </if>
+      <if test="sysdeleted != null" >
+        sysdeleted = #{sysdeleted,jdbcType=TINYINT},
+      </if>
+      <if test="ordersn2 != null" >
+        ordersn2 = #{ordersn2,jdbcType=INTEGER},
+      </if>
+      <if test="changeprice != null" >
+        changeprice = #{changeprice,jdbcType=DECIMAL},
+      </if>
+      <if test="changedispatchprice != null" >
+        changedispatchprice = #{changedispatchprice,jdbcType=DECIMAL},
+      </if>
+      <if test="oldprice != null" >
+        oldprice = #{oldprice,jdbcType=DECIMAL},
+      </if>
+      <if test="olddispatchprice != null" >
+        olddispatchprice = #{olddispatchprice,jdbcType=DECIMAL},
+      </if>
+      <if test="isvirtual != null" >
+        isvirtual = #{isvirtual,jdbcType=TINYINT},
+      </if>
+      <if test="couponid != null" >
+        couponid = #{couponid,jdbcType=INTEGER},
+      </if>
+      <if test="couponprice != null" >
+        couponprice = #{couponprice,jdbcType=DECIMAL},
+      </if>
+      <if test="diyformid != null" >
+        diyformid = #{diyformid,jdbcType=INTEGER},
+      </if>
+      <if test="storeid != null" >
+        storeid = #{storeid,jdbcType=INTEGER},
+      </if>
+      <if test="printstate != null" >
+        printstate = #{printstate,jdbcType=BIT},
+      </if>
+      <if test="printstate2 != null" >
+        printstate2 = #{printstate2,jdbcType=BIT},
+      </if>
+      <if test="refundstate != null" >
+        refundstate = #{refundstate,jdbcType=TINYINT},
+      </if>
+      <if test="ismr != null" >
+        ismr = #{ismr,jdbcType=INTEGER},
+      </if>
+      <if test="isdiscountprice != null" >
+        isdiscountprice = #{isdiscountprice,jdbcType=DECIMAL},
+      </if>
+      <if test="isvirtualsend != null" >
+        isvirtualsend = #{isvirtualsend,jdbcType=BIT},
+      </if>
+      <if test="verifytype != null" >
+        verifytype = #{verifytype,jdbcType=BIT},
+      </if>
+      <if test="merchid != null" >
+        merchid = #{merchid,jdbcType=INTEGER},
+      </if>
+      <if test="invoicename != null" >
+        invoicename = #{invoicename,jdbcType=VARCHAR},
+      </if>
+      <if test="ismerch != null" >
+        ismerch = #{ismerch,jdbcType=BIT},
+      </if>
+      <if test="parentid != null" >
+        parentid = #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="isparent != null" >
+        isparent = #{isparent,jdbcType=BIT},
+      </if>
+      <if test="grprice != null" >
+        grprice = #{grprice,jdbcType=DECIMAL},
+      </if>
+      <if test="merchshow != null" >
+        merchshow = #{merchshow,jdbcType=BIT},
+      </if>
+      <if test="merchdeductenough != null" >
+        merchdeductenough = #{merchdeductenough,jdbcType=DECIMAL},
+      </if>
+      <if test="couponmerchid != null" >
+        couponmerchid = #{couponmerchid,jdbcType=INTEGER},
+      </if>
+      <if test="isglobonus != null" >
+        isglobonus = #{isglobonus,jdbcType=TINYINT},
+      </if>
+      <if test="merchapply != null" >
+        merchapply = #{merchapply,jdbcType=BIT},
+      </if>
+      <if test="isabonus != null" >
+        isabonus = #{isabonus,jdbcType=TINYINT},
+      </if>
+      <if test="isborrow != null" >
+        isborrow = #{isborrow,jdbcType=TINYINT},
+      </if>
+      <if test="borrowopenid != null" >
+        borrowopenid = #{borrowopenid,jdbcType=VARCHAR},
+      </if>
+      <if test="merchisdiscountprice != null" >
+        merchisdiscountprice = #{merchisdiscountprice,jdbcType=DECIMAL},
+      </if>
+      <if test="apppay != null" >
+        apppay = #{apppay,jdbcType=TINYINT},
+      </if>
+      <if test="coupongoodprice != null" >
+        coupongoodprice = #{coupongoodprice,jdbcType=DECIMAL},
+      </if>
+      <if test="buyagainprice != null" >
+        buyagainprice = #{buyagainprice,jdbcType=DECIMAL},
+      </if>
+      <if test="ispackage != null" >
+        ispackage = #{ispackage,jdbcType=TINYINT},
+      </if>
+      <if test="packageid != null" >
+        packageid = #{packageid,jdbcType=INTEGER},
+      </if>
+      <if test="taskdiscountprice != null" >
+        taskdiscountprice = #{taskdiscountprice,jdbcType=DECIMAL},
+      </if>
+      <if test="seckilldiscountprice != null" >
+        seckilldiscountprice = #{seckilldiscountprice,jdbcType=DECIMAL},
+      </if>
+      <if test="verifyendtime != null" >
+        verifyendtime = #{verifyendtime,jdbcType=INTEGER},
+      </if>
+      <if test="willcancelmessage != null" >
+        willcancelmessage = #{willcancelmessage,jdbcType=BIT},
+      </if>
+      <if test="sendtype != null" >
+        sendtype = #{sendtype,jdbcType=TINYINT},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=REAL},
+      </if>
+      <if test="courier != null" >
+        courier = #{courier,jdbcType=BIGINT},
+      </if>
+      <if test="orderType != null" >
+        order_type = #{orderType,jdbcType=TINYINT},
+      </if>
+      <if test="issettlement != null" >
+        is_settlement = #{issettlement,jdbcType=TINYINT},
+      </if>
+      <if test="activityId != null" >
+          activity_id = #{activityId,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER} limit 1
+  </update>
+</mapper>

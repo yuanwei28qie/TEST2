@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.microsilver.mrcard.serviceplatform.dao.ImsEweiShopOrderCommentMapper">
+  <resultMap id="BaseResultMap" type="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopOrderComment">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="uniacid" jdbcType="INTEGER" property="uniacid" />
+    <result column="orderid" jdbcType="INTEGER" property="orderid" />
+    <result column="goodsid" jdbcType="INTEGER" property="goodsid" />
+    <result column="openid" jdbcType="VARCHAR" property="openid" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="headimgurl" jdbcType="VARCHAR" property="headimgurl" />
+    <result column="level" jdbcType="REAL" property="level" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="images" jdbcType="VARCHAR" property="images" />
+    <result column="createtime" jdbcType="INTEGER" property="createtime" />
+    <result column="deleted" jdbcType="TINYINT" property="deleted" />
+    <result column="append_content" jdbcType="VARCHAR" property="appendContent" />
+    <result column="append_images" jdbcType="VARCHAR" property="appendImages" />
+    <result column="reply_content" jdbcType="VARCHAR" property="replyContent" />
+    <result column="reply_images" jdbcType="VARCHAR" property="replyImages" />
+    <result column="append_reply_content" jdbcType="VARCHAR" property="appendReplyContent" />
+    <result column="append_reply_images" jdbcType="VARCHAR" property="appendReplyImages" />
+    <result column="istop" jdbcType="TINYINT" property="istop" />
+    <result column="checked" jdbcType="TINYINT" property="checked" />
+    <result column="replychecked" jdbcType="TINYINT" property="replychecked" />
+    <result column="merchid" jdbcType="BIGINT" property="merchid" />
+    <result column="memberid" jdbcType="BIGINT" property="memberid" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, uniacid, orderid, goodsid, openid, nickname, headimgurl, level, content, images, 
+    createtime, deleted, append_content, append_images, reply_content, reply_images, 
+    append_reply_content, append_reply_images, istop, checked, replychecked, merchid, 
+    memberid
+  </sql>
+  <select id="selectByExample" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopOrderCommentExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ims_ewei_shop_order_comment
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ims_ewei_shop_order_comment
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ims_ewei_shop_order_comment
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopOrderCommentExample">
+    delete from ims_ewei_shop_order_comment
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopOrderComment">
+    insert into ims_ewei_shop_order_comment (id, uniacid, orderid, 
+      goodsid, openid, nickname, 
+      headimgurl, level, content, 
+      images, createtime, deleted, 
+      append_content, append_images, reply_content, 
+      reply_images, append_reply_content, append_reply_images, 
+      istop, checked, replychecked, 
+      merchid, memberid)
+    values (#{id,jdbcType=INTEGER}, #{uniacid,jdbcType=INTEGER}, #{orderid,jdbcType=INTEGER}, 
+      #{goodsid,jdbcType=INTEGER}, #{openid,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, 
+      #{headimgurl,jdbcType=VARCHAR}, #{level,jdbcType=REAL}, #{content,jdbcType=VARCHAR}, 
+      #{images,jdbcType=VARCHAR}, #{createtime,jdbcType=INTEGER}, #{deleted,jdbcType=TINYINT}, 
+      #{appendContent,jdbcType=VARCHAR}, #{appendImages,jdbcType=VARCHAR}, #{replyContent,jdbcType=VARCHAR}, 
+      #{replyImages,jdbcType=VARCHAR}, #{appendReplyContent,jdbcType=VARCHAR}, #{appendReplyImages,jdbcType=VARCHAR}, 
+      #{istop,jdbcType=TINYINT}, #{checked,jdbcType=TINYINT}, #{replychecked,jdbcType=TINYINT}, 
+      #{merchid,jdbcType=BIGINT}, #{memberid,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopOrderComment">
+    insert into ims_ewei_shop_order_comment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uniacid != null">
+        uniacid,
+      </if>
+      <if test="orderid != null">
+        orderid,
+      </if>
+      <if test="goodsid != null">
+        goodsid,
+      </if>
+      <if test="openid != null">
+        openid,
+      </if>
+      <if test="nickname != null">
+        nickname,
+      </if>
+      <if test="headimgurl != null">
+        headimgurl,
+      </if>
+      <if test="level != null">
+        level,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="images != null">
+        images,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="deleted != null">
+        deleted,
+      </if>
+      <if test="appendContent != null">
+        append_content,
+      </if>
+      <if test="appendImages != null">
+        append_images,
+      </if>
+      <if test="replyContent != null">
+        reply_content,
+      </if>
+      <if test="replyImages != null">
+        reply_images,
+      </if>
+      <if test="appendReplyContent != null">
+        append_reply_content,
+      </if>
+      <if test="appendReplyImages != null">
+        append_reply_images,
+      </if>
+      <if test="istop != null">
+        istop,
+      </if>
+      <if test="checked != null">
+        checked,
+      </if>
+      <if test="replychecked != null">
+        replychecked,
+      </if>
+      <if test="merchid != null">
+        merchid,
+      </if>
+      <if test="memberid != null">
+        memberid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uniacid != null">
+        #{uniacid,jdbcType=INTEGER},
+      </if>
+      <if test="orderid != null">
+        #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="goodsid != null">
+        #{goodsid,jdbcType=INTEGER},
+      </if>
+      <if test="openid != null">
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="headimgurl != null">
+        #{headimgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=REAL},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="images != null">
+        #{images,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=INTEGER},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=TINYINT},
+      </if>
+      <if test="appendContent != null">
+        #{appendContent,jdbcType=VARCHAR},
+      </if>
+      <if test="appendImages != null">
+        #{appendImages,jdbcType=VARCHAR},
+      </if>
+      <if test="replyContent != null">
+        #{replyContent,jdbcType=VARCHAR},
+      </if>
+      <if test="replyImages != null">
+        #{replyImages,jdbcType=VARCHAR},
+      </if>
+      <if test="appendReplyContent != null">
+        #{appendReplyContent,jdbcType=VARCHAR},
+      </if>
+      <if test="appendReplyImages != null">
+        #{appendReplyImages,jdbcType=VARCHAR},
+      </if>
+      <if test="istop != null">
+        #{istop,jdbcType=TINYINT},
+      </if>
+      <if test="checked != null">
+        #{checked,jdbcType=TINYINT},
+      </if>
+      <if test="replychecked != null">
+        #{replychecked,jdbcType=TINYINT},
+      </if>
+      <if test="merchid != null">
+        #{merchid,jdbcType=BIGINT},
+      </if>
+      <if test="memberid != null">
+        #{memberid,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopOrderCommentExample" resultType="java.lang.Integer">
+    select count(*) from ims_ewei_shop_order_comment
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ims_ewei_shop_order_comment
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.uniacid != null">
+        uniacid = #{record.uniacid,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderid != null">
+        orderid = #{record.orderid,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsid != null">
+        goodsid = #{record.goodsid,jdbcType=INTEGER},
+      </if>
+      <if test="record.openid != null">
+        openid = #{record.openid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nickname != null">
+        nickname = #{record.nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.headimgurl != null">
+        headimgurl = #{record.headimgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.level != null">
+        level = #{record.level,jdbcType=REAL},
+      </if>
+      <if test="record.content != null">
+        content = #{record.content,jdbcType=VARCHAR},
+      </if>
+      <if test="record.images != null">
+        images = #{record.images,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null">
+        createtime = #{record.createtime,jdbcType=INTEGER},
+      </if>
+      <if test="record.deleted != null">
+        deleted = #{record.deleted,jdbcType=TINYINT},
+      </if>
+      <if test="record.appendContent != null">
+        append_content = #{record.appendContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appendImages != null">
+        append_images = #{record.appendImages,jdbcType=VARCHAR},
+      </if>
+      <if test="record.replyContent != null">
+        reply_content = #{record.replyContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.replyImages != null">
+        reply_images = #{record.replyImages,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appendReplyContent != null">
+        append_reply_content = #{record.appendReplyContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appendReplyImages != null">
+        append_reply_images = #{record.appendReplyImages,jdbcType=VARCHAR},
+      </if>
+      <if test="record.istop != null">
+        istop = #{record.istop,jdbcType=TINYINT},
+      </if>
+      <if test="record.checked != null">
+        checked = #{record.checked,jdbcType=TINYINT},
+      </if>
+      <if test="record.replychecked != null">
+        replychecked = #{record.replychecked,jdbcType=TINYINT},
+      </if>
+      <if test="record.merchid != null">
+        merchid = #{record.merchid,jdbcType=BIGINT},
+      </if>
+      <if test="record.memberid != null">
+        memberid = #{record.memberid,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ims_ewei_shop_order_comment
+    set id = #{record.id,jdbcType=INTEGER},
+      uniacid = #{record.uniacid,jdbcType=INTEGER},
+      orderid = #{record.orderid,jdbcType=INTEGER},
+      goodsid = #{record.goodsid,jdbcType=INTEGER},
+      openid = #{record.openid,jdbcType=VARCHAR},
+      nickname = #{record.nickname,jdbcType=VARCHAR},
+      headimgurl = #{record.headimgurl,jdbcType=VARCHAR},
+      level = #{record.level,jdbcType=REAL},
+      content = #{record.content,jdbcType=VARCHAR},
+      images = #{record.images,jdbcType=VARCHAR},
+      createtime = #{record.createtime,jdbcType=INTEGER},
+      deleted = #{record.deleted,jdbcType=TINYINT},
+      append_content = #{record.appendContent,jdbcType=VARCHAR},
+      append_images = #{record.appendImages,jdbcType=VARCHAR},
+      reply_content = #{record.replyContent,jdbcType=VARCHAR},
+      reply_images = #{record.replyImages,jdbcType=VARCHAR},
+      append_reply_content = #{record.appendReplyContent,jdbcType=VARCHAR},
+      append_reply_images = #{record.appendReplyImages,jdbcType=VARCHAR},
+      istop = #{record.istop,jdbcType=TINYINT},
+      checked = #{record.checked,jdbcType=TINYINT},
+      replychecked = #{record.replychecked,jdbcType=TINYINT},
+      merchid = #{record.merchid,jdbcType=BIGINT},
+      memberid = #{record.memberid,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopOrderComment">
+    update ims_ewei_shop_order_comment
+    <set>
+      <if test="uniacid != null">
+        uniacid = #{uniacid,jdbcType=INTEGER},
+      </if>
+      <if test="orderid != null">
+        orderid = #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="goodsid != null">
+        goodsid = #{goodsid,jdbcType=INTEGER},
+      </if>
+      <if test="openid != null">
+        openid = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        nickname = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="headimgurl != null">
+        headimgurl = #{headimgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        level = #{level,jdbcType=REAL},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="images != null">
+        images = #{images,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=INTEGER},
+      </if>
+      <if test="deleted != null">
+        deleted = #{deleted,jdbcType=TINYINT},
+      </if>
+      <if test="appendContent != null">
+        append_content = #{appendContent,jdbcType=VARCHAR},
+      </if>
+      <if test="appendImages != null">
+        append_images = #{appendImages,jdbcType=VARCHAR},
+      </if>
+      <if test="replyContent != null">
+        reply_content = #{replyContent,jdbcType=VARCHAR},
+      </if>
+      <if test="replyImages != null">
+        reply_images = #{replyImages,jdbcType=VARCHAR},
+      </if>
+      <if test="appendReplyContent != null">
+        append_reply_content = #{appendReplyContent,jdbcType=VARCHAR},
+      </if>
+      <if test="appendReplyImages != null">
+        append_reply_images = #{appendReplyImages,jdbcType=VARCHAR},
+      </if>
+      <if test="istop != null">
+        istop = #{istop,jdbcType=TINYINT},
+      </if>
+      <if test="checked != null">
+        checked = #{checked,jdbcType=TINYINT},
+      </if>
+      <if test="replychecked != null">
+        replychecked = #{replychecked,jdbcType=TINYINT},
+      </if>
+      <if test="merchid != null">
+        merchid = #{merchid,jdbcType=BIGINT},
+      </if>
+      <if test="memberid != null">
+        memberid = #{memberid,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopOrderComment">
+    update ims_ewei_shop_order_comment
+    set uniacid = #{uniacid,jdbcType=INTEGER},
+      orderid = #{orderid,jdbcType=INTEGER},
+      goodsid = #{goodsid,jdbcType=INTEGER},
+      openid = #{openid,jdbcType=VARCHAR},
+      nickname = #{nickname,jdbcType=VARCHAR},
+      headimgurl = #{headimgurl,jdbcType=VARCHAR},
+      level = #{level,jdbcType=REAL},
+      content = #{content,jdbcType=VARCHAR},
+      images = #{images,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=INTEGER},
+      deleted = #{deleted,jdbcType=TINYINT},
+      append_content = #{appendContent,jdbcType=VARCHAR},
+      append_images = #{appendImages,jdbcType=VARCHAR},
+      reply_content = #{replyContent,jdbcType=VARCHAR},
+      reply_images = #{replyImages,jdbcType=VARCHAR},
+      append_reply_content = #{appendReplyContent,jdbcType=VARCHAR},
+      append_reply_images = #{appendReplyImages,jdbcType=VARCHAR},
+      istop = #{istop,jdbcType=TINYINT},
+      checked = #{checked,jdbcType=TINYINT},
+      replychecked = #{replychecked,jdbcType=TINYINT},
+      merchid = #{merchid,jdbcType=BIGINT},
+      memberid = #{memberid,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

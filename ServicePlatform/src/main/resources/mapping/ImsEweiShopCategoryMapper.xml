@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.microsilver.mrcard.serviceplatform.dao.ImsEweiShopCategoryMapper">
+  <resultMap id="BaseResultMap" type="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopCategory">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="uniacid" jdbcType="INTEGER" property="uniacid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="thumb" jdbcType="VARCHAR" property="thumb" />
+    <result column="parentid" jdbcType="INTEGER" property="parentid" />
+    <result column="isrecommand" jdbcType="INTEGER" property="isrecommand" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="displayorder" jdbcType="TINYINT" property="displayorder" />
+    <result column="enabled" jdbcType="TINYINT" property="enabled" />
+    <result column="ishome" jdbcType="TINYINT" property="ishome" />
+    <result column="level" jdbcType="TINYINT" property="level" />
+    <result column="advimg" jdbcType="VARCHAR" property="advimg" />
+    <result column="advurl" jdbcType="VARCHAR" property="advurl" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, uniacid, name, thumb, parentid, isrecommand, description, displayorder, enabled, 
+    ishome, level, advimg, advurl
+  </sql>
+  <select id="selectByExample" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopCategoryExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ims_ewei_shop_category
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ims_ewei_shop_category
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ims_ewei_shop_category
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopCategoryExample">
+    delete from ims_ewei_shop_category
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopCategory">
+    insert into ims_ewei_shop_category (id, uniacid, name, 
+      thumb, parentid, isrecommand, 
+      description, displayorder, enabled, 
+      ishome, level, advimg, 
+      advurl)
+    values (#{id,jdbcType=INTEGER}, #{uniacid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{thumb,jdbcType=VARCHAR}, #{parentid,jdbcType=INTEGER}, #{isrecommand,jdbcType=INTEGER}, 
+      #{description,jdbcType=VARCHAR}, #{displayorder,jdbcType=TINYINT}, #{enabled,jdbcType=TINYINT}, 
+      #{ishome,jdbcType=TINYINT}, #{level,jdbcType=TINYINT}, #{advimg,jdbcType=VARCHAR}, 
+      #{advurl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopCategory">
+    insert into ims_ewei_shop_category
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uniacid != null">
+        uniacid,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="thumb != null">
+        thumb,
+      </if>
+      <if test="parentid != null">
+        parentid,
+      </if>
+      <if test="isrecommand != null">
+        isrecommand,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="displayorder != null">
+        displayorder,
+      </if>
+      <if test="enabled != null">
+        enabled,
+      </if>
+      <if test="ishome != null">
+        ishome,
+      </if>
+      <if test="level != null">
+        level,
+      </if>
+      <if test="advimg != null">
+        advimg,
+      </if>
+      <if test="advurl != null">
+        advurl,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uniacid != null">
+        #{uniacid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="thumb != null">
+        #{thumb,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="isrecommand != null">
+        #{isrecommand,jdbcType=INTEGER},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="displayorder != null">
+        #{displayorder,jdbcType=TINYINT},
+      </if>
+      <if test="enabled != null">
+        #{enabled,jdbcType=TINYINT},
+      </if>
+      <if test="ishome != null">
+        #{ishome,jdbcType=TINYINT},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=TINYINT},
+      </if>
+      <if test="advimg != null">
+        #{advimg,jdbcType=VARCHAR},
+      </if>
+      <if test="advurl != null">
+        #{advurl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopCategoryExample" resultType="java.lang.Integer">
+    select count(*) from ims_ewei_shop_category
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ims_ewei_shop_category
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.uniacid != null">
+        uniacid = #{record.uniacid,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thumb != null">
+        thumb = #{record.thumb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentid != null">
+        parentid = #{record.parentid,jdbcType=INTEGER},
+      </if>
+      <if test="record.isrecommand != null">
+        isrecommand = #{record.isrecommand,jdbcType=INTEGER},
+      </if>
+      <if test="record.description != null">
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.displayorder != null">
+        displayorder = #{record.displayorder,jdbcType=TINYINT},
+      </if>
+      <if test="record.enabled != null">
+        enabled = #{record.enabled,jdbcType=TINYINT},
+      </if>
+      <if test="record.ishome != null">
+        ishome = #{record.ishome,jdbcType=TINYINT},
+      </if>
+      <if test="record.level != null">
+        level = #{record.level,jdbcType=TINYINT},
+      </if>
+      <if test="record.advimg != null">
+        advimg = #{record.advimg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.advurl != null">
+        advurl = #{record.advurl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ims_ewei_shop_category
+    set id = #{record.id,jdbcType=INTEGER},
+      uniacid = #{record.uniacid,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      thumb = #{record.thumb,jdbcType=VARCHAR},
+      parentid = #{record.parentid,jdbcType=INTEGER},
+      isrecommand = #{record.isrecommand,jdbcType=INTEGER},
+      description = #{record.description,jdbcType=VARCHAR},
+      displayorder = #{record.displayorder,jdbcType=TINYINT},
+      enabled = #{record.enabled,jdbcType=TINYINT},
+      ishome = #{record.ishome,jdbcType=TINYINT},
+      level = #{record.level,jdbcType=TINYINT},
+      advimg = #{record.advimg,jdbcType=VARCHAR},
+      advurl = #{record.advurl,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopCategory">
+    update ims_ewei_shop_category
+    <set>
+      <if test="uniacid != null">
+        uniacid = #{uniacid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="thumb != null">
+        thumb = #{thumb,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        parentid = #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="isrecommand != null">
+        isrecommand = #{isrecommand,jdbcType=INTEGER},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="displayorder != null">
+        displayorder = #{displayorder,jdbcType=TINYINT},
+      </if>
+      <if test="enabled != null">
+        enabled = #{enabled,jdbcType=TINYINT},
+      </if>
+      <if test="ishome != null">
+        ishome = #{ishome,jdbcType=TINYINT},
+      </if>
+      <if test="level != null">
+        level = #{level,jdbcType=TINYINT},
+      </if>
+      <if test="advimg != null">
+        advimg = #{advimg,jdbcType=VARCHAR},
+      </if>
+      <if test="advurl != null">
+        advurl = #{advurl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopCategory">
+    update ims_ewei_shop_category
+    set uniacid = #{uniacid,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      thumb = #{thumb,jdbcType=VARCHAR},
+      parentid = #{parentid,jdbcType=INTEGER},
+      isrecommand = #{isrecommand,jdbcType=INTEGER},
+      description = #{description,jdbcType=VARCHAR},
+      displayorder = #{displayorder,jdbcType=TINYINT},
+      enabled = #{enabled,jdbcType=TINYINT},
+      ishome = #{ishome,jdbcType=TINYINT},
+      level = #{level,jdbcType=TINYINT},
+      advimg = #{advimg,jdbcType=VARCHAR},
+      advurl = #{advurl,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.microsilver.mrcard.scheduledtask.dao.ImsUserPanterOrderMapper">
+  <resultMap id="BaseResultMap" type="com.microsilver.mrcard.scheduledtask.model.ImsUserPanterOrder">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="ordersn" jdbcType="VARCHAR" property="ordersn" />
+    <result column="member_id" jdbcType="BIGINT" property="memberId" />
+    <result column="vip_type" jdbcType="TINYINT" property="vipType" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="create_time" jdbcType="INTEGER" property="createTime" />
+    <result column="pay_time" jdbcType="INTEGER" property="payTime" />
+    <result column="pay_type" jdbcType="TINYINT" property="payType" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="trans_id" jdbcType="VARCHAR" property="transId" />
+    <result column="is_settlement" jdbcType="TINYINT" property="isSettlement" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, ordersn, member_id,vip_type, amount, create_time, pay_time, pay_type, status, trans_id, 
+    is_settlement
+  </sql>
+  <select id="selectByExample" parameterType="com.microsilver.mrcard.scheduledtask.model.ImsUserPanterOrderExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ims_user_panter_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ims_user_panter_order
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from ims_user_panter_order
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.microsilver.mrcard.scheduledtask.model.ImsUserPanterOrderExample">
+    delete from ims_user_panter_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.microsilver.mrcard.scheduledtask.model.ImsUserPanterOrder">
+  	<selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+       select LAST_INSERT_ID()
+    </selectKey>
+    insert into ims_user_panter_order (id, ordersn, member_id,vip_type, 
+      amount, create_time, pay_time, 
+      pay_type, status, trans_id, 
+      is_settlement)
+    values (#{id,jdbcType=BIGINT}, #{ordersn,jdbcType=VARCHAR}, #{memberId,jdbcType=BIGINT},#{vipType}, 
+      #{amount,jdbcType=DECIMAL}, #{createTime,jdbcType=INTEGER}, #{payTime,jdbcType=INTEGER}, 
+      #{payType,jdbcType=TINYINT}, #{status,jdbcType=TINYINT}, #{transId,jdbcType=VARCHAR}, 
+      #{isSettlement,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.microsilver.mrcard.scheduledtask.model.ImsUserPanterOrder">
+  	<selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+       select LAST_INSERT_ID()
+    </selectKey>
+    insert into ims_user_panter_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="ordersn != null">
+        ordersn,
+      </if>
+      <if test="memberId != null">
+        member_id,
+      </if>
+      <if test="vipType != null">
+        vip_type,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="payTime != null">
+        pay_time,
+      </if>
+      <if test="payType != null">
+        pay_type,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="transId != null">
+        trans_id,
+      </if>
+      <if test="isSettlement != null">
+        is_settlement,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="ordersn != null">
+        #{ordersn,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null">
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="vipType != null">
+        #{vipType},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="payTime != null">
+        #{payTime,jdbcType=INTEGER},
+      </if>
+      <if test="payType != null">
+        #{payType,jdbcType=TINYINT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="transId != null">
+        #{transId,jdbcType=VARCHAR},
+      </if>
+      <if test="isSettlement != null">
+        #{isSettlement,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.microsilver.mrcard.scheduledtask.model.ImsUserPanterOrderExample" resultType="java.lang.Integer">
+    select count(*) from ims_user_panter_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ims_user_panter_order
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.ordersn != null">
+        ordersn = #{record.ordersn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberId != null">
+        member_id = #{record.memberId,jdbcType=BIGINT},
+      </if>
+      <if test="record.amount != null">
+        amount = #{record.amount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.payTime != null">
+        pay_time = #{record.payTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.payType != null">
+        pay_type = #{record.payType,jdbcType=TINYINT},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.transId != null">
+        trans_id = #{record.transId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isSettlement != null">
+        is_settlement = #{record.isSettlement,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ims_user_panter_order
+    set id = #{record.id,jdbcType=BIGINT},
+      ordersn = #{record.ordersn,jdbcType=VARCHAR},
+      member_id = #{record.memberId,jdbcType=BIGINT},
+      amount = #{record.amount,jdbcType=DECIMAL},
+      create_time = #{record.createTime,jdbcType=INTEGER},
+      pay_time = #{record.payTime,jdbcType=INTEGER},
+      pay_type = #{record.payType,jdbcType=TINYINT},
+      status = #{record.status,jdbcType=TINYINT},
+      trans_id = #{record.transId,jdbcType=VARCHAR},
+      is_settlement = #{record.isSettlement,jdbcType=TINYINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.microsilver.mrcard.scheduledtask.model.ImsUserPanterOrder">
+    update ims_user_panter_order
+    <set>
+      <if test="ordersn != null">
+        ordersn = #{ordersn,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null">
+        member_id = #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="payTime != null">
+        pay_time = #{payTime,jdbcType=INTEGER},
+      </if>
+      <if test="payType != null">
+        pay_type = #{payType,jdbcType=TINYINT},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="transId != null">
+        trans_id = #{transId,jdbcType=VARCHAR},
+      </if>
+      <if test="isSettlement != null">
+        is_settlement = #{isSettlement,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.microsilver.mrcard.scheduledtask.model.ImsUserPanterOrder">
+    update ims_user_panter_order
+    set ordersn = #{ordersn,jdbcType=VARCHAR},
+      member_id = #{memberId,jdbcType=BIGINT},
+      amount = #{amount,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=INTEGER},
+      pay_time = #{payTime,jdbcType=INTEGER},
+      pay_type = #{payType,jdbcType=TINYINT},
+      status = #{status,jdbcType=TINYINT},
+      trans_id = #{transId,jdbcType=VARCHAR},
+      is_settlement = #{isSettlement,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

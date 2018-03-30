@@ -1,0 +1,2506 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.microsilver.mrcard.scheduledtask.dao.ImsEweiShopGoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.microsilver.mrcard.scheduledtask.model.ImsEweiShopGoods" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="uniacid" property="uniacid" jdbcType="INTEGER" />
+    <result column="pcate" property="pcate" jdbcType="INTEGER" />
+    <result column="ccate" property="ccate" jdbcType="INTEGER" />
+    <result column="tcate" property="tcate" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="BIT" />
+    <result column="status" property="status" jdbcType="BIT" />
+    <result column="displayorder" property="displayorder" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="thumb" property="thumb" jdbcType="VARCHAR" />
+    <result column="thumb_url" property="thumbUrl" jdbcType="VARCHAR" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="goodssn" property="goodssn" jdbcType="VARCHAR" />
+    <result column="productsn" property="productsn" jdbcType="VARCHAR" />
+    <result column="productprice" property="productprice" jdbcType="DECIMAL" />
+    <result column="marketprice" property="marketprice" jdbcType="DECIMAL" />
+    <result column="costprice" property="costprice" jdbcType="DECIMAL" />
+    <result column="originalprice" property="originalprice" jdbcType="DECIMAL" />
+    <result column="total" property="total" jdbcType="INTEGER" />
+    <result column="totalcnf" property="totalcnf" jdbcType="INTEGER" />
+    <result column="sales" property="sales" jdbcType="INTEGER" />
+    <result column="salesreal" property="salesreal" jdbcType="INTEGER" />
+    <result column="spec" property="spec" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="INTEGER" />
+    <result column="weight" property="weight" jdbcType="DECIMAL" />
+    <result column="credit" property="credit" jdbcType="VARCHAR" />
+    <result column="maxbuy" property="maxbuy" jdbcType="INTEGER" />
+    <result column="usermaxbuy" property="usermaxbuy" jdbcType="INTEGER" />
+    <result column="hasoption" property="hasoption" jdbcType="INTEGER" />
+    <result column="dispatch" property="dispatch" jdbcType="INTEGER" />
+    <result column="isnew" property="isnew" jdbcType="BIT" />
+    <result column="ishot" property="ishot" jdbcType="BIT" />
+    <result column="isdiscount" property="isdiscount" jdbcType="BIT" />
+    <result column="isdiscount_title" property="isdiscountTitle" jdbcType="VARCHAR" />
+    <result column="isdiscount_time" property="isdiscountTime" jdbcType="INTEGER" />
+    <result column="isrecommand" property="isrecommand" jdbcType="BIT" />
+    <result column="issendfree" property="issendfree" jdbcType="BIT" />
+    <result column="istime" property="istime" jdbcType="BIT" />
+    <result column="iscomment" property="iscomment" jdbcType="BIT" />
+    <result column="timestart" property="timestart" jdbcType="INTEGER" />
+    <result column="timeend" property="timeend" jdbcType="INTEGER" />
+    <result column="viewcount" property="viewcount" jdbcType="INTEGER" />
+    <result column="deleted" property="deleted" jdbcType="TINYINT" />
+    <result column="hascommission" property="hascommission" jdbcType="TINYINT" />
+    <result column="commission1_rate" property="commission1Rate" jdbcType="DECIMAL" />
+    <result column="commission1_pay" property="commission1Pay" jdbcType="DECIMAL" />
+    <result column="commission2_rate" property="commission2Rate" jdbcType="DECIMAL" />
+    <result column="commission2_pay" property="commission2Pay" jdbcType="DECIMAL" />
+    <result column="commission3_rate" property="commission3Rate" jdbcType="DECIMAL" />
+    <result column="commission3_pay" property="commission3Pay" jdbcType="DECIMAL" />
+    <result column="score" property="score" jdbcType="DECIMAL" />
+    <result column="taobaoid" property="taobaoid" jdbcType="VARCHAR" />
+    <result column="taotaoid" property="taotaoid" jdbcType="VARCHAR" />
+    <result column="taobaourl" property="taobaourl" jdbcType="VARCHAR" />
+    <result column="updatetime" property="updatetime" jdbcType="INTEGER" />
+    <result column="share_title" property="shareTitle" jdbcType="VARCHAR" />
+    <result column="share_icon" property="shareIcon" jdbcType="VARCHAR" />
+    <result column="cash" property="cash" jdbcType="TINYINT" />
+    <result column="commission_thumb" property="commissionThumb" jdbcType="VARCHAR" />
+    <result column="isnodiscount" property="isnodiscount" jdbcType="TINYINT" />
+    <result column="isverify" property="isverify" jdbcType="TINYINT" />
+    <result column="noticeopenid" property="noticeopenid" jdbcType="VARCHAR" />
+    <result column="needfollow" property="needfollow" jdbcType="TINYINT" />
+    <result column="followurl" property="followurl" jdbcType="VARCHAR" />
+    <result column="followtip" property="followtip" jdbcType="VARCHAR" />
+    <result column="deduct" property="deduct" jdbcType="DECIMAL" />
+    <result column="shorttitle" property="shorttitle" jdbcType="VARCHAR" />
+    <result column="virtual" property="virtual" jdbcType="INTEGER" />
+    <result column="nocommission" property="nocommission" jdbcType="TINYINT" />
+    <result column="hidecommission" property="hidecommission" jdbcType="TINYINT" />
+    <result column="detail_logo" property="detailLogo" jdbcType="VARCHAR" />
+    <result column="detail_shopname" property="detailShopname" jdbcType="VARCHAR" />
+    <result column="detail_totaltitle" property="detailTotaltitle" jdbcType="VARCHAR" />
+    <result column="detail_btntext1" property="detailBtntext1" jdbcType="VARCHAR" />
+    <result column="detail_btnurl1" property="detailBtnurl1" jdbcType="VARCHAR" />
+    <result column="detail_btntext2" property="detailBtntext2" jdbcType="VARCHAR" />
+    <result column="detail_btnurl2" property="detailBtnurl2" jdbcType="VARCHAR" />
+    <result column="artid" property="artid" jdbcType="INTEGER" />
+    <result column="deduct2" property="deduct2" jdbcType="DECIMAL" />
+    <result column="ednum" property="ednum" jdbcType="INTEGER" />
+    <result column="edmoney" property="edmoney" jdbcType="DECIMAL" />
+    <result column="diyformtype" property="diyformtype" jdbcType="BIT" />
+    <result column="diyformid" property="diyformid" jdbcType="INTEGER" />
+    <result column="diymode" property="diymode" jdbcType="BIT" />
+    <result column="dispatchtype" property="dispatchtype" jdbcType="BIT" />
+    <result column="dispatchid" property="dispatchid" jdbcType="INTEGER" />
+    <result column="dispatchprice" property="dispatchprice" jdbcType="DECIMAL" />
+    <result column="manydeduct" property="manydeduct" jdbcType="BIT" />
+    <result column="saleupdate37975" property="saleupdate37975" jdbcType="TINYINT" />
+    <result column="shopid" property="shopid" jdbcType="INTEGER" />
+    <result column="minbuy" property="minbuy" jdbcType="INTEGER" />
+    <result column="invoice" property="invoice" jdbcType="TINYINT" />
+    <result column="repair" property="repair" jdbcType="TINYINT" />
+    <result column="seven" property="seven" jdbcType="TINYINT" />
+    <result column="money" property="money" jdbcType="VARCHAR" />
+    <result column="minprice" property="minprice" jdbcType="DECIMAL" />
+    <result column="maxprice" property="maxprice" jdbcType="DECIMAL" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="buyshow" property="buyshow" jdbcType="BIT" />
+    <result column="saleupdate51117" property="saleupdate51117" jdbcType="TINYINT" />
+    <result column="virtualsend" property="virtualsend" jdbcType="BIT" />
+    <result column="verifytype" property="verifytype" jdbcType="BIT" />
+    <result column="diysaveid" property="diysaveid" jdbcType="INTEGER" />
+    <result column="diysave" property="diysave" jdbcType="BIT" />
+    <result column="quality" property="quality" jdbcType="TINYINT" />
+    <result column="merchid" property="merchid" jdbcType="INTEGER" />
+    <result column="checked" property="checked" jdbcType="TINYINT" />
+    <result column="thumb_first" property="thumbFirst" jdbcType="TINYINT" />
+    <result column="showtotaladd" property="showtotaladd" jdbcType="BIT" />
+    <result column="merchsale" property="merchsale" jdbcType="BIT" />
+    <result column="keywords" property="keywords" jdbcType="VARCHAR" />
+    <result column="catch_id" property="catchId" jdbcType="VARCHAR" />
+    <result column="catch_url" property="catchUrl" jdbcType="VARCHAR" />
+    <result column="catch_source" property="catchSource" jdbcType="VARCHAR" />
+    <result column="autoreceive" property="autoreceive" jdbcType="INTEGER" />
+    <result column="cannotrefund" property="cannotrefund" jdbcType="TINYINT" />
+    <result column="bargain" property="bargain" jdbcType="INTEGER" />
+    <result column="buyagain" property="buyagain" jdbcType="DECIMAL" />
+    <result column="buyagain_islong" property="buyagainIslong" jdbcType="BIT" />
+    <result column="buyagain_condition" property="buyagainCondition" jdbcType="BIT" />
+    <result column="buyagain_sale" property="buyagainSale" jdbcType="BIT" />
+    <result column="diypage" property="diypage" jdbcType="INTEGER" />
+    <result column="cashier" property="cashier" jdbcType="BIT" />
+    <result column="isendtime" property="isendtime" jdbcType="TINYINT" />
+    <result column="usetime" property="usetime" jdbcType="INTEGER" />
+    <result column="endtime" property="endtime" jdbcType="INTEGER" />
+    <result column="merchdisplayorder" property="merchdisplayorder" jdbcType="INTEGER" />
+    <result column="exchange_stock" property="exchangeStock" jdbcType="INTEGER" />
+    <result column="exchange_postage" property="exchangePostage" jdbcType="DECIMAL" />
+    <result column="ispresell" property="ispresell" jdbcType="TINYINT" />
+    <result column="presellprice" property="presellprice" jdbcType="DECIMAL" />
+    <result column="order_type" property="orderType" jdbcType="INTEGER" />
+    <result column="services" property="services" jdbcType="VARCHAR" />
+    <result column="join_source" property="joinSource" jdbcType="TINYINT" />
+    <result column="extra_discount" property="extraDiscount" jdbcType="DECIMAL" />
+    <result column="discounts" property="discounts" jdbcType="DECIMAL" />
+    <result column="zero_costprice" property="zeroCostprice" jdbcType="DECIMAL" />
+    <result column="zero_presellprice" property="zeroPresellprice" jdbcType="DECIMAL" />
+  </resultMap>
+
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, uniacid, pcate, ccate, tcate, type, status, displayorder, title, thumb,thumb_url, unit, discounts,
+    description, goodssn, productsn, productprice, marketprice, costprice, originalprice, 
+    total, totalcnf, sales, salesreal, spec, createtime, weight, credit, maxbuy, usermaxbuy, 
+    hasoption, dispatch, isnew, ishot, isdiscount, isdiscount_title, isdiscount_time, 
+    isrecommand, issendfree, istime, iscomment, timestart, timeend, viewcount, deleted, 
+    hascommission, commission1_rate, commission1_pay, commission2_rate, commission2_pay, 
+    commission3_rate, commission3_pay, score, taobaoid, taotaoid, taobaourl, updatetime, 
+    share_title, share_icon, cash, commission_thumb, isnodiscount, isverify, noticeopenid, 
+    needfollow, followurl, followtip, deduct, shorttitle, virtual, nocommission, hidecommission, 
+    detail_logo, detail_shopname, detail_totaltitle, detail_btntext1, detail_btnurl1, 
+    detail_btntext2, detail_btnurl2, artid, deduct2, ednum, edmoney, diyformtype, diyformid, 
+    diymode, dispatchtype, dispatchid, dispatchprice, manydeduct, saleupdate37975, shopid, 
+    minbuy, invoice, repair, seven, money, minprice, maxprice, province, city, buyshow, 
+    saleupdate51117, virtualsend, verifytype, diysaveid, diysave, quality, merchid, checked, thumb_first, showtotaladd, merchsale, 
+    keywords, catch_id, catch_url, catch_source, autoreceive, cannotrefund, bargain, 
+    buyagain, buyagain_islong, buyagain_condition, buyagain_sale, diypage, cashier, isendtime, 
+    usetime, endtime, merchdisplayorder, exchange_stock, exchange_postage, ispresell, 
+    presellprice, order_type, services, join_source, extra_discount,zero_costprice,zero_presellprice
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.microsilver.mrcard.scheduledtask.model.ImsEweiShopGoodsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ims_ewei_shop_goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from ims_ewei_shop_goods
+    where id = #{id}
+  </select>
+  
+    <select id="selectByPrimaryKeyForUpdate" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ims_ewei_shop_goods
+    where id = #{id} for update
+  </select>
+  <select id="selectByPrimaryKeyWith" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from ims_ewei_shop_goods
+    where id = #{id}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ims_ewei_shop_goods
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.microsilver.mrcard.scheduledtask.model.ImsEweiShopGoodsExample" >
+    delete from ims_ewei_shop_goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.microsilver.mrcard.scheduledtask.model.ImsEweiShopGoods" >
+    insert into ims_ewei_shop_goods (id, uniacid, pcate, 
+      ccate, tcate, type, status, 
+      displayorder, title, thumb, 
+      unit, description, goodssn, 
+      productsn, productprice, marketprice, 
+      costprice, originalprice, total, 
+      totalcnf, sales, salesreal, 
+      spec, createtime, weight, 
+      credit, maxbuy, usermaxbuy, 
+      hasoption, dispatch, isnew, 
+      ishot, isdiscount, isdiscount_title, 
+      isdiscount_time, isrecommand, issendfree, 
+      istime, iscomment, timestart, 
+      timeend, viewcount, deleted, 
+      hascommission, commission1_rate, commission1_pay, 
+      commission2_rate, commission2_pay, commission3_rate, 
+      commission3_pay, score, taobaoid, 
+      taotaoid, taobaourl, updatetime, 
+      share_title, share_icon, cash, 
+      commission_thumb, isnodiscount, isverify, 
+      noticeopenid, needfollow, followurl, 
+      followtip, deduct, shorttitle, 
+      virtual, nocommission, hidecommission, 
+      detail_logo, detail_shopname, detail_totaltitle, 
+      detail_btntext1, detail_btnurl1, detail_btntext2, 
+      detail_btnurl2, artid, deduct2, 
+      ednum, edmoney, diyformtype, 
+      diyformid, diymode, dispatchtype, 
+      dispatchid, dispatchprice, manydeduct, 
+      saleupdate37975, shopid, minbuy, 
+      invoice, repair, seven, 
+      money, minprice, maxprice, 
+      province, city, buyshow, 
+      saleupdate51117, virtualsend, verifytype, 
+      diysaveid, diysave, quality, 
+      groupstype, showtotal, subtitle, 
+      sharebtn, merchid, checked, 
+      thumb_first, showtotaladd, merchsale, 
+      keywords, catch_id, catch_url, 
+      catch_source, autoreceive, cannotrefund, 
+      bargain, buyagain, buyagain_islong, 
+      buyagain_condition, buyagain_sale, diypage, 
+      cashier, isendtime, usetime, 
+      endtime, merchdisplayorder, exchange_stock, 
+      exchange_postage, ispresell, presellprice, 
+      presellover, presellovertime, presellstart, 
+      preselltimestart, presellend, preselltimeend, 
+      presellsendtype, presellsendstatrttime, 
+      presellsendtime, edareas_code, is_mill, 
+      order_type, services, join_source, 
+      extra_discount)
+    values (#{id,jdbcType=INTEGER}, #{uniacid,jdbcType=INTEGER}, #{pcate,jdbcType=INTEGER}, 
+      #{ccate,jdbcType=INTEGER}, #{tcate,jdbcType=INTEGER}, #{type,jdbcType=BIT}, #{status,jdbcType=BIT}, 
+      #{displayorder,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{thumb,jdbcType=VARCHAR}, 
+      #{unit,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{goodssn,jdbcType=VARCHAR}, 
+      #{productsn,jdbcType=VARCHAR}, #{productprice,jdbcType=DECIMAL}, #{marketprice,jdbcType=DECIMAL}, 
+      #{costprice,jdbcType=DECIMAL}, #{originalprice,jdbcType=DECIMAL}, #{total,jdbcType=INTEGER}, 
+      #{totalcnf,jdbcType=INTEGER}, #{sales,jdbcType=INTEGER}, #{salesreal,jdbcType=INTEGER}, 
+      #{spec,jdbcType=VARCHAR}, #{createtime,jdbcType=INTEGER}, #{weight,jdbcType=DECIMAL}, 
+      #{credit,jdbcType=VARCHAR}, #{maxbuy,jdbcType=INTEGER}, #{usermaxbuy,jdbcType=INTEGER}, 
+      #{hasoption,jdbcType=INTEGER}, #{dispatch,jdbcType=INTEGER}, #{isnew,jdbcType=BIT}, 
+      #{ishot,jdbcType=BIT}, #{isdiscount,jdbcType=BIT}, #{isdiscountTitle,jdbcType=VARCHAR}, 
+      #{isdiscountTime,jdbcType=INTEGER}, #{isrecommand,jdbcType=BIT}, #{issendfree,jdbcType=BIT}, 
+      #{istime,jdbcType=BIT}, #{iscomment,jdbcType=BIT}, #{timestart,jdbcType=INTEGER}, 
+      #{timeend,jdbcType=INTEGER}, #{viewcount,jdbcType=INTEGER}, #{deleted,jdbcType=TINYINT}, 
+      #{hascommission,jdbcType=TINYINT}, #{commission1Rate,jdbcType=DECIMAL}, #{commission1Pay,jdbcType=DECIMAL}, 
+      #{commission2Rate,jdbcType=DECIMAL}, #{commission2Pay,jdbcType=DECIMAL}, #{commission3Rate,jdbcType=DECIMAL}, 
+      #{commission3Pay,jdbcType=DECIMAL}, #{score,jdbcType=DECIMAL}, #{taobaoid,jdbcType=VARCHAR}, 
+      #{taotaoid,jdbcType=VARCHAR}, #{taobaourl,jdbcType=VARCHAR}, #{updatetime,jdbcType=INTEGER}, 
+      #{shareTitle,jdbcType=VARCHAR}, #{shareIcon,jdbcType=VARCHAR}, #{cash,jdbcType=TINYINT}, 
+      #{commissionThumb,jdbcType=VARCHAR}, #{isnodiscount,jdbcType=TINYINT}, #{isverify,jdbcType=TINYINT}, 
+      #{noticeopenid,jdbcType=VARCHAR}, #{needfollow,jdbcType=TINYINT}, #{followurl,jdbcType=VARCHAR}, 
+      #{followtip,jdbcType=VARCHAR}, #{deduct,jdbcType=DECIMAL}, #{shorttitle,jdbcType=VARCHAR}, 
+      #{virtual,jdbcType=INTEGER}, #{nocommission,jdbcType=TINYINT}, #{hidecommission,jdbcType=TINYINT}, 
+      #{detailLogo,jdbcType=VARCHAR}, #{detailShopname,jdbcType=VARCHAR}, #{detailTotaltitle,jdbcType=VARCHAR}, 
+      #{detailBtntext1,jdbcType=VARCHAR}, #{detailBtnurl1,jdbcType=VARCHAR}, #{detailBtntext2,jdbcType=VARCHAR}, 
+      #{detailBtnurl2,jdbcType=VARCHAR}, #{artid,jdbcType=INTEGER}, #{deduct2,jdbcType=DECIMAL}, 
+      #{ednum,jdbcType=INTEGER}, #{edmoney,jdbcType=DECIMAL}, #{diyformtype,jdbcType=BIT}, 
+      #{diyformid,jdbcType=INTEGER}, #{diymode,jdbcType=BIT}, #{dispatchtype,jdbcType=BIT}, 
+      #{dispatchid,jdbcType=INTEGER}, #{dispatchprice,jdbcType=DECIMAL}, #{manydeduct,jdbcType=BIT}, 
+      #{saleupdate37975,jdbcType=TINYINT}, #{shopid,jdbcType=INTEGER}, #{minbuy,jdbcType=INTEGER}, 
+      #{invoice,jdbcType=TINYINT}, #{repair,jdbcType=TINYINT}, #{seven,jdbcType=TINYINT}, 
+      #{money,jdbcType=VARCHAR}, #{minprice,jdbcType=DECIMAL}, #{maxprice,jdbcType=DECIMAL}, 
+      #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{buyshow,jdbcType=BIT}, 
+      #{saleupdate51117,jdbcType=TINYINT}, #{virtualsend,jdbcType=BIT}, #{verifytype,jdbcType=BIT}, 
+      #{diysaveid,jdbcType=INTEGER}, #{diysave,jdbcType=BIT}, #{quality,jdbcType=TINYINT}, 
+      #{groupstype,jdbcType=BIT}, #{showtotal,jdbcType=BIT}, #{subtitle,jdbcType=VARCHAR}, 
+      #{sharebtn,jdbcType=BIT}, #{merchid,jdbcType=INTEGER}, #{checked,jdbcType=TINYINT}, 
+      #{thumbFirst,jdbcType=TINYINT}, #{showtotaladd,jdbcType=BIT}, #{merchsale,jdbcType=BIT}, 
+      #{keywords,jdbcType=VARCHAR}, #{catchId,jdbcType=VARCHAR}, #{catchUrl,jdbcType=VARCHAR}, 
+      #{catchSource,jdbcType=VARCHAR}, #{autoreceive,jdbcType=INTEGER}, #{cannotrefund,jdbcType=TINYINT}, 
+      #{bargain,jdbcType=INTEGER}, #{buyagain,jdbcType=DECIMAL}, #{buyagainIslong,jdbcType=BIT}, 
+      #{buyagainCondition,jdbcType=BIT}, #{buyagainSale,jdbcType=BIT}, #{diypage,jdbcType=INTEGER}, 
+      #{cashier,jdbcType=BIT}, #{isendtime,jdbcType=TINYINT}, #{usetime,jdbcType=INTEGER}, 
+      #{endtime,jdbcType=INTEGER}, #{merchdisplayorder,jdbcType=INTEGER}, #{exchangeStock,jdbcType=INTEGER}, 
+      #{exchangePostage,jdbcType=DECIMAL}, #{ispresell,jdbcType=TINYINT}, #{presellprice,jdbcType=DECIMAL}, 
+      #{presellover,jdbcType=TINYINT}, #{presellovertime,jdbcType=INTEGER}, #{presellstart,jdbcType=TINYINT}, 
+      #{preselltimestart,jdbcType=INTEGER}, #{presellend,jdbcType=TINYINT}, #{preselltimeend,jdbcType=INTEGER}, 
+      #{presellsendtype,jdbcType=TINYINT}, #{presellsendstatrttime,jdbcType=INTEGER}, 
+      #{presellsendtime,jdbcType=INTEGER}, #{edareasCode,jdbcType=VARCHAR}, #{isMill,jdbcType=INTEGER}, 
+      #{orderType,jdbcType=INTEGER}, #{services,jdbcType=VARCHAR}, #{joinSource,jdbcType=TINYINT}, 
+      #{extraDiscount,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.microsilver.mrcard.scheduledtask.model.ImsEweiShopGoods" >
+    insert into ims_ewei_shop_goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="uniacid != null" >
+        uniacid,
+      </if>
+      <if test="pcate != null" >
+        pcate,
+      </if>
+      <if test="ccate != null" >
+        ccate,
+      </if>
+      <if test="tcate != null" >
+        tcate,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="displayorder != null" >
+        displayorder,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="thumb != null" >
+        thumb,
+      </if>
+      <if test="unit != null" >
+        unit,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="goodssn != null" >
+        goodssn,
+      </if>
+      <if test="productsn != null" >
+        productsn,
+      </if>
+      <if test="productprice != null" >
+        productprice,
+      </if>
+      <if test="marketprice != null" >
+        marketprice,
+      </if>
+      <if test="costprice != null" >
+        costprice,
+      </if>
+      <if test="originalprice != null" >
+        originalprice,
+      </if>
+      <if test="total != null" >
+        total,
+      </if>
+      <if test="totalcnf != null" >
+        totalcnf,
+      </if>
+      <if test="sales != null" >
+        sales,
+      </if>
+      <if test="salesreal != null" >
+        salesreal,
+      </if>
+      <if test="spec != null" >
+        spec,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="weight != null" >
+        weight,
+      </if>
+      <if test="credit != null" >
+        credit,
+      </if>
+      <if test="maxbuy != null" >
+        maxbuy,
+      </if>
+      <if test="usermaxbuy != null" >
+        usermaxbuy,
+      </if>
+      <if test="hasoption != null" >
+        hasoption,
+      </if>
+      <if test="dispatch != null" >
+        dispatch,
+      </if>
+      <if test="isnew != null" >
+        isnew,
+      </if>
+      <if test="ishot != null" >
+        ishot,
+      </if>
+      <if test="isdiscount != null" >
+        isdiscount,
+      </if>
+      <if test="isdiscountTitle != null" >
+        isdiscount_title,
+      </if>
+      <if test="isdiscountTime != null" >
+        isdiscount_time,
+      </if>
+      <if test="isrecommand != null" >
+        isrecommand,
+      </if>
+      <if test="issendfree != null" >
+        issendfree,
+      </if>
+      <if test="istime != null" >
+        istime,
+      </if>
+      <if test="iscomment != null" >
+        iscomment,
+      </if>
+      <if test="timestart != null" >
+        timestart,
+      </if>
+      <if test="timeend != null" >
+        timeend,
+      </if>
+      <if test="viewcount != null" >
+        viewcount,
+      </if>
+      <if test="deleted != null" >
+        deleted,
+      </if>
+      <if test="hascommission != null" >
+        hascommission,
+      </if>
+      <if test="commission1Rate != null" >
+        commission1_rate,
+      </if>
+      <if test="commission1Pay != null" >
+        commission1_pay,
+      </if>
+      <if test="commission2Rate != null" >
+        commission2_rate,
+      </if>
+      <if test="commission2Pay != null" >
+        commission2_pay,
+      </if>
+      <if test="commission3Rate != null" >
+        commission3_rate,
+      </if>
+      <if test="commission3Pay != null" >
+        commission3_pay,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="taobaoid != null" >
+        taobaoid,
+      </if>
+      <if test="taotaoid != null" >
+        taotaoid,
+      </if>
+      <if test="taobaourl != null" >
+        taobaourl,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+      <if test="shareTitle != null" >
+        share_title,
+      </if>
+      <if test="shareIcon != null" >
+        share_icon,
+      </if>
+      <if test="cash != null" >
+        cash,
+      </if>
+      <if test="commissionThumb != null" >
+        commission_thumb,
+      </if>
+      <if test="isnodiscount != null" >
+        isnodiscount,
+      </if>
+      <if test="isverify != null" >
+        isverify,
+      </if>
+      <if test="noticeopenid != null" >
+        noticeopenid,
+      </if>
+      <if test="needfollow != null" >
+        needfollow,
+      </if>
+      <if test="followurl != null" >
+        followurl,
+      </if>
+      <if test="followtip != null" >
+        followtip,
+      </if>
+      <if test="deduct != null" >
+        deduct,
+      </if>
+      <if test="shorttitle != null" >
+        shorttitle,
+      </if>
+      <if test="virtual != null" >
+        virtual,
+      </if>
+      <if test="nocommission != null" >
+        nocommission,
+      </if>
+      <if test="hidecommission != null" >
+        hidecommission,
+      </if>
+      <if test="detailLogo != null" >
+        detail_logo,
+      </if>
+      <if test="detailShopname != null" >
+        detail_shopname,
+      </if>
+      <if test="detailTotaltitle != null" >
+        detail_totaltitle,
+      </if>
+      <if test="detailBtntext1 != null" >
+        detail_btntext1,
+      </if>
+      <if test="detailBtnurl1 != null" >
+        detail_btnurl1,
+      </if>
+      <if test="detailBtntext2 != null" >
+        detail_btntext2,
+      </if>
+      <if test="detailBtnurl2 != null" >
+        detail_btnurl2,
+      </if>
+      <if test="artid != null" >
+        artid,
+      </if>
+      <if test="deduct2 != null" >
+        deduct2,
+      </if>
+      <if test="ednum != null" >
+        ednum,
+      </if>
+      <if test="edmoney != null" >
+        edmoney,
+      </if>
+      <if test="diyformtype != null" >
+        diyformtype,
+      </if>
+      <if test="diyformid != null" >
+        diyformid,
+      </if>
+      <if test="diymode != null" >
+        diymode,
+      </if>
+      <if test="dispatchtype != null" >
+        dispatchtype,
+      </if>
+      <if test="dispatchid != null" >
+        dispatchid,
+      </if>
+      <if test="dispatchprice != null" >
+        dispatchprice,
+      </if>
+      <if test="manydeduct != null" >
+        manydeduct,
+      </if>
+      <if test="saleupdate37975 != null" >
+        saleupdate37975,
+      </if>
+      <if test="shopid != null" >
+        shopid,
+      </if>
+      <if test="minbuy != null" >
+        minbuy,
+      </if>
+      <if test="invoice != null" >
+        invoice,
+      </if>
+      <if test="repair != null" >
+        repair,
+      </if>
+      <if test="seven != null" >
+        seven,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="minprice != null" >
+        minprice,
+      </if>
+      <if test="maxprice != null" >
+        maxprice,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="buyshow != null" >
+        buyshow,
+      </if>
+      <if test="saleupdate51117 != null" >
+        saleupdate51117,
+      </if>
+      <if test="virtualsend != null" >
+        virtualsend,
+      </if>
+      <if test="verifytype != null" >
+        verifytype,
+      </if>
+      <if test="diysaveid != null" >
+        diysaveid,
+      </if>
+      <if test="diysave != null" >
+        diysave,
+      </if>
+      <if test="quality != null" >
+        quality,
+      </if>
+      <if test="groupstype != null" >
+        groupstype,
+      </if>
+      <if test="showtotal != null" >
+        showtotal,
+      </if>
+      <if test="subtitle != null" >
+        subtitle,
+      </if>
+      <if test="sharebtn != null" >
+        sharebtn,
+      </if>
+      <if test="merchid != null" >
+        merchid,
+      </if>
+      <if test="checked != null" >
+        checked,
+      </if>
+      <if test="thumbFirst != null" >
+        thumb_first,
+      </if>
+      <if test="showtotaladd != null" >
+        showtotaladd,
+      </if>
+      <if test="merchsale != null" >
+        merchsale,
+      </if>
+      <if test="keywords != null" >
+        keywords,
+      </if>
+      <if test="catchId != null" >
+        catch_id,
+      </if>
+      <if test="catchUrl != null" >
+        catch_url,
+      </if>
+      <if test="catchSource != null" >
+        catch_source,
+      </if>
+      <if test="autoreceive != null" >
+        autoreceive,
+      </if>
+      <if test="cannotrefund != null" >
+        cannotrefund,
+      </if>
+      <if test="bargain != null" >
+        bargain,
+      </if>
+      <if test="buyagain != null" >
+        buyagain,
+      </if>
+      <if test="buyagainIslong != null" >
+        buyagain_islong,
+      </if>
+      <if test="buyagainCondition != null" >
+        buyagain_condition,
+      </if>
+      <if test="buyagainSale != null" >
+        buyagain_sale,
+      </if>
+      <if test="diypage != null" >
+        diypage,
+      </if>
+      <if test="cashier != null" >
+        cashier,
+      </if>
+      <if test="isendtime != null" >
+        isendtime,
+      </if>
+      <if test="usetime != null" >
+        usetime,
+      </if>
+      <if test="endtime != null" >
+        endtime,
+      </if>
+      <if test="merchdisplayorder != null" >
+        merchdisplayorder,
+      </if>
+      <if test="exchangeStock != null" >
+        exchange_stock,
+      </if>
+      <if test="exchangePostage != null" >
+        exchange_postage,
+      </if>
+      <if test="ispresell != null" >
+        ispresell,
+      </if>
+      <if test="presellprice != null" >
+        presellprice,
+      </if>
+      <if test="presellover != null" >
+        presellover,
+      </if>
+      <if test="presellovertime != null" >
+        presellovertime,
+      </if>
+      <if test="presellstart != null" >
+        presellstart,
+      </if>
+      <if test="preselltimestart != null" >
+        preselltimestart,
+      </if>
+      <if test="presellend != null" >
+        presellend,
+      </if>
+      <if test="preselltimeend != null" >
+        preselltimeend,
+      </if>
+      <if test="presellsendtype != null" >
+        presellsendtype,
+      </if>
+      <if test="presellsendstatrttime != null" >
+        presellsendstatrttime,
+      </if>
+      <if test="presellsendtime != null" >
+        presellsendtime,
+      </if>
+      <if test="edareasCode != null" >
+        edareas_code,
+      </if>
+      <if test="isMill != null" >
+        is_mill,
+      </if>
+      <if test="orderType != null" >
+        order_type,
+      </if>
+      <if test="services != null" >
+        services,
+      </if>
+      <if test="joinSource != null" >
+        join_source,
+      </if>
+      <if test="extraDiscount != null" >
+        extra_discount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uniacid != null" >
+        #{uniacid,jdbcType=INTEGER},
+      </if>
+      <if test="pcate != null" >
+        #{pcate,jdbcType=INTEGER},
+      </if>
+      <if test="ccate != null" >
+        #{ccate,jdbcType=INTEGER},
+      </if>
+      <if test="tcate != null" >
+        #{tcate,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=BIT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="displayorder != null" >
+        #{displayorder,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="thumb != null" >
+        #{thumb,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="goodssn != null" >
+        #{goodssn,jdbcType=VARCHAR},
+      </if>
+      <if test="productsn != null" >
+        #{productsn,jdbcType=VARCHAR},
+      </if>
+      <if test="productprice != null" >
+        #{productprice,jdbcType=DECIMAL},
+      </if>
+      <if test="marketprice != null" >
+        #{marketprice,jdbcType=DECIMAL},
+      </if>
+      <if test="costprice != null" >
+        #{costprice,jdbcType=DECIMAL},
+      </if>
+      <if test="originalprice != null" >
+        #{originalprice,jdbcType=DECIMAL},
+      </if>
+      <if test="total != null" >
+        #{total,jdbcType=INTEGER},
+      </if>
+      <if test="totalcnf != null" >
+        #{totalcnf,jdbcType=INTEGER},
+      </if>
+      <if test="sales != null" >
+        #{sales,jdbcType=INTEGER},
+      </if>
+      <if test="salesreal != null" >
+        #{salesreal,jdbcType=INTEGER},
+      </if>
+      <if test="spec != null" >
+        #{spec,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=INTEGER},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=DECIMAL},
+      </if>
+      <if test="credit != null" >
+        #{credit,jdbcType=VARCHAR},
+      </if>
+      <if test="maxbuy != null" >
+        #{maxbuy,jdbcType=INTEGER},
+      </if>
+      <if test="usermaxbuy != null" >
+        #{usermaxbuy,jdbcType=INTEGER},
+      </if>
+      <if test="hasoption != null" >
+        #{hasoption,jdbcType=INTEGER},
+      </if>
+      <if test="dispatch != null" >
+        #{dispatch,jdbcType=INTEGER},
+      </if>
+      <if test="isnew != null" >
+        #{isnew,jdbcType=BIT},
+      </if>
+      <if test="ishot != null" >
+        #{ishot,jdbcType=BIT},
+      </if>
+      <if test="isdiscount != null" >
+        #{isdiscount,jdbcType=BIT},
+      </if>
+      <if test="isdiscountTitle != null" >
+        #{isdiscountTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="isdiscountTime != null" >
+        #{isdiscountTime,jdbcType=INTEGER},
+      </if>
+      <if test="isrecommand != null" >
+        #{isrecommand,jdbcType=BIT},
+      </if>
+      <if test="issendfree != null" >
+        #{issendfree,jdbcType=BIT},
+      </if>
+      <if test="istime != null" >
+        #{istime,jdbcType=BIT},
+      </if>
+      <if test="iscomment != null" >
+        #{iscomment,jdbcType=BIT},
+      </if>
+      <if test="timestart != null" >
+        #{timestart,jdbcType=INTEGER},
+      </if>
+      <if test="timeend != null" >
+        #{timeend,jdbcType=INTEGER},
+      </if>
+      <if test="viewcount != null" >
+        #{viewcount,jdbcType=INTEGER},
+      </if>
+      <if test="deleted != null" >
+        #{deleted,jdbcType=TINYINT},
+      </if>
+      <if test="hascommission != null" >
+        #{hascommission,jdbcType=TINYINT},
+      </if>
+      <if test="commission1Rate != null" >
+        #{commission1Rate,jdbcType=DECIMAL},
+      </if>
+      <if test="commission1Pay != null" >
+        #{commission1Pay,jdbcType=DECIMAL},
+      </if>
+      <if test="commission2Rate != null" >
+        #{commission2Rate,jdbcType=DECIMAL},
+      </if>
+      <if test="commission2Pay != null" >
+        #{commission2Pay,jdbcType=DECIMAL},
+      </if>
+      <if test="commission3Rate != null" >
+        #{commission3Rate,jdbcType=DECIMAL},
+      </if>
+      <if test="commission3Pay != null" >
+        #{commission3Pay,jdbcType=DECIMAL},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=DECIMAL},
+      </if>
+      <if test="taobaoid != null" >
+        #{taobaoid,jdbcType=VARCHAR},
+      </if>
+      <if test="taotaoid != null" >
+        #{taotaoid,jdbcType=VARCHAR},
+      </if>
+      <if test="taobaourl != null" >
+        #{taobaourl,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=INTEGER},
+      </if>
+      <if test="shareTitle != null" >
+        #{shareTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="shareIcon != null" >
+        #{shareIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="cash != null" >
+        #{cash,jdbcType=TINYINT},
+      </if>
+      <if test="commissionThumb != null" >
+        #{commissionThumb,jdbcType=VARCHAR},
+      </if>
+      <if test="isnodiscount != null" >
+        #{isnodiscount,jdbcType=TINYINT},
+      </if>
+      <if test="isverify != null" >
+        #{isverify,jdbcType=TINYINT},
+      </if>
+      <if test="noticeopenid != null" >
+        #{noticeopenid,jdbcType=VARCHAR},
+      </if>
+      <if test="needfollow != null" >
+        #{needfollow,jdbcType=TINYINT},
+      </if>
+      <if test="followurl != null" >
+        #{followurl,jdbcType=VARCHAR},
+      </if>
+      <if test="followtip != null" >
+        #{followtip,jdbcType=VARCHAR},
+      </if>
+      <if test="deduct != null" >
+        #{deduct,jdbcType=DECIMAL},
+      </if>
+      <if test="shorttitle != null" >
+        #{shorttitle,jdbcType=VARCHAR},
+      </if>
+      <if test="virtual != null" >
+        #{virtual,jdbcType=INTEGER},
+      </if>
+      <if test="nocommission != null" >
+        #{nocommission,jdbcType=TINYINT},
+      </if>
+      <if test="hidecommission != null" >
+        #{hidecommission,jdbcType=TINYINT},
+      </if>
+      <if test="detailLogo != null" >
+        #{detailLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="detailShopname != null" >
+        #{detailShopname,jdbcType=VARCHAR},
+      </if>
+      <if test="detailTotaltitle != null" >
+        #{detailTotaltitle,jdbcType=VARCHAR},
+      </if>
+      <if test="detailBtntext1 != null" >
+        #{detailBtntext1,jdbcType=VARCHAR},
+      </if>
+      <if test="detailBtnurl1 != null" >
+        #{detailBtnurl1,jdbcType=VARCHAR},
+      </if>
+      <if test="detailBtntext2 != null" >
+        #{detailBtntext2,jdbcType=VARCHAR},
+      </if>
+      <if test="detailBtnurl2 != null" >
+        #{detailBtnurl2,jdbcType=VARCHAR},
+      </if>
+      <if test="artid != null" >
+        #{artid,jdbcType=INTEGER},
+      </if>
+      <if test="deduct2 != null" >
+        #{deduct2,jdbcType=DECIMAL},
+      </if>
+      <if test="ednum != null" >
+        #{ednum,jdbcType=INTEGER},
+      </if>
+      <if test="edmoney != null" >
+        #{edmoney,jdbcType=DECIMAL},
+      </if>
+      <if test="diyformtype != null" >
+        #{diyformtype,jdbcType=BIT},
+      </if>
+      <if test="diyformid != null" >
+        #{diyformid,jdbcType=INTEGER},
+      </if>
+      <if test="diymode != null" >
+        #{diymode,jdbcType=BIT},
+      </if>
+      <if test="dispatchtype != null" >
+        #{dispatchtype,jdbcType=BIT},
+      </if>
+      <if test="dispatchid != null" >
+        #{dispatchid,jdbcType=INTEGER},
+      </if>
+      <if test="dispatchprice != null" >
+        #{dispatchprice,jdbcType=DECIMAL},
+      </if>
+      <if test="manydeduct != null" >
+        #{manydeduct,jdbcType=BIT},
+      </if>
+      <if test="saleupdate37975 != null" >
+        #{saleupdate37975,jdbcType=TINYINT},
+      </if>
+      <if test="shopid != null" >
+        #{shopid,jdbcType=INTEGER},
+      </if>
+      <if test="minbuy != null" >
+        #{minbuy,jdbcType=INTEGER},
+      </if>
+      <if test="invoice != null" >
+        #{invoice,jdbcType=TINYINT},
+      </if>
+      <if test="repair != null" >
+        #{repair,jdbcType=TINYINT},
+      </if>
+      <if test="seven != null" >
+        #{seven,jdbcType=TINYINT},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=VARCHAR},
+      </if>
+      <if test="minprice != null" >
+        #{minprice,jdbcType=DECIMAL},
+      </if>
+      <if test="maxprice != null" >
+        #{maxprice,jdbcType=DECIMAL},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="buyshow != null" >
+        #{buyshow,jdbcType=BIT},
+      </if>
+      <if test="saleupdate51117 != null" >
+        #{saleupdate51117,jdbcType=TINYINT},
+      </if>
+      <if test="virtualsend != null" >
+        #{virtualsend,jdbcType=BIT},
+      </if>
+      <if test="verifytype != null" >
+        #{verifytype,jdbcType=BIT},
+      </if>
+      <if test="diysaveid != null" >
+        #{diysaveid,jdbcType=INTEGER},
+      </if>
+      <if test="diysave != null" >
+        #{diysave,jdbcType=BIT},
+      </if>
+      <if test="quality != null" >
+        #{quality,jdbcType=TINYINT},
+      </if>
+      <if test="groupstype != null" >
+        #{groupstype,jdbcType=BIT},
+      </if>
+      <if test="showtotal != null" >
+        #{showtotal,jdbcType=BIT},
+      </if>
+      <if test="subtitle != null" >
+        #{subtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="sharebtn != null" >
+        #{sharebtn,jdbcType=BIT},
+      </if>
+      <if test="merchid != null" >
+        #{merchid,jdbcType=INTEGER},
+      </if>
+      <if test="checked != null" >
+        #{checked,jdbcType=TINYINT},
+      </if>
+      <if test="thumbFirst != null" >
+        #{thumbFirst,jdbcType=TINYINT},
+      </if>
+      <if test="showtotaladd != null" >
+        #{showtotaladd,jdbcType=BIT},
+      </if>
+      <if test="merchsale != null" >
+        #{merchsale,jdbcType=BIT},
+      </if>
+      <if test="keywords != null" >
+        #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="catchId != null" >
+        #{catchId,jdbcType=VARCHAR},
+      </if>
+      <if test="catchUrl != null" >
+        #{catchUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="catchSource != null" >
+        #{catchSource,jdbcType=VARCHAR},
+      </if>
+      <if test="autoreceive != null" >
+        #{autoreceive,jdbcType=INTEGER},
+      </if>
+      <if test="cannotrefund != null" >
+        #{cannotrefund,jdbcType=TINYINT},
+      </if>
+      <if test="bargain != null" >
+        #{bargain,jdbcType=INTEGER},
+      </if>
+      <if test="buyagain != null" >
+        #{buyagain,jdbcType=DECIMAL},
+      </if>
+      <if test="buyagainIslong != null" >
+        #{buyagainIslong,jdbcType=BIT},
+      </if>
+      <if test="buyagainCondition != null" >
+        #{buyagainCondition,jdbcType=BIT},
+      </if>
+      <if test="buyagainSale != null" >
+        #{buyagainSale,jdbcType=BIT},
+      </if>
+      <if test="diypage != null" >
+        #{diypage,jdbcType=INTEGER},
+      </if>
+      <if test="cashier != null" >
+        #{cashier,jdbcType=BIT},
+      </if>
+      <if test="isendtime != null" >
+        #{isendtime,jdbcType=TINYINT},
+      </if>
+      <if test="usetime != null" >
+        #{usetime,jdbcType=INTEGER},
+      </if>
+      <if test="endtime != null" >
+        #{endtime,jdbcType=INTEGER},
+      </if>
+      <if test="merchdisplayorder != null" >
+        #{merchdisplayorder,jdbcType=INTEGER},
+      </if>
+      <if test="exchangeStock != null" >
+        #{exchangeStock,jdbcType=INTEGER},
+      </if>
+      <if test="exchangePostage != null" >
+        #{exchangePostage,jdbcType=DECIMAL},
+      </if>
+      <if test="ispresell != null" >
+        #{ispresell,jdbcType=TINYINT},
+      </if>
+      <if test="presellprice != null" >
+        #{presellprice,jdbcType=DECIMAL},
+      </if>
+      <if test="presellover != null" >
+        #{presellover,jdbcType=TINYINT},
+      </if>
+      <if test="presellovertime != null" >
+        #{presellovertime,jdbcType=INTEGER},
+      </if>
+      <if test="presellstart != null" >
+        #{presellstart,jdbcType=TINYINT},
+      </if>
+      <if test="preselltimestart != null" >
+        #{preselltimestart,jdbcType=INTEGER},
+      </if>
+      <if test="presellend != null" >
+        #{presellend,jdbcType=TINYINT},
+      </if>
+      <if test="preselltimeend != null" >
+        #{preselltimeend,jdbcType=INTEGER},
+      </if>
+      <if test="presellsendtype != null" >
+        #{presellsendtype,jdbcType=TINYINT},
+      </if>
+      <if test="presellsendstatrttime != null" >
+        #{presellsendstatrttime,jdbcType=INTEGER},
+      </if>
+      <if test="presellsendtime != null" >
+        #{presellsendtime,jdbcType=INTEGER},
+      </if>
+      <if test="edareasCode != null" >
+        #{edareasCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isMill != null" >
+        #{isMill,jdbcType=INTEGER},
+      </if>
+      <if test="orderType != null" >
+        #{orderType,jdbcType=INTEGER},
+      </if>
+      <if test="services != null" >
+        #{services,jdbcType=VARCHAR},
+      </if>
+      <if test="joinSource != null" >
+        #{joinSource,jdbcType=TINYINT},
+      </if>
+      <if test="extraDiscount != null" >
+        #{extraDiscount,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.microsilver.mrcard.scheduledtask.model.ImsEweiShopGoodsExample" resultType="java.lang.Integer" >
+    select count(*) from ims_ewei_shop_goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ims_ewei_shop_goods
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.uniacid != null" >
+        uniacid = #{record.uniacid,jdbcType=INTEGER},
+      </if>
+      <if test="record.pcate != null" >
+        pcate = #{record.pcate,jdbcType=INTEGER},
+      </if>
+      <if test="record.ccate != null" >
+        ccate = #{record.ccate,jdbcType=INTEGER},
+      </if>
+      <if test="record.tcate != null" >
+        tcate = #{record.tcate,jdbcType=INTEGER},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=BIT},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=BIT},
+      </if>
+      <if test="record.displayorder != null" >
+        displayorder = #{record.displayorder,jdbcType=INTEGER},
+      </if>
+      <if test="record.title != null" >
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thumb != null" >
+        thumb = #{record.thumb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.unit != null" >
+        unit = #{record.unit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodssn != null" >
+        goodssn = #{record.goodssn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productsn != null" >
+        productsn = #{record.productsn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productprice != null" >
+        productprice = #{record.productprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.marketprice != null" >
+        marketprice = #{record.marketprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.costprice != null" >
+        costprice = #{record.costprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.originalprice != null" >
+        originalprice = #{record.originalprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.total != null" >
+        total = #{record.total,jdbcType=INTEGER},
+      </if>
+      <if test="record.totalcnf != null" >
+        totalcnf = #{record.totalcnf,jdbcType=INTEGER},
+      </if>
+      <if test="record.sales != null" >
+        sales = #{record.sales,jdbcType=INTEGER},
+      </if>
+      <if test="record.salesreal != null" >
+        salesreal = #{record.salesreal,jdbcType=INTEGER},
+      </if>
+      <if test="record.spec != null" >
+        spec = #{record.spec,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null" >
+        createtime = #{record.createtime,jdbcType=INTEGER},
+      </if>
+      <if test="record.weight != null" >
+        weight = #{record.weight,jdbcType=DECIMAL},
+      </if>
+      <if test="record.credit != null" >
+        credit = #{record.credit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.maxbuy != null" >
+        maxbuy = #{record.maxbuy,jdbcType=INTEGER},
+      </if>
+      <if test="record.usermaxbuy != null" >
+        usermaxbuy = #{record.usermaxbuy,jdbcType=INTEGER},
+      </if>
+      <if test="record.hasoption != null" >
+        hasoption = #{record.hasoption,jdbcType=INTEGER},
+      </if>
+      <if test="record.dispatch != null" >
+        dispatch = #{record.dispatch,jdbcType=INTEGER},
+      </if>
+      <if test="record.isnew != null" >
+        isnew = #{record.isnew,jdbcType=BIT},
+      </if>
+      <if test="record.ishot != null" >
+        ishot = #{record.ishot,jdbcType=BIT},
+      </if>
+      <if test="record.isdiscount != null" >
+        isdiscount = #{record.isdiscount,jdbcType=BIT},
+      </if>
+      <if test="record.isdiscountTitle != null" >
+        isdiscount_title = #{record.isdiscountTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isdiscountTime != null" >
+        isdiscount_time = #{record.isdiscountTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.isrecommand != null" >
+        isrecommand = #{record.isrecommand,jdbcType=BIT},
+      </if>
+      <if test="record.issendfree != null" >
+        issendfree = #{record.issendfree,jdbcType=BIT},
+      </if>
+      <if test="record.istime != null" >
+        istime = #{record.istime,jdbcType=BIT},
+      </if>
+      <if test="record.iscomment != null" >
+        iscomment = #{record.iscomment,jdbcType=BIT},
+      </if>
+      <if test="record.timestart != null" >
+        timestart = #{record.timestart,jdbcType=INTEGER},
+      </if>
+      <if test="record.timeend != null" >
+        timeend = #{record.timeend,jdbcType=INTEGER},
+      </if>
+      <if test="record.viewcount != null" >
+        viewcount = #{record.viewcount,jdbcType=INTEGER},
+      </if>
+      <if test="record.deleted != null" >
+        deleted = #{record.deleted,jdbcType=TINYINT},
+      </if>
+      <if test="record.hascommission != null" >
+        hascommission = #{record.hascommission,jdbcType=TINYINT},
+      </if>
+      <if test="record.commission1Rate != null" >
+        commission1_rate = #{record.commission1Rate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.commission1Pay != null" >
+        commission1_pay = #{record.commission1Pay,jdbcType=DECIMAL},
+      </if>
+      <if test="record.commission2Rate != null" >
+        commission2_rate = #{record.commission2Rate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.commission2Pay != null" >
+        commission2_pay = #{record.commission2Pay,jdbcType=DECIMAL},
+      </if>
+      <if test="record.commission3Rate != null" >
+        commission3_rate = #{record.commission3Rate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.commission3Pay != null" >
+        commission3_pay = #{record.commission3Pay,jdbcType=DECIMAL},
+      </if>
+      <if test="record.score != null" >
+        score = #{record.score,jdbcType=DECIMAL},
+      </if>
+      <if test="record.taobaoid != null" >
+        taobaoid = #{record.taobaoid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taotaoid != null" >
+        taotaoid = #{record.taotaoid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taobaourl != null" >
+        taobaourl = #{record.taobaourl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updatetime != null" >
+        updatetime = #{record.updatetime,jdbcType=INTEGER},
+      </if>
+      <if test="record.shareTitle != null" >
+        share_title = #{record.shareTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shareIcon != null" >
+        share_icon = #{record.shareIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cash != null" >
+        cash = #{record.cash,jdbcType=TINYINT},
+      </if>
+      <if test="record.commissionThumb != null" >
+        commission_thumb = #{record.commissionThumb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isnodiscount != null" >
+        isnodiscount = #{record.isnodiscount,jdbcType=TINYINT},
+      </if>
+      <if test="record.isverify != null" >
+        isverify = #{record.isverify,jdbcType=TINYINT},
+      </if>
+      <if test="record.noticeopenid != null" >
+        noticeopenid = #{record.noticeopenid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.needfollow != null" >
+        needfollow = #{record.needfollow,jdbcType=TINYINT},
+      </if>
+      <if test="record.followurl != null" >
+        followurl = #{record.followurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.followtip != null" >
+        followtip = #{record.followtip,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deduct != null" >
+        deduct = #{record.deduct,jdbcType=DECIMAL},
+      </if>
+      <if test="record.shorttitle != null" >
+        shorttitle = #{record.shorttitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.virtual != null" >
+        virtual = #{record.virtual,jdbcType=INTEGER},
+      </if>
+      <if test="record.nocommission != null" >
+        nocommission = #{record.nocommission,jdbcType=TINYINT},
+      </if>
+      <if test="record.hidecommission != null" >
+        hidecommission = #{record.hidecommission,jdbcType=TINYINT},
+      </if>
+      <if test="record.detailLogo != null" >
+        detail_logo = #{record.detailLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.detailShopname != null" >
+        detail_shopname = #{record.detailShopname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.detailTotaltitle != null" >
+        detail_totaltitle = #{record.detailTotaltitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.detailBtntext1 != null" >
+        detail_btntext1 = #{record.detailBtntext1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.detailBtnurl1 != null" >
+        detail_btnurl1 = #{record.detailBtnurl1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.detailBtntext2 != null" >
+        detail_btntext2 = #{record.detailBtntext2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.detailBtnurl2 != null" >
+        detail_btnurl2 = #{record.detailBtnurl2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.artid != null" >
+        artid = #{record.artid,jdbcType=INTEGER},
+      </if>
+      <if test="record.deduct2 != null" >
+        deduct2 = #{record.deduct2,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ednum != null" >
+        ednum = #{record.ednum,jdbcType=INTEGER},
+      </if>
+      <if test="record.edmoney != null" >
+        edmoney = #{record.edmoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.diyformtype != null" >
+        diyformtype = #{record.diyformtype,jdbcType=BIT},
+      </if>
+      <if test="record.diyformid != null" >
+        diyformid = #{record.diyformid,jdbcType=INTEGER},
+      </if>
+      <if test="record.diymode != null" >
+        diymode = #{record.diymode,jdbcType=BIT},
+      </if>
+      <if test="record.dispatchtype != null" >
+        dispatchtype = #{record.dispatchtype,jdbcType=BIT},
+      </if>
+      <if test="record.dispatchid != null" >
+        dispatchid = #{record.dispatchid,jdbcType=INTEGER},
+      </if>
+      <if test="record.dispatchprice != null" >
+        dispatchprice = #{record.dispatchprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.manydeduct != null" >
+        manydeduct = #{record.manydeduct,jdbcType=BIT},
+      </if>
+      <if test="record.saleupdate37975 != null" >
+        saleupdate37975 = #{record.saleupdate37975,jdbcType=TINYINT},
+      </if>
+      <if test="record.shopid != null" >
+        shopid = #{record.shopid,jdbcType=INTEGER},
+      </if>
+      <if test="record.minbuy != null" >
+        minbuy = #{record.minbuy,jdbcType=INTEGER},
+      </if>
+      <if test="record.invoice != null" >
+        invoice = #{record.invoice,jdbcType=TINYINT},
+      </if>
+      <if test="record.repair != null" >
+        repair = #{record.repair,jdbcType=TINYINT},
+      </if>
+      <if test="record.seven != null" >
+        seven = #{record.seven,jdbcType=TINYINT},
+      </if>
+      <if test="record.money != null" >
+        money = #{record.money,jdbcType=VARCHAR},
+      </if>
+      <if test="record.minprice != null" >
+        minprice = #{record.minprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.maxprice != null" >
+        maxprice = #{record.maxprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.province != null" >
+        province = #{record.province,jdbcType=VARCHAR},
+      </if>
+      <if test="record.city != null" >
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyshow != null" >
+        buyshow = #{record.buyshow,jdbcType=BIT},
+      </if>
+      <if test="record.saleupdate51117 != null" >
+        saleupdate51117 = #{record.saleupdate51117,jdbcType=TINYINT},
+      </if>
+      <if test="record.virtualsend != null" >
+        virtualsend = #{record.virtualsend,jdbcType=BIT},
+      </if>
+      <if test="record.verifytype != null" >
+        verifytype = #{record.verifytype,jdbcType=BIT},
+      </if>
+      <if test="record.diysaveid != null" >
+        diysaveid = #{record.diysaveid,jdbcType=INTEGER},
+      </if>
+      <if test="record.diysave != null" >
+        diysave = #{record.diysave,jdbcType=BIT},
+      </if>
+      <if test="record.quality != null" >
+        quality = #{record.quality,jdbcType=TINYINT},
+      </if>
+      <if test="record.groupstype != null" >
+        groupstype = #{record.groupstype,jdbcType=BIT},
+      </if>
+      <if test="record.showtotal != null" >
+        showtotal = #{record.showtotal,jdbcType=BIT},
+      </if>
+      <if test="record.subtitle != null" >
+        subtitle = #{record.subtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sharebtn != null" >
+        sharebtn = #{record.sharebtn,jdbcType=BIT},
+      </if>
+      <if test="record.merchid != null" >
+        merchid = #{record.merchid,jdbcType=INTEGER},
+      </if>
+      <if test="record.checked != null" >
+        checked = #{record.checked,jdbcType=TINYINT},
+      </if>
+      <if test="record.thumbFirst != null" >
+        thumb_first = #{record.thumbFirst,jdbcType=TINYINT},
+      </if>
+      <if test="record.showtotaladd != null" >
+        showtotaladd = #{record.showtotaladd,jdbcType=BIT},
+      </if>
+      <if test="record.merchsale != null" >
+        merchsale = #{record.merchsale,jdbcType=BIT},
+      </if>
+      <if test="record.keywords != null" >
+        keywords = #{record.keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="record.catchId != null" >
+        catch_id = #{record.catchId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.catchUrl != null" >
+        catch_url = #{record.catchUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.catchSource != null" >
+        catch_source = #{record.catchSource,jdbcType=VARCHAR},
+      </if>
+      <if test="record.autoreceive != null" >
+        autoreceive = #{record.autoreceive,jdbcType=INTEGER},
+      </if>
+      <if test="record.cannotrefund != null" >
+        cannotrefund = #{record.cannotrefund,jdbcType=TINYINT},
+      </if>
+      <if test="record.bargain != null" >
+        bargain = #{record.bargain,jdbcType=INTEGER},
+      </if>
+      <if test="record.buyagain != null" >
+        buyagain = #{record.buyagain,jdbcType=DECIMAL},
+      </if>
+      <if test="record.buyagainIslong != null" >
+        buyagain_islong = #{record.buyagainIslong,jdbcType=BIT},
+      </if>
+      <if test="record.buyagainCondition != null" >
+        buyagain_condition = #{record.buyagainCondition,jdbcType=BIT},
+      </if>
+      <if test="record.buyagainSale != null" >
+        buyagain_sale = #{record.buyagainSale,jdbcType=BIT},
+      </if>
+      <if test="record.diypage != null" >
+        diypage = #{record.diypage,jdbcType=INTEGER},
+      </if>
+      <if test="record.cashier != null" >
+        cashier = #{record.cashier,jdbcType=BIT},
+      </if>
+      <if test="record.isendtime != null" >
+        isendtime = #{record.isendtime,jdbcType=TINYINT},
+      </if>
+      <if test="record.usetime != null" >
+        usetime = #{record.usetime,jdbcType=INTEGER},
+      </if>
+      <if test="record.endtime != null" >
+        endtime = #{record.endtime,jdbcType=INTEGER},
+      </if>
+      <if test="record.merchdisplayorder != null" >
+        merchdisplayorder = #{record.merchdisplayorder,jdbcType=INTEGER},
+      </if>
+      <if test="record.exchangeStock != null" >
+        exchange_stock = #{record.exchangeStock,jdbcType=INTEGER},
+      </if>
+      <if test="record.exchangePostage != null" >
+        exchange_postage = #{record.exchangePostage,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ispresell != null" >
+        ispresell = #{record.ispresell,jdbcType=TINYINT},
+      </if>
+      <if test="record.presellprice != null" >
+        presellprice = #{record.presellprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.presellover != null" >
+        presellover = #{record.presellover,jdbcType=TINYINT},
+      </if>
+      <if test="record.presellovertime != null" >
+        presellovertime = #{record.presellovertime,jdbcType=INTEGER},
+      </if>
+      <if test="record.presellstart != null" >
+        presellstart = #{record.presellstart,jdbcType=TINYINT},
+      </if>
+      <if test="record.preselltimestart != null" >
+        preselltimestart = #{record.preselltimestart,jdbcType=INTEGER},
+      </if>
+      <if test="record.presellend != null" >
+        presellend = #{record.presellend,jdbcType=TINYINT},
+      </if>
+      <if test="record.preselltimeend != null" >
+        preselltimeend = #{record.preselltimeend,jdbcType=INTEGER},
+      </if>
+      <if test="record.presellsendtype != null" >
+        presellsendtype = #{record.presellsendtype,jdbcType=TINYINT},
+      </if>
+      <if test="record.presellsendstatrttime != null" >
+        presellsendstatrttime = #{record.presellsendstatrttime,jdbcType=INTEGER},
+      </if>
+      <if test="record.presellsendtime != null" >
+        presellsendtime = #{record.presellsendtime,jdbcType=INTEGER},
+      </if>
+      <if test="record.edareasCode != null" >
+        edareas_code = #{record.edareasCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isMill != null" >
+        is_mill = #{record.isMill,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderType != null" >
+        order_type = #{record.orderType,jdbcType=INTEGER},
+      </if>
+      <if test="record.services != null" >
+        services = #{record.services,jdbcType=VARCHAR},
+      </if>
+      <if test="record.joinSource != null" >
+        join_source = #{record.joinSource,jdbcType=TINYINT},
+      </if>
+      <if test="record.extraDiscount != null" >
+        extra_discount = #{record.extraDiscount,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ims_ewei_shop_goods
+    set id = #{record.id,jdbcType=INTEGER},
+      uniacid = #{record.uniacid,jdbcType=INTEGER},
+      pcate = #{record.pcate,jdbcType=INTEGER},
+      ccate = #{record.ccate,jdbcType=INTEGER},
+      tcate = #{record.tcate,jdbcType=INTEGER},
+      type = #{record.type,jdbcType=BIT},
+      status = #{record.status,jdbcType=BIT},
+      displayorder = #{record.displayorder,jdbcType=INTEGER},
+      title = #{record.title,jdbcType=VARCHAR},
+      thumb = #{record.thumb,jdbcType=VARCHAR},
+      unit = #{record.unit,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      goodssn = #{record.goodssn,jdbcType=VARCHAR},
+      productsn = #{record.productsn,jdbcType=VARCHAR},
+      productprice = #{record.productprice,jdbcType=DECIMAL},
+      marketprice = #{record.marketprice,jdbcType=DECIMAL},
+      costprice = #{record.costprice,jdbcType=DECIMAL},
+      originalprice = #{record.originalprice,jdbcType=DECIMAL},
+      total = #{record.total,jdbcType=INTEGER},
+      totalcnf = #{record.totalcnf,jdbcType=INTEGER},
+      sales = #{record.sales,jdbcType=INTEGER},
+      salesreal = #{record.salesreal,jdbcType=INTEGER},
+      spec = #{record.spec,jdbcType=VARCHAR},
+      createtime = #{record.createtime,jdbcType=INTEGER},
+      weight = #{record.weight,jdbcType=DECIMAL},
+      credit = #{record.credit,jdbcType=VARCHAR},
+      maxbuy = #{record.maxbuy,jdbcType=INTEGER},
+      usermaxbuy = #{record.usermaxbuy,jdbcType=INTEGER},
+      hasoption = #{record.hasoption,jdbcType=INTEGER},
+      dispatch = #{record.dispatch,jdbcType=INTEGER},
+      isnew = #{record.isnew,jdbcType=BIT},
+      ishot = #{record.ishot,jdbcType=BIT},
+      isdiscount = #{record.isdiscount,jdbcType=BIT},
+      isdiscount_title = #{record.isdiscountTitle,jdbcType=VARCHAR},
+      isdiscount_time = #{record.isdiscountTime,jdbcType=INTEGER},
+      isrecommand = #{record.isrecommand,jdbcType=BIT},
+      issendfree = #{record.issendfree,jdbcType=BIT},
+      istime = #{record.istime,jdbcType=BIT},
+      iscomment = #{record.iscomment,jdbcType=BIT},
+      timestart = #{record.timestart,jdbcType=INTEGER},
+      timeend = #{record.timeend,jdbcType=INTEGER},
+      viewcount = #{record.viewcount,jdbcType=INTEGER},
+      deleted = #{record.deleted,jdbcType=TINYINT},
+      hascommission = #{record.hascommission,jdbcType=TINYINT},
+      commission1_rate = #{record.commission1Rate,jdbcType=DECIMAL},
+      commission1_pay = #{record.commission1Pay,jdbcType=DECIMAL},
+      commission2_rate = #{record.commission2Rate,jdbcType=DECIMAL},
+      commission2_pay = #{record.commission2Pay,jdbcType=DECIMAL},
+      commission3_rate = #{record.commission3Rate,jdbcType=DECIMAL},
+      commission3_pay = #{record.commission3Pay,jdbcType=DECIMAL},
+      score = #{record.score,jdbcType=DECIMAL},
+      taobaoid = #{record.taobaoid,jdbcType=VARCHAR},
+      taotaoid = #{record.taotaoid,jdbcType=VARCHAR},
+      taobaourl = #{record.taobaourl,jdbcType=VARCHAR},
+      updatetime = #{record.updatetime,jdbcType=INTEGER},
+      share_title = #{record.shareTitle,jdbcType=VARCHAR},
+      share_icon = #{record.shareIcon,jdbcType=VARCHAR},
+      cash = #{record.cash,jdbcType=TINYINT},
+      commission_thumb = #{record.commissionThumb,jdbcType=VARCHAR},
+      isnodiscount = #{record.isnodiscount,jdbcType=TINYINT},
+      isverify = #{record.isverify,jdbcType=TINYINT},
+      noticeopenid = #{record.noticeopenid,jdbcType=VARCHAR},
+      needfollow = #{record.needfollow,jdbcType=TINYINT},
+      followurl = #{record.followurl,jdbcType=VARCHAR},
+      followtip = #{record.followtip,jdbcType=VARCHAR},
+      deduct = #{record.deduct,jdbcType=DECIMAL},
+      shorttitle = #{record.shorttitle,jdbcType=VARCHAR},
+      virtual = #{record.virtual,jdbcType=INTEGER},
+      nocommission = #{record.nocommission,jdbcType=TINYINT},
+      hidecommission = #{record.hidecommission,jdbcType=TINYINT},
+      detail_logo = #{record.detailLogo,jdbcType=VARCHAR},
+      detail_shopname = #{record.detailShopname,jdbcType=VARCHAR},
+      detail_totaltitle = #{record.detailTotaltitle,jdbcType=VARCHAR},
+      detail_btntext1 = #{record.detailBtntext1,jdbcType=VARCHAR},
+      detail_btnurl1 = #{record.detailBtnurl1,jdbcType=VARCHAR},
+      detail_btntext2 = #{record.detailBtntext2,jdbcType=VARCHAR},
+      detail_btnurl2 = #{record.detailBtnurl2,jdbcType=VARCHAR},
+      artid = #{record.artid,jdbcType=INTEGER},
+      deduct2 = #{record.deduct2,jdbcType=DECIMAL},
+      ednum = #{record.ednum,jdbcType=INTEGER},
+      edmoney = #{record.edmoney,jdbcType=DECIMAL},
+      diyformtype = #{record.diyformtype,jdbcType=BIT},
+      diyformid = #{record.diyformid,jdbcType=INTEGER},
+      diymode = #{record.diymode,jdbcType=BIT},
+      dispatchtype = #{record.dispatchtype,jdbcType=BIT},
+      dispatchid = #{record.dispatchid,jdbcType=INTEGER},
+      dispatchprice = #{record.dispatchprice,jdbcType=DECIMAL},
+      manydeduct = #{record.manydeduct,jdbcType=BIT},
+      saleupdate37975 = #{record.saleupdate37975,jdbcType=TINYINT},
+      shopid = #{record.shopid,jdbcType=INTEGER},
+      minbuy = #{record.minbuy,jdbcType=INTEGER},
+      invoice = #{record.invoice,jdbcType=TINYINT},
+      repair = #{record.repair,jdbcType=TINYINT},
+      seven = #{record.seven,jdbcType=TINYINT},
+      money = #{record.money,jdbcType=VARCHAR},
+      minprice = #{record.minprice,jdbcType=DECIMAL},
+      maxprice = #{record.maxprice,jdbcType=DECIMAL},
+      province = #{record.province,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      buyshow = #{record.buyshow,jdbcType=BIT},
+      saleupdate51117 = #{record.saleupdate51117,jdbcType=TINYINT},
+      virtualsend = #{record.virtualsend,jdbcType=BIT},
+      verifytype = #{record.verifytype,jdbcType=BIT},
+      diysaveid = #{record.diysaveid,jdbcType=INTEGER},
+      diysave = #{record.diysave,jdbcType=BIT},
+      quality = #{record.quality,jdbcType=TINYINT},
+      merchid = #{record.merchid,jdbcType=INTEGER},
+      checked = #{record.checked,jdbcType=TINYINT},
+      thumb_first = #{record.thumbFirst,jdbcType=TINYINT},
+      showtotaladd = #{record.showtotaladd,jdbcType=BIT},
+      merchsale = #{record.merchsale,jdbcType=BIT},
+      keywords = #{record.keywords,jdbcType=VARCHAR},
+      catch_id = #{record.catchId,jdbcType=VARCHAR},
+      catch_url = #{record.catchUrl,jdbcType=VARCHAR},
+      catch_source = #{record.catchSource,jdbcType=VARCHAR},
+      autoreceive = #{record.autoreceive,jdbcType=INTEGER},
+      cannotrefund = #{record.cannotrefund,jdbcType=TINYINT},
+      bargain = #{record.bargain,jdbcType=INTEGER},
+      buyagain = #{record.buyagain,jdbcType=DECIMAL},
+      buyagain_islong = #{record.buyagainIslong,jdbcType=BIT},
+      buyagain_condition = #{record.buyagainCondition,jdbcType=BIT},
+      buyagain_sale = #{record.buyagainSale,jdbcType=BIT},
+      diypage = #{record.diypage,jdbcType=INTEGER},
+      cashier = #{record.cashier,jdbcType=BIT},
+      isendtime = #{record.isendtime,jdbcType=TINYINT},
+      usetime = #{record.usetime,jdbcType=INTEGER},
+      endtime = #{record.endtime,jdbcType=INTEGER},
+      merchdisplayorder = #{record.merchdisplayorder,jdbcType=INTEGER},
+      exchange_stock = #{record.exchangeStock,jdbcType=INTEGER},
+      exchange_postage = #{record.exchangePostage,jdbcType=DECIMAL},
+      ispresell = #{record.ispresell,jdbcType=TINYINT},
+      presellprice = #{record.presellprice,jdbcType=DECIMAL},
+      order_type = #{record.orderType,jdbcType=INTEGER},
+      services = #{record.services,jdbcType=VARCHAR},
+      join_source = #{record.joinSource,jdbcType=TINYINT},
+      extra_discount = #{record.extraDiscount,jdbcType=DECIMAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.microsilver.mrcard.scheduledtask.model.ImsEweiShopGoods" >
+    update ims_ewei_shop_goods
+    <set >
+      <if test="uniacid != null" >
+        uniacid = #{uniacid,jdbcType=INTEGER},
+      </if>
+      <if test="pcate != null" >
+        pcate = #{pcate,jdbcType=INTEGER},
+      </if>
+      <if test="ccate != null" >
+        ccate = #{ccate,jdbcType=INTEGER},
+      </if>
+      <if test="tcate != null" >
+        tcate = #{tcate,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=BIT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="displayorder != null" >
+        displayorder = #{displayorder,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="thumb != null" >
+        thumb = #{thumb,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="goodssn != null" >
+        goodssn = #{goodssn,jdbcType=VARCHAR},
+      </if>
+      <if test="productsn != null" >
+        productsn = #{productsn,jdbcType=VARCHAR},
+      </if>
+      <if test="productprice != null" >
+        productprice = #{productprice,jdbcType=DECIMAL},
+      </if>
+      <if test="marketprice != null" >
+        marketprice = #{marketprice,jdbcType=DECIMAL},
+      </if>
+      <if test="costprice != null" >
+        costprice = #{costprice,jdbcType=DECIMAL},
+      </if>
+      <if test="originalprice != null" >
+        originalprice = #{originalprice,jdbcType=DECIMAL},
+      </if>
+      <if test="total != null" >
+        total = #{total,jdbcType=INTEGER},
+      </if>
+      <if test="totalcnf != null" >
+        totalcnf = #{totalcnf,jdbcType=INTEGER},
+      </if>
+      <if test="sales != null" >
+        sales = #{sales,jdbcType=INTEGER},
+      </if>
+      <if test="salesreal != null" >
+        salesreal = #{salesreal,jdbcType=INTEGER},
+      </if>
+      <if test="spec != null" >
+        spec = #{spec,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=INTEGER},
+      </if>
+      <if test="weight != null" >
+        weight = #{weight,jdbcType=DECIMAL},
+      </if>
+      <if test="credit != null" >
+        credit = #{credit,jdbcType=VARCHAR},
+      </if>
+      <if test="maxbuy != null" >
+        maxbuy = #{maxbuy,jdbcType=INTEGER},
+      </if>
+      <if test="usermaxbuy != null" >
+        usermaxbuy = #{usermaxbuy,jdbcType=INTEGER},
+      </if>
+      <if test="hasoption != null" >
+        hasoption = #{hasoption,jdbcType=INTEGER},
+      </if>
+      <if test="dispatch != null" >
+        dispatch = #{dispatch,jdbcType=INTEGER},
+      </if>
+      <if test="isnew != null" >
+        isnew = #{isnew,jdbcType=BIT},
+      </if>
+      <if test="ishot != null" >
+        ishot = #{ishot,jdbcType=BIT},
+      </if>
+      <if test="isdiscount != null" >
+        isdiscount = #{isdiscount,jdbcType=BIT},
+      </if>
+      <if test="isdiscountTitle != null" >
+        isdiscount_title = #{isdiscountTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="isdiscountTime != null" >
+        isdiscount_time = #{isdiscountTime,jdbcType=INTEGER},
+      </if>
+      <if test="isrecommand != null" >
+        isrecommand = #{isrecommand,jdbcType=BIT},
+      </if>
+      <if test="issendfree != null" >
+        issendfree = #{issendfree,jdbcType=BIT},
+      </if>
+      <if test="istime != null" >
+        istime = #{istime,jdbcType=BIT},
+      </if>
+      <if test="iscomment != null" >
+        iscomment = #{iscomment,jdbcType=BIT},
+      </if>
+      <if test="timestart != null" >
+        timestart = #{timestart,jdbcType=INTEGER},
+      </if>
+      <if test="timeend != null" >
+        timeend = #{timeend,jdbcType=INTEGER},
+      </if>
+      <if test="viewcount != null" >
+        viewcount = #{viewcount,jdbcType=INTEGER},
+      </if>
+      <if test="deleted != null" >
+        deleted = #{deleted,jdbcType=TINYINT},
+      </if>
+      <if test="hascommission != null" >
+        hascommission = #{hascommission,jdbcType=TINYINT},
+      </if>
+      <if test="commission1Rate != null" >
+        commission1_rate = #{commission1Rate,jdbcType=DECIMAL},
+      </if>
+      <if test="commission1Pay != null" >
+        commission1_pay = #{commission1Pay,jdbcType=DECIMAL},
+      </if>
+      <if test="commission2Rate != null" >
+        commission2_rate = #{commission2Rate,jdbcType=DECIMAL},
+      </if>
+      <if test="commission2Pay != null" >
+        commission2_pay = #{commission2Pay,jdbcType=DECIMAL},
+      </if>
+      <if test="commission3Rate != null" >
+        commission3_rate = #{commission3Rate,jdbcType=DECIMAL},
+      </if>
+      <if test="commission3Pay != null" >
+        commission3_pay = #{commission3Pay,jdbcType=DECIMAL},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=DECIMAL},
+      </if>
+      <if test="taobaoid != null" >
+        taobaoid = #{taobaoid,jdbcType=VARCHAR},
+      </if>
+      <if test="taotaoid != null" >
+        taotaoid = #{taotaoid,jdbcType=VARCHAR},
+      </if>
+      <if test="taobaourl != null" >
+        taobaourl = #{taobaourl,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = #{updatetime,jdbcType=INTEGER},
+      </if>
+      <if test="shareTitle != null" >
+        share_title = #{shareTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="shareIcon != null" >
+        share_icon = #{shareIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="cash != null" >
+        cash = #{cash,jdbcType=TINYINT},
+      </if>
+      <if test="commissionThumb != null" >
+        commission_thumb = #{commissionThumb,jdbcType=VARCHAR},
+      </if>
+      <if test="isnodiscount != null" >
+        isnodiscount = #{isnodiscount,jdbcType=TINYINT},
+      </if>
+      <if test="isverify != null" >
+        isverify = #{isverify,jdbcType=TINYINT},
+      </if>
+      <if test="noticeopenid != null" >
+        noticeopenid = #{noticeopenid,jdbcType=VARCHAR},
+      </if>
+      <if test="needfollow != null" >
+        needfollow = #{needfollow,jdbcType=TINYINT},
+      </if>
+      <if test="followurl != null" >
+        followurl = #{followurl,jdbcType=VARCHAR},
+      </if>
+      <if test="followtip != null" >
+        followtip = #{followtip,jdbcType=VARCHAR},
+      </if>
+      <if test="deduct != null" >
+        deduct = #{deduct,jdbcType=DECIMAL},
+      </if>
+      <if test="shorttitle != null" >
+        shorttitle = #{shorttitle,jdbcType=VARCHAR},
+      </if>
+      <if test="virtual != null" >
+        virtual = #{virtual,jdbcType=INTEGER},
+      </if>
+      <if test="nocommission != null" >
+        nocommission = #{nocommission,jdbcType=TINYINT},
+      </if>
+      <if test="hidecommission != null" >
+        hidecommission = #{hidecommission,jdbcType=TINYINT},
+      </if>
+      <if test="detailLogo != null" >
+        detail_logo = #{detailLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="detailShopname != null" >
+        detail_shopname = #{detailShopname,jdbcType=VARCHAR},
+      </if>
+      <if test="detailTotaltitle != null" >
+        detail_totaltitle = #{detailTotaltitle,jdbcType=VARCHAR},
+      </if>
+      <if test="detailBtntext1 != null" >
+        detail_btntext1 = #{detailBtntext1,jdbcType=VARCHAR},
+      </if>
+      <if test="detailBtnurl1 != null" >
+        detail_btnurl1 = #{detailBtnurl1,jdbcType=VARCHAR},
+      </if>
+      <if test="detailBtntext2 != null" >
+        detail_btntext2 = #{detailBtntext2,jdbcType=VARCHAR},
+      </if>
+      <if test="detailBtnurl2 != null" >
+        detail_btnurl2 = #{detailBtnurl2,jdbcType=VARCHAR},
+      </if>
+      <if test="artid != null" >
+        artid = #{artid,jdbcType=INTEGER},
+      </if>
+      <if test="deduct2 != null" >
+        deduct2 = #{deduct2,jdbcType=DECIMAL},
+      </if>
+      <if test="ednum != null" >
+        ednum = #{ednum,jdbcType=INTEGER},
+      </if>
+      <if test="edmoney != null" >
+        edmoney = #{edmoney,jdbcType=DECIMAL},
+      </if>
+      <if test="diyformtype != null" >
+        diyformtype = #{diyformtype,jdbcType=BIT},
+      </if>
+      <if test="diyformid != null" >
+        diyformid = #{diyformid,jdbcType=INTEGER},
+      </if>
+      <if test="diymode != null" >
+        diymode = #{diymode,jdbcType=BIT},
+      </if>
+      <if test="dispatchtype != null" >
+        dispatchtype = #{dispatchtype,jdbcType=BIT},
+      </if>
+      <if test="dispatchid != null" >
+        dispatchid = #{dispatchid,jdbcType=INTEGER},
+      </if>
+      <if test="dispatchprice != null" >
+        dispatchprice = #{dispatchprice,jdbcType=DECIMAL},
+      </if>
+      <if test="manydeduct != null" >
+        manydeduct = #{manydeduct,jdbcType=BIT},
+      </if>
+      <if test="saleupdate37975 != null" >
+        saleupdate37975 = #{saleupdate37975,jdbcType=TINYINT},
+      </if>
+      <if test="shopid != null" >
+        shopid = #{shopid,jdbcType=INTEGER},
+      </if>
+      <if test="minbuy != null" >
+        minbuy = #{minbuy,jdbcType=INTEGER},
+      </if>
+      <if test="invoice != null" >
+        invoice = #{invoice,jdbcType=TINYINT},
+      </if>
+      <if test="repair != null" >
+        repair = #{repair,jdbcType=TINYINT},
+      </if>
+      <if test="seven != null" >
+        seven = #{seven,jdbcType=TINYINT},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=VARCHAR},
+      </if>
+      <if test="minprice != null" >
+        minprice = #{minprice,jdbcType=DECIMAL},
+      </if>
+      <if test="maxprice != null" >
+        maxprice = #{maxprice,jdbcType=DECIMAL},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="buyshow != null" >
+        buyshow = #{buyshow,jdbcType=BIT},
+      </if>
+      <if test="saleupdate51117 != null" >
+        saleupdate51117 = #{saleupdate51117,jdbcType=TINYINT},
+      </if>
+      <if test="virtualsend != null" >
+        virtualsend = #{virtualsend,jdbcType=BIT},
+      </if>
+      <if test="verifytype != null" >
+        verifytype = #{verifytype,jdbcType=BIT},
+      </if>
+      <if test="diysaveid != null" >
+        diysaveid = #{diysaveid,jdbcType=INTEGER},
+      </if>
+      <if test="diysave != null" >
+        diysave = #{diysave,jdbcType=BIT},
+      </if>
+      <if test="quality != null" >
+        quality = #{quality,jdbcType=TINYINT},
+      </if>
+      <if test="groupstype != null" >
+        groupstype = #{groupstype,jdbcType=BIT},
+      </if>
+      <if test="showtotal != null" >
+        showtotal = #{showtotal,jdbcType=BIT},
+      </if>
+      <if test="subtitle != null" >
+        subtitle = #{subtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="sharebtn != null" >
+        sharebtn = #{sharebtn,jdbcType=BIT},
+      </if>
+      <if test="merchid != null" >
+        merchid = #{merchid,jdbcType=INTEGER},
+      </if>
+      <if test="checked != null" >
+        checked = #{checked,jdbcType=TINYINT},
+      </if>
+      <if test="thumbFirst != null" >
+        thumb_first = #{thumbFirst,jdbcType=TINYINT},
+      </if>
+      <if test="showtotaladd != null" >
+        showtotaladd = #{showtotaladd,jdbcType=BIT},
+      </if>
+      <if test="merchsale != null" >
+        merchsale = #{merchsale,jdbcType=BIT},
+      </if>
+      <if test="keywords != null" >
+        keywords = #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="catchId != null" >
+        catch_id = #{catchId,jdbcType=VARCHAR},
+      </if>
+      <if test="catchUrl != null" >
+        catch_url = #{catchUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="catchSource != null" >
+        catch_source = #{catchSource,jdbcType=VARCHAR},
+      </if>
+      <if test="autoreceive != null" >
+        autoreceive = #{autoreceive,jdbcType=INTEGER},
+      </if>
+      <if test="cannotrefund != null" >
+        cannotrefund = #{cannotrefund,jdbcType=TINYINT},
+      </if>
+      <if test="bargain != null" >
+        bargain = #{bargain,jdbcType=INTEGER},
+      </if>
+      <if test="buyagain != null" >
+        buyagain = #{buyagain,jdbcType=DECIMAL},
+      </if>
+      <if test="buyagainIslong != null" >
+        buyagain_islong = #{buyagainIslong,jdbcType=BIT},
+      </if>
+      <if test="buyagainCondition != null" >
+        buyagain_condition = #{buyagainCondition,jdbcType=BIT},
+      </if>
+      <if test="buyagainSale != null" >
+        buyagain_sale = #{buyagainSale,jdbcType=BIT},
+      </if>
+      <if test="diypage != null" >
+        diypage = #{diypage,jdbcType=INTEGER},
+      </if>
+      <if test="cashier != null" >
+        cashier = #{cashier,jdbcType=BIT},
+      </if>
+      <if test="isendtime != null" >
+        isendtime = #{isendtime,jdbcType=TINYINT},
+      </if>
+      <if test="usetime != null" >
+        usetime = #{usetime,jdbcType=INTEGER},
+      </if>
+      <if test="endtime != null" >
+        endtime = #{endtime,jdbcType=INTEGER},
+      </if>
+      <if test="merchdisplayorder != null" >
+        merchdisplayorder = #{merchdisplayorder,jdbcType=INTEGER},
+      </if>
+      <if test="exchangeStock != null" >
+        exchange_stock = #{exchangeStock,jdbcType=INTEGER},
+      </if>
+      <if test="exchangePostage != null" >
+        exchange_postage = #{exchangePostage,jdbcType=DECIMAL},
+      </if>
+      <if test="ispresell != null" >
+        ispresell = #{ispresell,jdbcType=TINYINT},
+      </if>
+      <if test="presellprice != null" >
+        presellprice = #{presellprice,jdbcType=DECIMAL},
+      </if>
+      <if test="presellover != null" >
+        presellover = #{presellover,jdbcType=TINYINT},
+      </if>
+      <if test="presellovertime != null" >
+        presellovertime = #{presellovertime,jdbcType=INTEGER},
+      </if>
+      <if test="presellstart != null" >
+        presellstart = #{presellstart,jdbcType=TINYINT},
+      </if>
+      <if test="preselltimestart != null" >
+        preselltimestart = #{preselltimestart,jdbcType=INTEGER},
+      </if>
+      <if test="presellend != null" >
+        presellend = #{presellend,jdbcType=TINYINT},
+      </if>
+      <if test="preselltimeend != null" >
+        preselltimeend = #{preselltimeend,jdbcType=INTEGER},
+      </if>
+      <if test="presellsendtype != null" >
+        presellsendtype = #{presellsendtype,jdbcType=TINYINT},
+      </if>
+      <if test="presellsendstatrttime != null" >
+        presellsendstatrttime = #{presellsendstatrttime,jdbcType=INTEGER},
+      </if>
+      <if test="presellsendtime != null" >
+        presellsendtime = #{presellsendtime,jdbcType=INTEGER},
+      </if>
+      <if test="edareasCode != null" >
+        edareas_code = #{edareasCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isMill != null" >
+        is_mill = #{isMill,jdbcType=INTEGER},
+      </if>
+      <if test="orderType != null" >
+        order_type = #{orderType,jdbcType=INTEGER},
+      </if>
+      <if test="services != null" >
+        services = #{services,jdbcType=VARCHAR},
+      </if>
+      <if test="joinSource != null" >
+        join_source = #{joinSource,jdbcType=TINYINT},
+      </if>
+      <if test="extraDiscount != null" >
+        extra_discount = #{extraDiscount,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.microsilver.mrcard.scheduledtask.model.ImsEweiShopGoods" >
+    update ims_ewei_shop_goods
+    set uniacid = #{uniacid,jdbcType=INTEGER},
+      pcate = #{pcate,jdbcType=INTEGER},
+      ccate = #{ccate,jdbcType=INTEGER},
+      tcate = #{tcate,jdbcType=INTEGER},
+      type = #{type,jdbcType=BIT},
+      status = #{status,jdbcType=BIT},
+      displayorder = #{displayorder,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      thumb = #{thumb,jdbcType=VARCHAR},
+      unit = #{unit,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      goodssn = #{goodssn,jdbcType=VARCHAR},
+      productsn = #{productsn,jdbcType=VARCHAR},
+      productprice = #{productprice,jdbcType=DECIMAL},
+      marketprice = #{marketprice,jdbcType=DECIMAL},
+      costprice = #{costprice,jdbcType=DECIMAL},
+      originalprice = #{originalprice,jdbcType=DECIMAL},
+      total = #{total,jdbcType=INTEGER},
+      totalcnf = #{totalcnf,jdbcType=INTEGER},
+      sales = #{sales,jdbcType=INTEGER},
+      salesreal = #{salesreal,jdbcType=INTEGER},
+      spec = #{spec,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=INTEGER},
+      weight = #{weight,jdbcType=DECIMAL},
+      credit = #{credit,jdbcType=VARCHAR},
+      maxbuy = #{maxbuy,jdbcType=INTEGER},
+      usermaxbuy = #{usermaxbuy,jdbcType=INTEGER},
+      hasoption = #{hasoption,jdbcType=INTEGER},
+      dispatch = #{dispatch,jdbcType=INTEGER},
+      isnew = #{isnew,jdbcType=BIT},
+      ishot = #{ishot,jdbcType=BIT},
+      isdiscount = #{isdiscount,jdbcType=BIT},
+      isdiscount_title = #{isdiscountTitle,jdbcType=VARCHAR},
+      isdiscount_time = #{isdiscountTime,jdbcType=INTEGER},
+      isrecommand = #{isrecommand,jdbcType=BIT},
+      issendfree = #{issendfree,jdbcType=BIT},
+      istime = #{istime,jdbcType=BIT},
+      iscomment = #{iscomment,jdbcType=BIT},
+      timestart = #{timestart,jdbcType=INTEGER},
+      timeend = #{timeend,jdbcType=INTEGER},
+      viewcount = #{viewcount,jdbcType=INTEGER},
+      deleted = #{deleted,jdbcType=TINYINT},
+      hascommission = #{hascommission,jdbcType=TINYINT},
+      commission1_rate = #{commission1Rate,jdbcType=DECIMAL},
+      commission1_pay = #{commission1Pay,jdbcType=DECIMAL},
+      commission2_rate = #{commission2Rate,jdbcType=DECIMAL},
+      commission2_pay = #{commission2Pay,jdbcType=DECIMAL},
+      commission3_rate = #{commission3Rate,jdbcType=DECIMAL},
+      commission3_pay = #{commission3Pay,jdbcType=DECIMAL},
+      score = #{score,jdbcType=DECIMAL},
+      taobaoid = #{taobaoid,jdbcType=VARCHAR},
+      taotaoid = #{taotaoid,jdbcType=VARCHAR},
+      taobaourl = #{taobaourl,jdbcType=VARCHAR},
+      updatetime = #{updatetime,jdbcType=INTEGER},
+      share_title = #{shareTitle,jdbcType=VARCHAR},
+      share_icon = #{shareIcon,jdbcType=VARCHAR},
+      cash = #{cash,jdbcType=TINYINT},
+      commission_thumb = #{commissionThumb,jdbcType=VARCHAR},
+      isnodiscount = #{isnodiscount,jdbcType=TINYINT},
+      isverify = #{isverify,jdbcType=TINYINT},
+      noticeopenid = #{noticeopenid,jdbcType=VARCHAR},
+      needfollow = #{needfollow,jdbcType=TINYINT},
+      followurl = #{followurl,jdbcType=VARCHAR},
+      followtip = #{followtip,jdbcType=VARCHAR},
+      deduct = #{deduct,jdbcType=DECIMAL},
+      shorttitle = #{shorttitle,jdbcType=VARCHAR},
+      virtual = #{virtual,jdbcType=INTEGER},
+      nocommission = #{nocommission,jdbcType=TINYINT},
+      hidecommission = #{hidecommission,jdbcType=TINYINT},
+      detail_logo = #{detailLogo,jdbcType=VARCHAR},
+      detail_shopname = #{detailShopname,jdbcType=VARCHAR},
+      detail_totaltitle = #{detailTotaltitle,jdbcType=VARCHAR},
+      detail_btntext1 = #{detailBtntext1,jdbcType=VARCHAR},
+      detail_btnurl1 = #{detailBtnurl1,jdbcType=VARCHAR},
+      detail_btntext2 = #{detailBtntext2,jdbcType=VARCHAR},
+      detail_btnurl2 = #{detailBtnurl2,jdbcType=VARCHAR},
+      artid = #{artid,jdbcType=INTEGER},
+      deduct2 = #{deduct2,jdbcType=DECIMAL},
+      ednum = #{ednum,jdbcType=INTEGER},
+      edmoney = #{edmoney,jdbcType=DECIMAL},
+      diyformtype = #{diyformtype,jdbcType=BIT},
+      diyformid = #{diyformid,jdbcType=INTEGER},
+      diymode = #{diymode,jdbcType=BIT},
+      dispatchtype = #{dispatchtype,jdbcType=BIT},
+      dispatchid = #{dispatchid,jdbcType=INTEGER},
+      dispatchprice = #{dispatchprice,jdbcType=DECIMAL},
+      manydeduct = #{manydeduct,jdbcType=BIT},
+      saleupdate37975 = #{saleupdate37975,jdbcType=TINYINT},
+      shopid = #{shopid,jdbcType=INTEGER},
+      minbuy = #{minbuy,jdbcType=INTEGER},
+      invoice = #{invoice,jdbcType=TINYINT},
+      repair = #{repair,jdbcType=TINYINT},
+      seven = #{seven,jdbcType=TINYINT},
+      money = #{money,jdbcType=VARCHAR},
+      minprice = #{minprice,jdbcType=DECIMAL},
+      maxprice = #{maxprice,jdbcType=DECIMAL},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      buyshow = #{buyshow,jdbcType=BIT},
+      saleupdate51117 = #{saleupdate51117,jdbcType=TINYINT},
+      virtualsend = #{virtualsend,jdbcType=BIT},
+      verifytype = #{verifytype,jdbcType=BIT},
+      diysaveid = #{diysaveid,jdbcType=INTEGER},
+      diysave = #{diysave,jdbcType=BIT},
+      quality = #{quality,jdbcType=TINYINT},
+      groupstype = #{groupstype,jdbcType=BIT},
+      showtotal = #{showtotal,jdbcType=BIT},
+      subtitle = #{subtitle,jdbcType=VARCHAR},
+      sharebtn = #{sharebtn,jdbcType=BIT},
+      merchid = #{merchid,jdbcType=INTEGER},
+      checked = #{checked,jdbcType=TINYINT},
+      thumb_first = #{thumbFirst,jdbcType=TINYINT},
+      showtotaladd = #{showtotaladd,jdbcType=BIT},
+      merchsale = #{merchsale,jdbcType=BIT},
+      keywords = #{keywords,jdbcType=VARCHAR},
+      catch_id = #{catchId,jdbcType=VARCHAR},
+      catch_url = #{catchUrl,jdbcType=VARCHAR},
+      catch_source = #{catchSource,jdbcType=VARCHAR},
+      autoreceive = #{autoreceive,jdbcType=INTEGER},
+      cannotrefund = #{cannotrefund,jdbcType=TINYINT},
+      bargain = #{bargain,jdbcType=INTEGER},
+      buyagain = #{buyagain,jdbcType=DECIMAL},
+      buyagain_islong = #{buyagainIslong,jdbcType=BIT},
+      buyagain_condition = #{buyagainCondition,jdbcType=BIT},
+      buyagain_sale = #{buyagainSale,jdbcType=BIT},
+      diypage = #{diypage,jdbcType=INTEGER},
+      cashier = #{cashier,jdbcType=BIT},
+      isendtime = #{isendtime,jdbcType=TINYINT},
+      usetime = #{usetime,jdbcType=INTEGER},
+      endtime = #{endtime,jdbcType=INTEGER},
+      merchdisplayorder = #{merchdisplayorder,jdbcType=INTEGER},
+      exchange_stock = #{exchangeStock,jdbcType=INTEGER},
+      exchange_postage = #{exchangePostage,jdbcType=DECIMAL},
+      ispresell = #{ispresell,jdbcType=TINYINT},
+      presellprice = #{presellprice,jdbcType=DECIMAL},
+      presellover = #{presellover,jdbcType=TINYINT},
+      presellovertime = #{presellovertime,jdbcType=INTEGER},
+      presellstart = #{presellstart,jdbcType=TINYINT},
+      preselltimestart = #{preselltimestart,jdbcType=INTEGER},
+      presellend = #{presellend,jdbcType=TINYINT},
+      preselltimeend = #{preselltimeend,jdbcType=INTEGER},
+      presellsendtype = #{presellsendtype,jdbcType=TINYINT},
+      presellsendstatrttime = #{presellsendstatrttime,jdbcType=INTEGER},
+      presellsendtime = #{presellsendtime,jdbcType=INTEGER},
+      edareas_code = #{edareasCode,jdbcType=VARCHAR},
+      is_mill = #{isMill,jdbcType=INTEGER},
+      order_type = #{orderType,jdbcType=INTEGER},
+      services = #{services,jdbcType=VARCHAR},
+      join_source = #{joinSource,jdbcType=TINYINT},
+      extra_discount = #{extraDiscount,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.microsilver.mrcard.serviceplatform.dao.ImsEweiShopActivityGoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopActivityGoods" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="merch_id" property="merchId" jdbcType="BIGINT" />
+    <result column="activity_id" property="activityId" jdbcType="INTEGER" />
+    <result column="goods_id" property="goodsId" jdbcType="BIGINT" />
+    <result column="default_quantity" property="defaultQuantity" jdbcType="INTEGER" />
+    <result column="begin_time" property="beginTime" jdbcType="INTEGER" />
+    <result column="end_time" property="endTime" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, merch_id, activity_id, goods_id, default_quantity, begin_time, end_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopActivityGoodsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ims_ewei_shop_activity_goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  
+    <select id="selectActivityGoodsDetails" resultType="com.microsilver.mrcard.serviceplatform.dto.ActivityGoodsDto" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopActivityGoodsExample" >
+SELECT
+	ag.goods_id goodsId,
+	ag.merch_id merchId,
+	ag.activity_id activityId, 	
+	ac.cashback_max cashbackMax,
+	g.total,
+	g.eng_title engTitle,
+	g.thumb,
+	g.title,
+	g.productprice,
+	g.marketprice,
+	g.costprice,g.presellprice,g.zero_costprice zeroCostprice,g.zero_presellprice zeroPresellprice
+FROM
+	ims_ewei_shop_activity_goods ag
+INNER JOIN ims_ewei_shop_goods g ON ag.goods_id = g.id 
+INNER JOIN ims_ewei_shop_activity_config ac on ag.activity_id = ac.activity_id AND ag.merch_id = ac.merch_id
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from ims_ewei_shop_activity_goods
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from ims_ewei_shop_activity_goods
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopActivityGoodsExample" >
+    delete from ims_ewei_shop_activity_goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopActivityGoods" >
+    insert into ims_ewei_shop_activity_goods (id, merch_id, activity_id, 
+      goods_id, default_quantity, begin_time, 
+      end_time)
+    values (#{id,jdbcType=BIGINT}, #{merchId,jdbcType=BIGINT}, #{activityId,jdbcType=INTEGER}, 
+      #{goodsId,jdbcType=BIGINT}, #{defaultQuantity,jdbcType=INTEGER}, #{beginTime,jdbcType=INTEGER}, 
+      #{endTime,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopActivityGoods" >
+    insert into ims_ewei_shop_activity_goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="merchId != null" >
+        merch_id,
+      </if>
+      <if test="activityId != null" >
+        activity_id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="defaultQuantity != null" >
+        default_quantity,
+      </if>
+      <if test="beginTime != null" >
+        begin_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="merchId != null" >
+        #{merchId,jdbcType=BIGINT},
+      </if>
+      <if test="activityId != null" >
+        #{activityId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="defaultQuantity != null" >
+        #{defaultQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="beginTime != null" >
+        #{beginTime,jdbcType=INTEGER},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopActivityGoodsExample" resultType="java.lang.Integer" >
+    select count(*) from ims_ewei_shop_activity_goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ims_ewei_shop_activity_goods
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.merchId != null" >
+        merch_id = #{record.merchId,jdbcType=BIGINT},
+      </if>
+      <if test="record.activityId != null" >
+        activity_id = #{record.activityId,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsId != null" >
+        goods_id = #{record.goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="record.defaultQuantity != null" >
+        default_quantity = #{record.defaultQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="record.beginTime != null" >
+        begin_time = #{record.beginTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.endTime != null" >
+        end_time = #{record.endTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ims_ewei_shop_activity_goods
+    set id = #{record.id,jdbcType=BIGINT},
+      merch_id = #{record.merchId,jdbcType=BIGINT},
+      activity_id = #{record.activityId,jdbcType=INTEGER},
+      goods_id = #{record.goodsId,jdbcType=BIGINT},
+      default_quantity = #{record.defaultQuantity,jdbcType=INTEGER},
+      begin_time = #{record.beginTime,jdbcType=INTEGER},
+      end_time = #{record.endTime,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopActivityGoods" >
+    update ims_ewei_shop_activity_goods
+    <set >
+      <if test="merchId != null" >
+        merch_id = #{merchId,jdbcType=BIGINT},
+      </if>
+      <if test="activityId != null" >
+        activity_id = #{activityId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="defaultQuantity != null" >
+        default_quantity = #{defaultQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="beginTime != null" >
+        begin_time = #{beginTime,jdbcType=INTEGER},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopActivityGoods" >
+    update ims_ewei_shop_activity_goods
+    set merch_id = #{merchId,jdbcType=BIGINT},
+      activity_id = #{activityId,jdbcType=INTEGER},
+      goods_id = #{goodsId,jdbcType=BIGINT},
+      default_quantity = #{defaultQuantity,jdbcType=INTEGER},
+      begin_time = #{beginTime,jdbcType=INTEGER},
+      end_time = #{endTime,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.microsilver.mrcard.cloud.finance.dao.MrcardFinanceMerchFlowMapper">
+  <resultMap id="BaseResultMap" type="com.microsilver.mrcard.cloud.finance.model.MrcardFinanceMerchFlow">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="finance_id" jdbcType="BIGINT" property="financeId" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="create_time" jdbcType="INTEGER" property="createTime" />
+    <result column="ordersn" jdbcType="VARCHAR" property="ordersn" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="is_settl" jdbcType="BIT" property="isSettl" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, finance_id, type, amount, create_time, ordersn, remark, is_settl
+  </sql>
+  <select id="selectByExample" parameterType="com.microsilver.mrcard.cloud.finance.model.MrcardFinanceMerchFlowExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from mrcard_finance_merch_flow
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from mrcard_finance_merch_flow
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from mrcard_finance_merch_flow
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.microsilver.mrcard.cloud.finance.model.MrcardFinanceMerchFlowExample">
+    delete from mrcard_finance_merch_flow
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert"  useGeneratedKeys="true" keyProperty="id"  parameterType="com.microsilver.mrcard.cloud.finance.model.MrcardFinanceMerchFlow">
+    insert into mrcard_finance_merch_flow (id, finance_id, type,
+    amount, create_time, ordersn,
+    remark, is_settl)
+    values (#{id,jdbcType=BIGINT}, #{financeId,jdbcType=BIGINT}, #{type,jdbcType=TINYINT},
+    #{amount,jdbcType=DECIMAL}, #{createTime,jdbcType=INTEGER}, #{ordersn,jdbcType=VARCHAR},
+    #{remark,jdbcType=VARCHAR}, #{isSettl,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.microsilver.mrcard.cloud.finance.model.MrcardFinanceMerchFlow">
+    insert into mrcard_finance_merch_flow
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="financeId != null">
+        finance_id,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="ordersn != null">
+        ordersn,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="isSettl != null">
+        is_settl,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="financeId != null">
+        #{financeId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="ordersn != null">
+        #{ordersn,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isSettl != null">
+        #{isSettl,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.microsilver.mrcard.cloud.finance.model.MrcardFinanceMerchFlowExample" resultType="java.lang.Integer">
+    select count(*) from mrcard_finance_merch_flow
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update mrcard_finance_merch_flow
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.financeId != null">
+        finance_id = #{record.financeId,jdbcType=BIGINT},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=TINYINT},
+      </if>
+      <if test="record.amount != null">
+        amount = #{record.amount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.ordersn != null">
+        ordersn = #{record.ordersn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isSettl != null">
+        is_settl = #{record.isSettl,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update mrcard_finance_merch_flow
+    set id = #{record.id,jdbcType=BIGINT},
+    finance_id = #{record.financeId,jdbcType=BIGINT},
+    type = #{record.type,jdbcType=TINYINT},
+    amount = #{record.amount,jdbcType=DECIMAL},
+    create_time = #{record.createTime,jdbcType=INTEGER},
+    ordersn = #{record.ordersn,jdbcType=VARCHAR},
+    remark = #{record.remark,jdbcType=VARCHAR},
+    is_settl = #{record.isSettl,jdbcType=BIT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.microsilver.mrcard.cloud.finance.model.MrcardFinanceMerchFlow">
+    update mrcard_finance_merch_flow
+    <set>
+      <if test="financeId != null">
+        finance_id = #{financeId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="ordersn != null">
+        ordersn = #{ordersn,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isSettl != null">
+        is_settl = #{isSettl,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.microsilver.mrcard.cloud.finance.model.MrcardFinanceMerchFlow">
+    update mrcard_finance_merch_flow
+    set finance_id = #{financeId,jdbcType=BIGINT},
+    type = #{type,jdbcType=TINYINT},
+    amount = #{amount,jdbcType=DECIMAL},
+    create_time = #{createTime,jdbcType=INTEGER},
+    ordersn = #{ordersn,jdbcType=VARCHAR},
+    remark = #{remark,jdbcType=VARCHAR},
+    is_settl = #{isSettl,jdbcType=BIT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <resultMap id="merchResultMap" type="com.microsilver.mrcard.cloud.finance.dto.FinanceMerchFlowResultDto">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="finance_id" jdbcType="BIGINT" property="financeId" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="create_time" jdbcType="INTEGER" property="createTime" />
+    <result column="ordersn" jdbcType="VARCHAR" property="ordersn" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+
+    <result column="member_id" jdbcType="BIGINT" property="memberId" />
+    <result column="identity" jdbcType="SMALLINT" property="identity" />
+    <result column="merch_id" jdbcType="BIGINT" property="merchId" />
+    <result column="total_amount" jdbcType="DECIMAL" property="totalAmount" />
+    <result column="real_amount" jdbcType="DECIMAL" property="realAmount" />
+    <result column="unrecorded_amount" jdbcType="DECIMAL" property="unrecordedAmount" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+
+  </resultMap>
+  <select id="selectByMerchs" parameterType="com.microsilver.mrcard.cloud.finance.dto.FinanceMerchFlowResultDto" resultMap="merchResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    mf.id,mf.finance_id,mf.type,mf.amount,mf.create_time,mf.ordersn,mf.remark,
+    mc.merch_id,mc.member_id,mc.identity,mc.total_amount ,mc.real_amount
+    from mrcard_finance_merch_flow mf left join mrcard_finance_customer mc on mf.finance_id = mc.id
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <update id="updateByOrderSn">
+    update mrcard_finance_merch_flow
+    set is_settl = #{status,jdbcType=BIT}
+    where  ordersn IN 
+    <foreach close=")" collection="orderSn" item="listItem" open="(" separator=",">
+      #{listItem}
+    </foreach>
+  </update>
+</mapper>

@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.microsilver.mrcard.cloud.finance.dao.MrcardFinanceAgentShareConfigMapper">
+  <resultMap id="BaseResultMap" type="com.microsilver.mrcard.cloud.finance.model.MrcardFinanceAgentShareConfig">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="key_word" jdbcType="VARCHAR" property="keyWord" />
+    <result column="platform_proportion" jdbcType="SMALLINT" property="platformProportion" />
+    <result column="province_proportion" jdbcType="SMALLINT" property="provinceProportion" />
+    <result column="city_proportion" jdbcType="SMALLINT" property="cityProportion" />
+    <result column="county_proportion" jdbcType="SMALLINT" property="countyProportion" />
+    <result column="warrior_proportion" jdbcType="SMALLINT" property="warriorProportion" />
+    <result column="knight_proportion" jdbcType="SMALLINT" property="knightProportion" />
+    <result column="vip_proportion" jdbcType="SMALLINT" property="vipProportion" />
+    <result column="agent_type" jdbcType="TINYINT" property="agentType" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, name, key_word, platform_proportion, province_proportion, city_proportion, county_proportion, 
+    warrior_proportion, knight_proportion, vip_proportion, agent_type
+  </sql>
+  <select id="selectByExample" parameterType="com.microsilver.mrcard.cloud.finance.model.MrcardFinanceAgentShareConfigExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from mrcard_finance_agent_share_config
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mrcard_finance_agent_share_config
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from mrcard_finance_agent_share_config
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.microsilver.mrcard.cloud.finance.model.MrcardFinanceAgentShareConfigExample">
+    delete from mrcard_finance_agent_share_config
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.microsilver.mrcard.cloud.finance.model.MrcardFinanceAgentShareConfig">
+    insert into mrcard_finance_agent_share_config (id, name, key_word, 
+      platform_proportion, province_proportion, 
+      city_proportion, county_proportion, warrior_proportion, 
+      knight_proportion, vip_proportion, agent_type
+      )
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{keyWord,jdbcType=VARCHAR}, 
+      #{platformProportion,jdbcType=SMALLINT}, #{provinceProportion,jdbcType=SMALLINT}, 
+      #{cityProportion,jdbcType=SMALLINT}, #{countyProportion,jdbcType=SMALLINT}, #{warriorProportion,jdbcType=SMALLINT}, 
+      #{knightProportion,jdbcType=SMALLINT}, #{vipProportion,jdbcType=SMALLINT}, #{agentType,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.microsilver.mrcard.cloud.finance.model.MrcardFinanceAgentShareConfig">
+    insert into mrcard_finance_agent_share_config
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="keyWord != null">
+        key_word,
+      </if>
+      <if test="platformProportion != null">
+        platform_proportion,
+      </if>
+      <if test="provinceProportion != null">
+        province_proportion,
+      </if>
+      <if test="cityProportion != null">
+        city_proportion,
+      </if>
+      <if test="countyProportion != null">
+        county_proportion,
+      </if>
+      <if test="warriorProportion != null">
+        warrior_proportion,
+      </if>
+      <if test="knightProportion != null">
+        knight_proportion,
+      </if>
+      <if test="vipProportion != null">
+        vip_proportion,
+      </if>
+      <if test="agentType != null">
+        agent_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="keyWord != null">
+        #{keyWord,jdbcType=VARCHAR},
+      </if>
+      <if test="platformProportion != null">
+        #{platformProportion,jdbcType=SMALLINT},
+      </if>
+      <if test="provinceProportion != null">
+        #{provinceProportion,jdbcType=SMALLINT},
+      </if>
+      <if test="cityProportion != null">
+        #{cityProportion,jdbcType=SMALLINT},
+      </if>
+      <if test="countyProportion != null">
+        #{countyProportion,jdbcType=SMALLINT},
+      </if>
+      <if test="warriorProportion != null">
+        #{warriorProportion,jdbcType=SMALLINT},
+      </if>
+      <if test="knightProportion != null">
+        #{knightProportion,jdbcType=SMALLINT},
+      </if>
+      <if test="vipProportion != null">
+        #{vipProportion,jdbcType=SMALLINT},
+      </if>
+      <if test="agentType != null">
+        #{agentType,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.microsilver.mrcard.cloud.finance.model.MrcardFinanceAgentShareConfigExample" resultType="java.lang.Integer">
+    select count(*) from mrcard_finance_agent_share_config
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update mrcard_finance_agent_share_config
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.keyWord != null">
+        key_word = #{record.keyWord,jdbcType=VARCHAR},
+      </if>
+      <if test="record.platformProportion != null">
+        platform_proportion = #{record.platformProportion,jdbcType=SMALLINT},
+      </if>
+      <if test="record.provinceProportion != null">
+        province_proportion = #{record.provinceProportion,jdbcType=SMALLINT},
+      </if>
+      <if test="record.cityProportion != null">
+        city_proportion = #{record.cityProportion,jdbcType=SMALLINT},
+      </if>
+      <if test="record.countyProportion != null">
+        county_proportion = #{record.countyProportion,jdbcType=SMALLINT},
+      </if>
+      <if test="record.warriorProportion != null">
+        warrior_proportion = #{record.warriorProportion,jdbcType=SMALLINT},
+      </if>
+      <if test="record.knightProportion != null">
+        knight_proportion = #{record.knightProportion,jdbcType=SMALLINT},
+      </if>
+      <if test="record.vipProportion != null">
+        vip_proportion = #{record.vipProportion,jdbcType=SMALLINT},
+      </if>
+      <if test="record.agentType != null">
+        agent_type = #{record.agentType,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update mrcard_finance_agent_share_config
+    set id = #{record.id,jdbcType=BIGINT},
+      name = #{record.name,jdbcType=VARCHAR},
+      key_word = #{record.keyWord,jdbcType=VARCHAR},
+      platform_proportion = #{record.platformProportion,jdbcType=SMALLINT},
+      province_proportion = #{record.provinceProportion,jdbcType=SMALLINT},
+      city_proportion = #{record.cityProportion,jdbcType=SMALLINT},
+      county_proportion = #{record.countyProportion,jdbcType=SMALLINT},
+      warrior_proportion = #{record.warriorProportion,jdbcType=SMALLINT},
+      knight_proportion = #{record.knightProportion,jdbcType=SMALLINT},
+      vip_proportion = #{record.vipProportion,jdbcType=SMALLINT},
+      agent_type = #{record.agentType,jdbcType=TINYINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.microsilver.mrcard.cloud.finance.model.MrcardFinanceAgentShareConfig">
+    update mrcard_finance_agent_share_config
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="keyWord != null">
+        key_word = #{keyWord,jdbcType=VARCHAR},
+      </if>
+      <if test="platformProportion != null">
+        platform_proportion = #{platformProportion,jdbcType=SMALLINT},
+      </if>
+      <if test="provinceProportion != null">
+        province_proportion = #{provinceProportion,jdbcType=SMALLINT},
+      </if>
+      <if test="cityProportion != null">
+        city_proportion = #{cityProportion,jdbcType=SMALLINT},
+      </if>
+      <if test="countyProportion != null">
+        county_proportion = #{countyProportion,jdbcType=SMALLINT},
+      </if>
+      <if test="warriorProportion != null">
+        warrior_proportion = #{warriorProportion,jdbcType=SMALLINT},
+      </if>
+      <if test="knightProportion != null">
+        knight_proportion = #{knightProportion,jdbcType=SMALLINT},
+      </if>
+      <if test="vipProportion != null">
+        vip_proportion = #{vipProportion,jdbcType=SMALLINT},
+      </if>
+      <if test="agentType != null">
+        agent_type = #{agentType,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.microsilver.mrcard.cloud.finance.model.MrcardFinanceAgentShareConfig">
+    update mrcard_finance_agent_share_config
+    set name = #{name,jdbcType=VARCHAR},
+      key_word = #{keyWord,jdbcType=VARCHAR},
+      platform_proportion = #{platformProportion,jdbcType=SMALLINT},
+      province_proportion = #{provinceProportion,jdbcType=SMALLINT},
+      city_proportion = #{cityProportion,jdbcType=SMALLINT},
+      county_proportion = #{countyProportion,jdbcType=SMALLINT},
+      warrior_proportion = #{warriorProportion,jdbcType=SMALLINT},
+      knight_proportion = #{knightProportion,jdbcType=SMALLINT},
+      vip_proportion = #{vipProportion,jdbcType=SMALLINT},
+      agent_type = #{agentType,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.microsilver.mrcard.serviceplatform.dao.IMemberIdentityDao">
+  <resultMap id="BaseResultMap" type="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMemberIdentity">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="memberId" jdbcType="BIGINT" property="memberId" />
+    <result column="identity" jdbcType="TINYINT" property="identity" />
+    <result column="createTime" jdbcType="INTEGER" property="createtime" />
+    <result column="merchId" jdbcType="BIGINT" property="merchId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="parent_id" jdbcType="BIGINT" property="parentId" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="areas" jdbcType="VARCHAR" property="areas" />
+    <result column="rongcloud_token" jdbcType="VARCHAR" property="rongcloudToken" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, memberId, identity, createTime, merchId, name, parent_id, status, areas,rongcloud_token
+  </sql>
+
+ <select id="selectDtoByMemberId" resultType="com.microsilver.mrcard.serviceplatform.dto.BusinessIdentityDto" parameterType="java.lang.Long">
+  	select identity,merchId,memberId,merchname,logo,accounttime,m.status
+    from ims_ewei_shop_member_identity as mi LEFT JOIN ims_ewei_shop_merch_user as m on mi.merchId=m.id
+    where memberId = #{memberId} 
+  </select>
+  <select id="selectBusiIdttDto" resultType="com.microsilver.mrcard.serviceplatform.dto.BusinessIdentityDto" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMemberIdentity">
+  	select identity,merchId,memberId,merchname,logo,accounttime,m.status
+    from ims_ewei_shop_member_identity as mi LEFT JOIN ims_ewei_shop_merch_user as m on mi.merchId=m.id
+    where 1=1
+    <if test="memberId != null" >
+        and mi.memberId = #{memberId}
+    </if>
+    <if test="merchId != null" >
+        and mi.merchId = #{merchId}
+    </if>
+    <if test="identity != null" >
+        and mi.identity = #{identity}
+    </if>
+    <if test="status != null" >
+        and mi.status = #{status}
+    </if>
+  </select>
+ <select id="selectMemIdttDto" resultType="com.microsilver.mrcard.serviceplatform.dto.IdentityDto" parameterType="Long">
+  	select mi.identity,mi.status,ia.score,ia.is_work as isWork,mi.rongcloud_token as rongcloudToken from ims_ewei_shop_member_identity as mi
+	left JOIN ims_ewei_shop_member_identity_additional as ia on mi.id=ia.idtt_id
+	<![CDATA[where mi.memberId=#{memberId} and mi.identity>11 and mi.identity<20]]>
+  </select>
+  <select id="selectEmployeeByMemberId" resultType="com.microsilver.mrcard.serviceplatform.dto.BusinessIdentityDto" parameterType="java.lang.Long">
+  	select identity,merchId,memberId,merchname,logo,accounttime,mi.status
+    from ims_ewei_shop_member_identity as mi left JOIN ims_ewei_shop_merch_user as m on mi.merchId=m.id and m.`status`=1
+    <![CDATA[where memberId = #{memberId} and mi.status = 1 and mi.identity>11 and mi.identity<20]]>
+  </select>
+
+  <select id="selectByExample" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMemberIdentityExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ims_ewei_shop_member_identity
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ims_ewei_shop_member_identity
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from ims_ewei_shop_member_identity
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMemberIdentityExample">
+    delete from ims_ewei_shop_member_identity
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMemberIdentity">
+    insert into ims_ewei_shop_member_identity (id, memberId, identity, 
+      createTime, merchId, name, 
+      parent_id, status, areas
+      )
+    values (#{id,jdbcType=BIGINT}, #{memberId,jdbcType=BIGINT}, #{identity,jdbcType=TINYINT}, 
+      #{createtime,jdbcType=INTEGER}, #{merchId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
+      #{parentId,jdbcType=BIGINT}, #{status,jdbcType=TINYINT}, #{areas,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMemberIdentity">
+    	<selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+            select LAST_INSERT_ID()
+        </selectKey>
+    insert into ims_ewei_shop_member_identity
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="memberId != null">
+        memberId,
+      </if>
+      <if test="identity != null">
+        identity,
+      </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
+      <if test="merchId != null">
+        merchId,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="areas != null">
+        areas,
+      </if>
+       <if test="rongcloudToken != null">
+        rongcloud_token,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="memberId != null">
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="identity != null">
+        #{identity,jdbcType=TINYINT},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=INTEGER},
+      </if>
+      <if test="merchId != null">
+        #{merchId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="areas != null">
+        #{areas,jdbcType=VARCHAR},
+      </if>
+      <if test="rongcloudToken != null">
+        #{rongcloudToken,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMemberIdentityExample" resultType="java.lang.Integer">
+    select count(*) from ims_ewei_shop_member_identity
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ims_ewei_shop_member_identity
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.memberId != null">
+        memberId = #{record.memberId,jdbcType=BIGINT},
+      </if>
+      <if test="record.identity != null">
+        identity = #{record.identity,jdbcType=TINYINT},
+      </if>
+      <if test="record.createtime != null">
+        createTime = #{record.createtime,jdbcType=INTEGER},
+      </if>
+      <if test="record.merchId != null">
+        merchId = #{record.merchId,jdbcType=BIGINT},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentId != null">
+        parent_id = #{record.parentId,jdbcType=BIGINT},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.areas != null">
+        areas = #{record.areas,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rongcloudToken!= null">
+        rongcloud_token = #{record.rongcloudToken,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ims_ewei_shop_member_identity
+    set id = #{record.id,jdbcType=BIGINT},
+      memberId = #{record.memberId,jdbcType=BIGINT},
+      identity = #{record.identity,jdbcType=TINYINT},
+      createTime = #{record.createtime,jdbcType=INTEGER},
+      merchId = #{record.merchId,jdbcType=BIGINT},
+      name = #{record.name,jdbcType=VARCHAR},
+      parent_id = #{record.parentId,jdbcType=BIGINT},
+      status = #{record.status,jdbcType=TINYINT},
+      areas = #{record.areas,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMemberIdentity">
+    update ims_ewei_shop_member_identity
+    <set>
+      <if test="memberId != null">
+        memberId = #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="identity != null">
+        identity = #{identity,jdbcType=TINYINT},
+      </if>
+      <if test="createtime != null">
+        createTime = #{createtime,jdbcType=INTEGER},
+      </if>
+      <if test="merchId != null">
+        merchId = #{merchId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="areas != null">
+        areas = #{areas,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.microsilver.mrcard.serviceplatform.model.ImsEweiShopMemberIdentity">
+    update ims_ewei_shop_member_identity
+    set memberId = #{memberId,jdbcType=BIGINT},
+      identity = #{identity,jdbcType=TINYINT},
+      createTime = #{createtime,jdbcType=INTEGER},
+      merchId = #{merchId,jdbcType=BIGINT},
+      name = #{name,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=BIGINT},
+      status = #{status,jdbcType=TINYINT},
+      areas = #{areas,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
